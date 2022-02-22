@@ -1,7 +1,20 @@
 @extends('layouts.main', ["title" => "Fiblo | Blog"])
 
 @section('content')
-<h2 class="mb-4">{{ $title ?? 'Halaman Blog' }}</h2>
+<div class="row justify-content-between">
+    <div class="col-md-5">
+        <h2 class="mb-4">{{ $title ?? 'Halaman Blog' }}</h2>
+    </div>
+    <div class="col-md-7 col-sm-10" style="max-width: 400px">
+        <form action="/posts">
+            <div class="input-group">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="What are you looking for?"
+                    class="form-control border-0 shadow-lg">
+                <button type="submit" class="btn text-white shadow-lg" style="background: rgb(14, 14, 24)">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 @if ($posts->count())
 <div class="card mb-3 pb-4 text-center border-0 b-shadow">
@@ -27,10 +40,9 @@
         </div>
     </div>
 </div>
-@endif
 
 <article class="row mt-5">
-    @forelse ($posts->skip(1) as $post)
+    @foreach ($posts->skip(1) as $post)
     <div class="col-md-4">
         <div class="card mb-3 pb-4 border-0 b-shadow">
             <a href="/posts/categories/{{ $post->category->name }}">
@@ -56,9 +68,9 @@
             </div>
         </div>
     </div>
-    @empty
-    <h2>Ups!maaf ya, sekarang masih belum ada article nih :(</h2>
-    @endforelse
+    @endforeach
 </article>
-
+@else
+<h2>Ups!maaf ya, sekarang masih belum ada article nih :(</h2>
+@endif
 @endsection
