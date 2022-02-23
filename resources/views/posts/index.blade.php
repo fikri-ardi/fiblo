@@ -8,6 +8,12 @@
     <div class="col-md-7 col-sm-10" style="max-width: 400px">
         <form action="/posts">
             <div class="input-group">
+                @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+                @if (request('author'))
+                <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="What are you looking for?"
                     class="form-control border-0 shadow-lg">
                 <button type="submit" class="btn text-white shadow-lg" style="background: rgb(14, 14, 24)">Search</button>
@@ -26,9 +32,9 @@
 
         <small class="mb-4 d-block">
             Wrote by
-            <a class="author" href="/posts/author/{{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a>
+            <a class="author" href="/posts?author={{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a>
             in
-            <a class="category" href="/posts/categories/{{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a>
+            <a class="category" href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a>
             <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
         </small>
 
@@ -45,7 +51,7 @@
     @foreach ($posts->skip(1) as $post)
     <div class="col-md-4">
         <div class="card mb-3 pb-4 border-0 b-shadow">
-            <a href="/posts/categories/{{ $post->category->name }}">
+            <a href="/posts?category={{ $post->category->slug }}">
                 <small style="background: #11111d;" class="position-absolute px-3 py-2 text-light text-small">{{ $post->category->name }}</small>
             </a>
 
@@ -57,7 +63,7 @@
 
                 <small class="mb-4 d-block">
                     Wrote by
-                    <a class="author" href="/posts/author/{{ $post->author->username }}">{{ $post->author->name }}</a>
+                    <a class="author" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                     <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                 </small>
 

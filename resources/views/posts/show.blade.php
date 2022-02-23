@@ -9,7 +9,7 @@
             <p class="mb-3">
                 Wrote by
                 <a class="author" href="/posts/author/{{ $post->author->username }}">{{ $post->author->name }}</a> in
-                <a class="category" href="/posts/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                <a class="category" href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
             </p>
             <article class="fs-5">{!! $post->body !!}</article>
 
