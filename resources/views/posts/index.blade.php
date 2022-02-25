@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-between">
     <div class="col-md-5">
-        <h2 class="mb-4">{{ $title ?? 'Halaman Blog' }}</h2>
+        <h2 class="mb-4">{{ $pageTitle }}</h2>
     </div>
     <div class="col-md-7 col-sm-10" style="max-width: 400px">
         <form action="/posts">
@@ -52,7 +52,9 @@
     <div class="col-md-4">
         <div class="card mb-3 pb-4 border-0 b-shadow">
             <a href="/posts?category={{ $post->category->slug }}">
-                <small style="background: #11111d;" class="position-absolute px-3 py-2 text-light text-small">{{ $post->category->name }}</small>
+                <small style="background: #11111d80;" class="position-absolute px-3 py-2 text-light text-small blur rounded-2">{{
+                    $post->category->name
+                    }}</small>
             </a>
 
             <img src="/images/hero.jpg" class="card-img-top w-100 h-100">
@@ -76,6 +78,8 @@
     </div>
     @endforeach
 </article>
+
+<div class="d-flex justify-content-center">{{ $posts->links() }}</div>
 @else
 <h2>Ups!maaf ya, sekarang masih belum ada article nih :(</h2>
 @endif

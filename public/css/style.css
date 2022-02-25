@@ -9,7 +9,8 @@ body {
 }
 
 a.category,
-a.author {
+a.author,
+a.link {
     color: rgb(224, 51, 74);
     text-decoration: underline;
 }
@@ -19,8 +20,45 @@ a.author {
     box-shadow: 0px 20px 40px -20px #00000020;
 }
 
+.blur {
+    backdrop-filter: blur(5px);
+}
+
 /* Posts Page */
 .hero-image {
     height: 500px;
     object-fit: cover;
+}
+
+/* Login page */
+.form-signin {
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Register page */
+.form-register input {
+    border-radius: 0;
+    margin-bottom: -1px;
 }

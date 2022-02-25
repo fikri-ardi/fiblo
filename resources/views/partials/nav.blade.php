@@ -23,6 +23,12 @@
                     <a class="nav-link{{ request()->segment(1) == 'about' ? ' active' : '' }}" href="/about">About</a>
                 </li>
             </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/login" class="nav-link{{ request()->segment(1) == 'login' ? ' active' : '' }}">Login</a>
+                </li>
+            </ul>
         </div>
 
     </div>

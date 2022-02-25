@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
+        $pageTitle = 'All Posts';
+        $pageTitle .= request('category') ? ' in ' . ucwords(str_replace('-', ' ', request('category'))) : '';
+        $pageTitle .= request('author') ? ' by ' . User::firstWhere('username', request('author'))->name : '';
+
         return view('posts.index', [
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->get()
+            'pageTitle' => $pageTitle,
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 
