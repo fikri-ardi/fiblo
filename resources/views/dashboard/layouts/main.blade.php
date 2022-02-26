@@ -14,6 +14,16 @@
 
     {{-- CSS feather icons --}}
     <link rel="stylesheet" href="/css/feathericon.min.css">
+
+    {{-- Trix Editor --}}
+    <link rel="stylesheet" href="/css/trix.css">
+    <script src="/js/trix.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none
+        }
+    </style>
 </head>
 
 <body>

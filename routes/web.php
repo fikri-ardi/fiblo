@@ -32,5 +32,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::get('/dashboard/posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug'])->middleware('auth');
 Route::get('/dashboard', DashboardController::class)->middleware('auth');
 Route::resource('/dashboard/posts', App\Http\Controllers\Dashboard\PostController::class)->middleware('auth');
