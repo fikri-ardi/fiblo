@@ -11,6 +11,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 
+    {{-- Bootstrap icons --}}
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+
     <title>{{ $title ?? env('APP_NAME') }}</title>
 </head>
 

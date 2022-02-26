@@ -25,9 +25,35 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="/login" class="nav-link{{ request()->segment(1) == 'login' ? ' active' : '' }}">Login</a>
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person"></i> {{ auth()->user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/dashboard">
+                                <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard
+                            </a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="dropdown-item" type="submit">
+                                    <i class="bi bi-box-arrow-left"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
+                @else
+                <li class="nav-item">
+                    <a href="/login" class="nav-link{{ request()->segment(1) == 'login' ? ' active' : '' }}">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                </li>
+                @endauth
             </ul>
         </div>
 
