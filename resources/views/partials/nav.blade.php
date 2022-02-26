@@ -10,17 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->segment(1) == '' ? ' active' : '' }}" aria-current="page" href="/">Home</a>
+                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->segment(1) == 'posts' && request()->segment(2) != 'categories' ? ' active' : '' }}"
-                        href="/posts">Blog</a>
+                    <a class="nav-link{{ request()->is('posts') ? ' active' : '' }}" href="/posts">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->segment(2) == 'categories' ? ' active' : '' }}" href="/posts/categories">Categories</a>
+                    <a class="nav-link{{ request()->is('posts/categories')  ? ' active' : '' }}" href="/posts/categories"> Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->segment(1) == 'about' ? ' active' : '' }}" href="/about">About</a>
+                    <a class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="/about">About</a>
                 </li>
             </ul>
 
