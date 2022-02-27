@@ -6,6 +6,10 @@
         <h1 class="h2">All Posts</h1>
     </div>
 
+    @if (session('message'))
+    <div class="alert alert-{{ session('type') }}">{{ session('message') }}</div>
+    @endif
+
     <div class="table-responsive">
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Post</a>
 
@@ -30,9 +34,11 @@
                         </a>
                         <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
                         </a>
-                        <form action="/dashboard/posts/{{ $post->slug }}" method="delete" class="d-inline">
+                        <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                            @method('delete')
                             @csrf
-                            <button type="submit" class="badge bg-danger text-white border-0"> <span data-feather="x-circle"></span>
+                            <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span
+                                    data-feather="x-circle"></span>
                             </button>
                         </form>
                     </td>

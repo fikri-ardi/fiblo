@@ -24,7 +24,14 @@
 
 @if ($posts->count())
 <div class="card mb-3 pb-4 text-center border-0 b-shadow">
-    <img src="/images/hero.jpg" class="card-img-top w-100 hero-image">
+    @if ($posts[0]->image)
+    <img src="/storage/{{ $posts[0]->image }}" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
+        style="left: 0; max-height: 420px; object-fit: cover">
+    @else
+    <img src="/images/hero.jpg" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
+        style="left: 0; max-height: 420px; object-fit: cover">
+    @endif
+
     <div class="card-body">
         <h3 class="card-title">
             <a href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
@@ -57,7 +64,13 @@
                     }}</small>
             </a>
 
-            <img src="/images/hero.jpg" class="card-img-top w-100 h-100">
+            @if ($post->image)
+            <img src="/storage/{{ $post->image }}" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
+                style="left: 0; max-height: 250px; object-fit: cover">
+            @else
+            <img src="/images/hero.jpg" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
+                style="left: 0; max-height: 250px; object-fit: cover">
+            @endif
             <div class="card-body">
                 <h3 class="card-title">
                     <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>

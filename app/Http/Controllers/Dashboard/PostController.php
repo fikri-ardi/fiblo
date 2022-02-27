@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
@@ -42,7 +44,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return request()->all();
+        $validatedData = request()->validate([
+            'title' => 'required|min:3|max:255',
+            'slug' => 'required|unique:posts',
+            'image' => 'image|file|max:2048',
+            'category_id' => 'required',
+            'body' => 'required',
+        ]);
+
+        if (request()->file('image')) {
+            $validatedData['image'] = request()->file('image')->store('images/posts');
+        }
+
+        $validatedData['user_id'] = auth()->id();
+        $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
+
+        Post::create($validatedData);
+        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dibuat :)', 'type' => 'success']);
     }
 
     /**
@@ -64,7 +82,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -76,7 +97,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'title' => 'required|min:3|max:255',
+            'category_id' => 'required',
+            'body' => 'required',
+        ];
+
+        if (request('slug') != $post->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validatedData = request()->validate($rules);
+
+        $validatedData['user_id'] = auth()->id();
+        $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
+
+        $post->update($validatedData);
+        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil diubah :)', 'type' => 'success']);
     }
 
     /**
@@ -87,7 +124,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dihapus :)', 'type' => 'success']);
     }
 
     public function checkSlug()

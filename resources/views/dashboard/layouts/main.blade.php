@@ -9,6 +9,9 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
+    {{-- Bootstrap icons --}}
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
 
