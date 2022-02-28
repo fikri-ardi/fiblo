@@ -14,9 +14,11 @@
                 @if (request('author'))
                 <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="What are you looking for?"
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Kamu lagi cari apa?"
                     class="form-control border-0 shadow-lg">
-                <button type="submit" class="btn text-white shadow-lg" style="background: rgb(14, 14, 24)">Search</button>
+                <button type="submit" class="btn text-white shadow-lg" style="background: rgb(14, 14, 24)">
+                    <i class="bi bi-send"></i>
+                </button>
             </div>
         </form>
     </div>
@@ -38,9 +40,9 @@
         </h3>
 
         <small class="mb-4 d-block">
-            Wrote by
+            Ditulis oleh
             <a class="author" href="/posts?author={{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a>
-            in
+            di
             <a class="category" href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a>
             <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
         </small>
@@ -49,7 +51,9 @@
             {{ $posts[0]->excerpt }}
         </p>
         <div class="d-flex justify-content-center">
-            <a href="/posts/{{ $posts[0]->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">Read more</a>
+            <a href="/posts/{{ $posts[0]->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
+                Lanjut <i class="bi bi-chevron-compact-right"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -77,7 +81,7 @@
                 </h3>
 
                 <small class="mb-4 d-block">
-                    Wrote by
+                    Ditulis oleh
                     <a class="author" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                     <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                 </small>
@@ -85,7 +89,9 @@
                 <p class="card-text">
                     {{ $post->excerpt }}
                 </p>
-                <a href="/posts/{{ $post->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">Read more</a>
+                <a href="/posts/{{ $post->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
+                    Lanjut <i class="bi bi-chevron-compact-right"></i>
+                </a>
             </div>
         </div>
     </div>

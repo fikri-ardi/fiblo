@@ -11,9 +11,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        $pageTitle = 'All Posts';
-        $pageTitle .= request('category') ? ' in ' . ucwords(str_replace('-', ' ', request('category'))) : '';
-        $pageTitle .= request('author') ? ' by ' . User::firstWhere('username', request('author'))->name : '';
+        $pageTitle = 'Semua Post';
+        $pageTitle .= request('category') ? ' di ' . ucwords(str_replace('-', ' ', request('category'))) : '';
+        $pageTitle .= request('author') ? ' oleh ' . User::firstWhere('username', request('author'))->name : '';
 
         return view('posts.index', [
             'pageTitle' => $pageTitle,

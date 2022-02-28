@@ -1,5 +1,5 @@
 @extends('layouts.main', ["title" => "Fiblo | Home"])
 
 @section('content')
-<h2>Halaman Home</h2>
+<h2 class="text-center">Halaman Beranda</h2>
 @endsection
