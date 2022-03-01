@@ -8,7 +8,7 @@
     <div class="col-md-4">
         <div class="position-relative">
             <a href="/posts?category={{ $category->slug }}" class="stretched-link"></a>
-            <div class="position-absolute text-white fs-4 text-center w-100 p-3"
+            <div class="position-absolute text-white fs-4 text-center w-100 p-3 backdrop-blur-lg"
                 style="left: 0; top: 50%; transform: translateY(-50%); background: #0d0d1699">
                 {{ $category->name }}
             </div>

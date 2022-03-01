@@ -43,7 +43,9 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Banner</label>
-                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                <img class="img-preview img-fluid col-sm-5 rounded-lg">
+                <input class="form-control img-input @error('image') is-invalid @enderror" type="file" id="image" name="image"
+                    onchange="previewImage()">
                 @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -67,7 +69,7 @@
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
 
-    title.addEventListener('change', ()=>{
+    title.addEventListener('change', () => {
         fetch('/dashboard/posts/checkSlug?title='+title.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug)

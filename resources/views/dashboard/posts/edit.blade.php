@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+        <form action="/dashboard/posts/{{ $post->slug }}" method="POST" enctype="multipart/form-data" class="mb-4">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -41,6 +41,17 @@
                     @endforelse
                 </select>
                 @error('category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Banner</label>
+                <img src='{{ $post->image ? "/storage/$post->image" : "" }}'
+                    class="img-preview img-fluid col-sm-5 rounded-lg{{ $post->image ? ' mb-3' : '' }}">
+                <input class="form-control img-input @error('image') is-invalid @enderror" type="file" id="image" name="image"
+                    onchange="previewImage()">
+                @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

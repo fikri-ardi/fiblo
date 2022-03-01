@@ -41,7 +41,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            @include('dashboard.partials.nav')
+            @include('dashboard.partials.sidebar')
 
             @yield('content')
 
@@ -53,6 +53,8 @@
     <script src="/js/feather.min.js"></script>
 
     <script src="/js/dashboard.js"></script>
+
+    <script src="/js/image-previewer.js"></script>
 </body>
 
 </html>

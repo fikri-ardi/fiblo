@@ -15,5 +15,17 @@
             </li>
         </ul>
 
+        @can('role', 'admin')
+        <h6 class="p-3 text-gray-500">ADMINISTRATOR</h6>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link{{ request()->is('dashboard/categories*') ? ' active' : '' }}" aria-current="page" href="/dashboard/categories">
+                    <span data-feather="grid"></span>
+                    Categories
+                </a>
+            </li>
+        </ul>
+        @endcan
+
     </div>
 </nav>

@@ -32,6 +32,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard/posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug'])->middleware('auth');
-Route::get('/dashboard', DashboardController::class)->middleware('auth');
-Route::resource('/dashboard/posts', App\Http\Controllers\Dashboard\PostController::class)->middleware('auth');
+
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+    // route for check & make a slug
+    Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
+
+    Route::get('/', DashboardController::class);
+    Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
+});
+Route::resource('/dashboard/categories', App\Http\Controllers\Dashboard\CategoryController::class)->middleware(['auth', 'role:admin'])->except('show');

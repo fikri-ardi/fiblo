@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Category;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Models\{Post, Category};
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
@@ -42,24 +41,18 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $validatedData = request()->validate([
-            'title' => 'required|min:3|max:255',
-            'slug' => 'required|unique:posts',
-            'image' => 'image|file|max:2048',
-            'category_id' => 'required',
-            'body' => 'required',
-        ]);
 
-        if (request()->file('image')) {
-            $validatedData['image'] = request()->file('image')->store('images/posts');
+        if ($request->file('image')) {
+            $request['image'] = $request->file('image')->store('images/posts');
         }
+        dd($request['image']);
 
-        $validatedData['user_id'] = auth()->id();
-        $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
+        $request['user_id'] = auth()->id();
+        $request['excerpt'] = Str::limit(strip_tags($request['body']), 200, '...');
 
-        Post::create($validatedData);
+        Post::create($request->all());
         return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dibuat :)', 'type' => 'success']);
     }
 
@@ -95,11 +88,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $rules = [
             'title' => 'required|min:3|max:255',
             'category_id' => 'required',
+            'image' => 'image|file|max:2048',
             'body' => 'required',
         ];
 
@@ -108,6 +102,11 @@ class PostController extends Controller
         }
 
         $validatedData = request()->validate($rules);
+
+        if (request('image')) {
+            !$post->image ?: Storage::delete($post->image);
+            $validatedData['image'] = request('image')->store('/images/posts');
+        }
 
         $validatedData['user_id'] = auth()->id();
         $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
@@ -124,6 +123,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        !$post->image ?: Storage::delete($post->image);
         Post::destroy($post->id);
         return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dihapus :)', 'type' => 'success']);
     }

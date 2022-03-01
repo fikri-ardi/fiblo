@@ -61,9 +61,9 @@
 <article class="row mt-5">
     @foreach ($posts->skip(1) as $post)
     <div class="col-md-4">
-        <div class="card mb-3 pb-4 border-0 b-shadow">
+        <div class="card mb-3 pb-4 border-0 b-shadow relative">
             <a href="/posts?category={{ $post->category->slug }}">
-                <small style="background: #11111d80;" class="position-absolute px-3 py-2 text-light text-small blur rounded-2">{{
+                <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2  bg-opacity-40 backdrop-blur-lg">{{
                     $post->category->name
                     }}</small>
             </a>
