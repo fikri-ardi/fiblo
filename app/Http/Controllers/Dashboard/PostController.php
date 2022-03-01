@@ -18,9 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = auth()->user()->posts;
-
-        return view('dashboard.posts.index', ['posts' => $posts]);
+        return view('dashboard.posts.index', ['posts' => auth()->user()->posts]);
     }
 
     /**
@@ -30,9 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create', [
-            'categories' => Category::all()
-        ]);
+        return view('dashboard.posts.create', ['categories' => Category::all()]);
     }
 
     /**
@@ -43,16 +39,13 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $validatedData = $request->all();
 
-        if ($request->file('image')) {
-            $request['image'] = $request->file('image')->store('images/posts');
-        }
-        dd($request['image']);
+        !$request->image ?: $validatedData['image'] = $request->image->store('images/posts');
 
-        $request['user_id'] = auth()->id();
-        $request['excerpt'] = Str::limit(strip_tags($request['body']), 200, '...');
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
 
-        Post::create($request->all());
+        auth()->user()->posts()->create($validatedData);
         return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dibuat :)', 'type' => 'success']);
     }
 
@@ -90,26 +83,15 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $rules = [
-            'title' => 'required|min:3|max:255',
-            'category_id' => 'required',
-            'image' => 'image|file|max:2048',
-            'body' => 'required',
-        ];
+        $validatedData = $request->all();
 
-        if (request('slug') != $post->slug) {
-            $rules['slug'] = 'required|unique:posts';
-        }
-
-        $validatedData = request()->validate($rules);
-
-        if (request('image')) {
+        if ($request->image) {
             !$post->image ?: Storage::delete($post->image);
-            $validatedData['image'] = request('image')->store('/images/posts');
+            $validatedData['image'] = $request->image->store('/images/posts');
         }
 
         $validatedData['user_id'] = auth()->id();
-        $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
 
         $post->update($validatedData);
         return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil diubah :)', 'type' => 'success']);

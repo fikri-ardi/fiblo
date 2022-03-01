@@ -27,7 +27,7 @@ class CategoryRequest extends FormRequest
         // jadi di belakang layar, kode dibawah ini akan mendapatkan id dari category yang saat ini diupdate
         // $this mengacu pada class CategoryRequest yang berisi request yang dikirim oleh user
         // $this->route('category')->id ambil 1 baris data category yg dikirim melalui route model binding, lalu ambil isi dari field id nya  
-        $id = $this->route('category')->id;
+        $id = $this->route('category')->id ?? null;
 
         return [
             'name' => 'required|unique:categories,name,' . $id,

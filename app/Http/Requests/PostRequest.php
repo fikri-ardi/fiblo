@@ -23,9 +23,11 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('post')->id ?? null;
+
         return [
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|unique:posts',
+            'slug' => 'required|unique:posts,slug,' . $id,
             'image' => 'image|file|max:2048',
             'category_id' => 'required',
             'body' => 'required',
