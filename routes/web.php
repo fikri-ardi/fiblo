@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -14,6 +15,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', [
         "name" => "Fikri Ardi",
+        "bio" => "An IT enthusiast, hobbies playing guitar, singing, futsal, badminton and love to code",
         "email" => "fikriardi@gmail.com",
         "image" => "fikri",
     ]);
@@ -32,6 +34,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+// Route::resource('profiles', ProfileController::class)->middleware('auth')->except(['index', 'create', 'store']);
+Route::get('/profiles', [ProfileController::class, 'show'])->middleware('auth');
+Route::get('/profiles/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth');
+Route::put('/profiles/{user}', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     // route for check & make a slug
@@ -40,4 +46,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', DashboardController::class);
     Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
 });
-Route::resource('/dashboard/categories', App\Http\Controllers\Dashboard\CategoryController::class)->middleware(['auth', 'role:admin'])->except('show');
+
+Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->group(function () {
+    Route::resource('users', App\Http\Controllers\Dashboard\UserController::class)->except('show');
+    Route::resource('categories', App\Http\Controllers\Dashboard\CategoryController::class)->except('show');
+    Route::resource('roles', App\Http\Controllers\Dashboard\RoleController::class)->except('show');
+});

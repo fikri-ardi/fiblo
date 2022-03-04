@@ -16,9 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('dashboard.categories.index', [
-            'categories' => Category::all()
-        ]);
+        return view('dashboard.categories.index', ['categories' => Category::all()]);
     }
 
     /**
@@ -41,7 +39,6 @@ class CategoryController extends Controller
     {
         $request['slug'] = Str::slug($request->name);
         Category::create($request->all());
-
         return redirect('/dashboard/categories')->with(['message' => 'Kategori kamu berhasil dibuat :)', 'type' => 'success']);
     }
 
@@ -67,7 +64,6 @@ class CategoryController extends Controller
     {
         $request['slug'] = Str::slug($request->name);
         $category->update($request->all());
-
         return redirect('/dashboard/categories')->with(['message' => 'Kategori kamu berhasil diubah :)', 'type' => 'success']);
     }
 

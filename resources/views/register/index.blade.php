@@ -33,7 +33,7 @@
                 <div class="form-floating">
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
                         placeholder="name@example.com" value="{{ old('email') ?? '' }}" required>
-                    <label for="email">Email address</label>
+                    <label for="email">Alamat E-Mail</label>
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -54,7 +54,7 @@
 
                 <div class="checkbox mb-3">
                     <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <input type="checkbox" value="remember-me"> Ingat aku
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary border-0" type="submit" style="background: rgb(17, 17, 41)">Register</button>

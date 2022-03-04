@@ -14,11 +14,54 @@ a {
 
 .navbar .navbar-nav .nav-item .active {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    position: relative;
+}
+
+.navbar .navbar-nav .nav-item .active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    transition: 0.2s ease-out;
+    opacity: 1;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: rgb(21, 22, 27);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%, 60%);
+    width: 8px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    opacity: 0;
+    transition: 0.2s ease-out;
+}
+
+.nav-link:hover::after {
+    width: 13px !important;
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.dropdown .dropdown-menu {
+    position: absolute;
+    transform: translateX(-64%);
 }
 
 body {
@@ -48,6 +91,33 @@ a.link {
 
 .col-primary {
     color: var(--primary-color);
+}
+
+.slide {
+    animation: slide 5s ease-out 1;
+    transform: translateX(100%);
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(100%);
+    }
+
+    10% {
+        transform: translateX(-10%);
+    }
+
+    50% {
+        transform: translateX(-10%);
+    }
+
+    95% {
+        transform: translateX(-10%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 /* Posts Page */
@@ -97,5 +167,32 @@ a.link {
 @media(max-width: 992px) {
     #mobile-nav {
         display: block;
+    }
+
+    #mobile-nav .active span {
+        color: var(--primary-color);
+        background: #00000020;
+        position: relative;
+        border-radius: 10px;
+    }
+
+    #mobile-nav .active span::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--primary-color);
+    }
+
+    .navbar {
+        padding: 10px !important;
+    }
+
+    .main-container {
+        padding-top: 70px !important;
     }
 }

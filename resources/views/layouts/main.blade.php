@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="/icon/fiblo.png" type="image/x-icon">
+
     {{-- Tailwind CSS --}}
     <link rel="stylesheet" href="/css/app.css">
 
@@ -22,13 +24,16 @@
 
 <body>
     @include('partials.nav')
+    @include('partials.notif')
 
-    <div class="container mt-4" style="padding-top: 100px">
+    <div class="container main-container mt-2 mb-5" style="padding-top: 100px">
         @yield('content')
     </div>
 
     <script src="/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+    <script src="/js/image-previewer.js"></script>
 </body>
 
 </html>

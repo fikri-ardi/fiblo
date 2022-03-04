@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -18,7 +19,8 @@ class RoleSeeder extends Seeder
 
         $roles->each(function ($role) {
             Role::create([
-                'name' => $role
+                'name' => $role,
+                'slug' => Str::slug($role)
             ]);
         });
     }

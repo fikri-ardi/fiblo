@@ -6,7 +6,7 @@
         <h2 class="mb-4">{{ $pageTitle }}</h2>
     </div>
     <div class="col-md-7 col-sm-10" style="max-width: 400px">
-        <form action="/posts">
+        <form action="/posts" class="mb-3">
             <div class="input-group">
                 @if (request('category'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
@@ -16,7 +16,7 @@
                 @endif
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Kamu lagi cari apa?"
                     class="form-control border-0 shadow-lg">
-                <button type="submit" class="btn text-white shadow-lg" style="background: rgb(14, 14, 24)">
+                <button type="submit" class="btn text-white shadow-md" style="background: rgb(14, 14, 24)">
                     <i class="bi bi-send"></i>
                 </button>
             </div>

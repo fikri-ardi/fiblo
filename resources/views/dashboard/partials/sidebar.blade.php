@@ -19,9 +19,21 @@
         <h6 class="p-3 text-gray-500">ADMINISTRATOR</h6>
         <ul class="nav flex-column">
             <li class="nav-item">
+                <a class="nav-link{{ request()->is('dashboard/users*') ? ' active' : '' }}" aria-current="page" href="/dashboard/users">
+                    <span data-feather="users"></span>
+                    Users
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link{{ request()->is('dashboard/categories*') ? ' active' : '' }}" aria-current="page" href="/dashboard/categories">
                     <span data-feather="grid"></span>
                     Categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{{ request()->is('dashboard/roles*') ? ' active' : '' }}" aria-current="page" href="/dashboard/roles">
+                    <i class="bi bi-person-badge text-lg mr-1"></i>
+                    Roles
                 </a>
             </li>
         </ul>

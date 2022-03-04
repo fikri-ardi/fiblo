@@ -36,7 +36,7 @@
 </head>
 
 <body>
-
+    @include('partials.notif')
     @include('dashboard.partials.header')
 
     <div class="container-fluid">
