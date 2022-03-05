@@ -22,12 +22,12 @@
     <title>{{ $title ?? env('APP_NAME') }}</title>
 </head>
 
-<body>
-    @include('partials.nav')
-    @include('partials.notif')
+<body class="antialiased">
+    <x-navbar></x-navbar>
+    <x-notif></x-notif>
 
     <div class="container main-container mt-2 mb-5" style="padding-top: 100px">
-        @yield('content')
+        {{ $slot }}
     </div>
 
     <script src="/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

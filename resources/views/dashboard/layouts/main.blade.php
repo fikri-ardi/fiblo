@@ -35,15 +35,15 @@
     </style>
 </head>
 
-<body>
-    @include('partials.notif')
-    @include('dashboard.partials.header')
+<body class="antialiased">
+    <x-notif></x-notif>
+    <x-dashboard.header></x-dashboard.header>
 
     <div class="container-fluid">
         <div class="row">
-            @include('dashboard.partials.sidebar')
+            <x-dashboard.sidebar></x-dashboard.sidebar>
 
-            @yield('content')
+            {{ $slot }}
 
         </div>
     </div>

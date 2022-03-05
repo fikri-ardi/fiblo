@@ -1,5 +1,3 @@
-@extends('layouts.main', ["title" => "Fiblo | Beranda"])
-
-@section('content')
-<h2 class="text-center">Halaman Beranda</h2>
-@endsection
+<x-layouts.main>
+    <h2 class="text-center">Halaman Beranda</h2>
+</x-layouts.main>
