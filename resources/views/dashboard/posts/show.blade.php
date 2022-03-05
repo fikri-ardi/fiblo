@@ -1,4 +1,4 @@
-<x-dashboard.layouts.main>
+<x-dashboard-layout>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
             <div class="col-md-7 col-lg-8">
@@ -26,4 +26,4 @@
             </div>
         </div>
     </main>
-</x-dashboard.layouts.main>
+</x-dashboard-layout>

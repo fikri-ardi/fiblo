@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <div class="row justify-content-between">
         <div class="col-md-5">
             <h2 class="mb-4">{{ $pageTitle }}</h2>
@@ -100,4 +100,4 @@
     @else
     <h2>Ups!maaf ya, sekarang masih belum ada article nih :(</h2>
     @endif
-</x-layouts.main>
+</x-app-layout>

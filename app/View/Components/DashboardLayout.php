@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Dashboard\Layouts;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class main extends Component
+class DashboardLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class main extends Component
      */
     public function render()
     {
-        return view('dashboard.layouts.main');
+        return view('layouts.dashboard');
     }
 }

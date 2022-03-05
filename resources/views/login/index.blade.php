@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <div class="row justify-content-center mt-5">
         <div class="col-lg-5 col-md-5">
             <main class="form-signin">
@@ -39,4 +39,4 @@
             </main>
         </div>
     </div>
-</x-layouts.main>
+</x-app-layout>

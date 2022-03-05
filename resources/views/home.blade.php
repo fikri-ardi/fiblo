@@ -1,3 +1,3 @@
-<x-layouts.main>
+<x-app-layout>
     <h2 class="text-center">Halaman Beranda</h2>
-</x-layouts.main>
+</x-app-layout>

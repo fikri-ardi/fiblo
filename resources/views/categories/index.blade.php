@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h2 class="mb-5">Kategori Post</h2>
     <div class="row">
         @forelse ($categories as $category)
@@ -16,4 +16,4 @@
         <h2>Ups!, Maaf sekarang masih belum ada category nih :(</h2>
         @endforelse
     </div>
-</x-layouts.main>
+</x-app-layout>

@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <div class="flex justify-content-center">
         <h2 class="mb-4 text-center mr-2">Profil Ku</h2>
         <a href="/profiles/{{ $user->slug }}/edit"
@@ -15,4 +15,4 @@
         <p>{{ $user->email }}</p>
         <div class="bg-red-100 py-2 px-3 rounded-2xl">Seorang : <b>{{ $user->role->name }}</b></div>
     </div>
-</x-layouts.main>
+</x-app-layout>
