@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Semua Kategori">
     <h2 class="mb-5">Kategori Post</h2>
     <div class="row">
         @forelse ($categories as $category)

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Tentang">
     <h2 class="mb-3 text-center">Halaman Tentang</h2>
     <div class="d-flex align-items-center flex-column">
         <img class="img-thumbnail rounded-circle mb-3" src="images/{{ $image }}.jpg" alt="{{ $name }}" width="200">

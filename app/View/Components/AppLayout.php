@@ -6,14 +6,18 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public $title;
+    public $style = null;
+    public $js = null;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title = null)
     {
-        //
+        $this->title = $title ?? 'Fiblo';
     }
 
     /**

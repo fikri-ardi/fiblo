@@ -2,6 +2,11 @@
     --primary-color: #df2736;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 /* Css Reset */
 a {
     text-decoration: none;
@@ -33,10 +38,8 @@ a {
 
 .navbar-light .navbar-nav .nav-link {
     color: rgb(21, 22, 27);
-}
-
-.nav-link {
     position: relative;
+    padding: 0;
 }
 
 .nav-link::after {
@@ -64,9 +67,20 @@ a {
     transform: translateX(-64%);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
 body {
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     background-color: rgb(250, 250, 250);
+    min-height: 100vh;
+    display: flex;
 }
 
 .navbar {
@@ -171,7 +185,7 @@ a.link {
 
     #mobile-nav .active span {
         color: var(--primary-color);
-        background: #00000020;
+        background: #00000010;
         position: relative;
         border-radius: 10px;
     }

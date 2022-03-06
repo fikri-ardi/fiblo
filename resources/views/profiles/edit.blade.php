@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Ubah Profil">
     <main class="flex align-items-center flex-col">
         <div class="col-lg-4 mb-5">
             <form action="/profiles/{{ $user->slug }}" method="POST" enctype="multipart/form-data">

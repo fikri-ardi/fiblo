@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Semua Post">
     <div class="row justify-content-between">
         <div class="col-md-5">
             <h2 class="mb-4">{{ $pageTitle }}</h2>

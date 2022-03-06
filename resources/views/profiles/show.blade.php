@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Profil">
     <div class="flex justify-content-center">
         <h2 class="mb-4 text-center mr-2">Profil Ku</h2>
         <a href="/profiles/{{ $user->slug }}/edit"
