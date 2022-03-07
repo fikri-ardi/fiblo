@@ -30,7 +30,7 @@
     {{ $style }}
 </head>
 
-<body class="antialiased">
+<body class="antialiased flex">
     <x-navbar></x-navbar>
     <x-notif></x-notif>
 

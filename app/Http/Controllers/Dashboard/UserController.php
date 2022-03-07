@@ -43,7 +43,6 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $request['slug'] = Str::slug($request->username);
         $request['password'] = bcrypt('password');
         User::create($request->all());
         return redirect('/dashboard/users')->with(['message' => 'Kamu berhasil nambahin user baru :)', 'type' => 'success']);
@@ -72,7 +71,6 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $request['slug'] = Str::slug($request->username);
         $request['password'] = $user->password;
         $user->update($request->all());
         return redirect('/dashboard/users')->with(['message' => 'Kamu berhasil ngubah data user :)', 'type' => 'success']);

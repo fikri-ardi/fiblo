@@ -5,7 +5,7 @@
         </div>
 
         <div class="table-responsive">
-            <a href="/dashboard/roles/create" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Role</a>
+            <a href="{{ route('roles.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Role</a>
 
             @if ($roles->count())
             <div class="col-md-5">
@@ -23,10 +23,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $role->name }}</td>
                             <td>
-                                <a href="/dashboard/roles/{{ $role->slug }}/edit" class="badge bg-warning text-dark"> <span
-                                        data-feather="edit-3"></span>
+                                <a href="{{ route('roles.edit', $role->slug) }}" class="badge bg-warning text-dark">
+                                    <span data-feather="edit-3"></span>
                                 </a>
-                                <form action="/dashboard/roles/{{ $role->slug }}" method="post" class="d-inline">
+                                <form action="{{ route('roles.destroy', $role->slug) }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span

@@ -4,7 +4,8 @@
         @forelse ($categories as $category)
         <div class="col-lg-3 col-md-4 mb-4">
             <div class="position-relative">
-                <a href="/posts?category={{ $category->slug }}" class="stretched-link"></a>
+                <a href="{{ route('posts', ['category' => $category->slug]) }}" class="stretched-link"></a>
+                {{-- <a href="/posts?category={{ $category->slug }}" class="stretched-link"></a> --}}
                 <div class="position-absolute text-white fs-4 text-center w-100 p-3 backdrop-blur-lg"
                     style="left: 0; top: 50%; transform: translateY(-50%); background: #0d0d1699">
                     {{ $category->name }}

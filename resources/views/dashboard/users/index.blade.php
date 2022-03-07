@@ -5,7 +5,7 @@
         </div>
 
         <div class="table-responsive">
-            <a href="/dashboard/users/create" class="btn btn-primary mb-3"><span data-feather="plus"></span> Tambah User</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Tambah User</a>
 
             @if ($users->count())
             <table class="table table-striped table-sm">
@@ -28,9 +28,9 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role->name }}</td>
                         <td>
-                            <a href="/dashboard/users/{{ $user->slug }}/edit" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
+                            <a href="{{ route('users.edit', $user) }}" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
                             </a>
-                            <form action="/dashboard/users/{{ $user->slug }}" method="post" class="d-inline">
+                            <form action="{{ route('users.destroy', $user) }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span

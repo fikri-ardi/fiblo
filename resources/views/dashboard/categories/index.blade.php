@@ -5,7 +5,7 @@
         </div>
 
         <div class="table-responsive">
-            <a href="/dashboard/categories/create" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Kategory</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Kategory</a>
 
             @if ($categories->count())
             <div class="col-md-5">
@@ -23,10 +23,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
-                                <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning text-dark"> <span
+                                <a href="{{ route('categories.edit', $category->slug) }}" class="badge bg-warning text-dark"> <span
                                         data-feather="edit-3"></span>
                                 </a>
-                                <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline">
+                                <form action="{{ route('categories.destroy', $category->slug) }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span

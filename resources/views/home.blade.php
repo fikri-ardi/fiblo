@@ -24,7 +24,7 @@
         @foreach ($posts as $post)
         <div class="col-md-4">
             <div class="card mb-3 pb-4 border-0 b-shadow relative">
-                <a href="/posts?category={{ $post->category->slug }}">
+                <a href="{{ route('posts', ['category' => $post->category->slug]) }}">
                     <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2  bg-opacity-40 backdrop-blur-lg">{{
                         $post->category->name
                         }}</small>
@@ -39,19 +39,19 @@
                 @endif
                 <div class="card-body">
                     <h3 class="card-title">
-                        <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                        <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
                     </h3>
 
                     <small class="mb-4 d-block">
                         Ditulis oleh
-                        <a class="author" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+                        <a class="author" href="{{ route('posts', ['author' => $post->author->username]) }}">{{ $post->author->name }}</a>
                         <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                     </small>
 
                     <p class="card-text">
                         {{ $post->excerpt }}
                     </p>
-                    <a href="/posts/{{ $post->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
+                    <a href="{{ route('posts.single', $post->slug) }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
                         Lanjut <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </div>

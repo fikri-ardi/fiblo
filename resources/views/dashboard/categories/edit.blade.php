@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-lg-8 mb-5">
-            <form action="/dashboard/categories/{{ $category->slug }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categories.update', $category->slug) }}}}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="mb-3">

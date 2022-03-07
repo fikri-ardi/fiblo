@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-lg-8">
-            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" enctype="multipart/form-data" class="mb-4">
+            <form action="{{ route('posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data" class="mb-4">
                 @method('put')
                 @csrf
                 <div class="mb-3">

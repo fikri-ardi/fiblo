@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-lg-8 mb-5">
-            <form action="/dashboard/roles/{{ $role->slug }}" method="POST">
+            <form action="{{ route('roles.update', $role->slug) }}" method="POST">
                 @method('put')
                 @csrf
                 <div class="mb-3">

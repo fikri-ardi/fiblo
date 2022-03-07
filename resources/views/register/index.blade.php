@@ -2,7 +2,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-lg-5 col-md-5">
             <main class="form-register">
-                <form action="/register" method="POST">
+                <form action="{{ route('register.store') }}" method="POST">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal text-center">Register</h1>
 

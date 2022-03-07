@@ -9,16 +9,17 @@
         <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}" aria-current="page" href="/">Beranda</a>
+                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}" aria-current="page" href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is('posts*') && request()->segment(2) != 'categories' ? ' active' : '' }}" href="/posts">Blog</a>
+                    <a class="nav-link{{ request()->is('posts*') && request()->segment(2) != 'categories' ? ' active' : '' }}"
+                        href="{{ route('posts') }}">Blog</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="/posts/categories"> Kategori</a>
+                    <a class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="{{ route('categories') }}"> Kategori</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="/about">Tentang</a>
+                    <a class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="{{ route('about') }}">Tentang</a>
                 </li>
             </ul>
         </div>
@@ -42,17 +43,17 @@
 
                 <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="navbarDropdown">
                     <li>
-                        <a class="dropdown-item" href="/profiles">
+                        <a class="dropdown-item" href="{{ route('profiles.show') }}">
                             <i class="bi bi-person text-lg mr-2"></i> Profil
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/dashboard">
+                        <a class="dropdown-item" href="{{ route('dashboard.index') }}">
                             <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
                         </a>
                     </li>
                     <li>
-                        <form action="/logout" method="post">
+                        <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button class="dropdown-item" type="submit">
                                 <i class="bi bi-box-arrow-left mr-2"></i> Logout
@@ -63,7 +64,7 @@
             </li>
             @else
             <li class="nav-item">
-                <a href="/login" class="nav-link{{ request()->segment(1) == 'login' ? ' active' : '' }}">
+                <a href="{{ route('login') }}" class="nav-link{{ request()->segment(1) == 'login' ? ' active' : '' }}">
                     <i class="bi bi-box-arrow-in-right"></i> Login
                 </a>
             </li>
@@ -76,25 +77,26 @@
 <div id="mobile-nav" class="fixed bottom-0 w-full z-50 backdrop-blur-lg shadow-md" style="background: #ffffff90">
     <ul class="navbar-nav d-flex flex-row justify-content-center">
         <li class="nav-item px-3">
-            <a style="color: black" class="text-center nav-link{{ request()->is('/') ? ' active' : '' }}" aria-current="page" href="/">
+            <a style="color: black" class="text-center nav-link{{ request()->is('/') ? ' active' : '' }}" aria-current="page"
+                href="{{ route('home') }}">
                 <span class="py-1 px-2 bi bi-house-door text-xl"></span>
                 <small class="d-block text-xs mt-1">Beranda</small>
             </a>
         </li>
         <li class="nav-item px-3">
-            <a style="color: black" class="text-center nav-link{{ request()->is('posts') ? ' active' : '' }}" href="/posts">
+            <a style="color: black" class="text-center nav-link{{ request()->is('posts') ? ' active' : '' }}" href="{{ route('posts') }}">
                 <span class="py-1 px-2 bi bi-journal-text text-xl"></span>
                 <small class="d-block text-xs mt-1">Blog</small>
             </a>
         </li>
         <li class="nav-item px-3">
-            <a style="color: black" class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="/posts/categories">
+            <a style="color: black" class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="{{ route('categories') }}">
                 <span class="py-1 px-2 bi bi-grid text-xl"></span>
                 <small class="d-block text-xs mt-1">Kategori</small>
             </a>
         </li>
         <li class="nav-item px-3">
-            <a style="color: black" class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="/about">
+            <a style="color: black" class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="{{ route('about') }}">
                 <span class="py-1 px-2 bi bi-info-circle text-xl"></span>
                 <small class="d-block text-xs mt-1">Tentang</small>
             </a>

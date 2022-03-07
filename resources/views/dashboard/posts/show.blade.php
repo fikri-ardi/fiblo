@@ -13,10 +13,12 @@
                 <article class="fs-5">{!! $post->body !!}</article>
 
             </div>
+
+            {{-- Action Button --}}
             <div class="mx-4">
-                <a href="/dashboard/posts" class="btn btn-success"><span data-feather="arrow-left"></span> Kembali</a>
-                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-warning"><span data-feather="edit-3"></span> Ubah</a>
-                <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                <a href="{{ route('posts.index') }}" class="btn btn-success"><span data-feather="arrow-left"></span> Kembali</a>
+                <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-warning"><span data-feather="edit-3"></span> Ubah</a>
+                <form action="{{ route('posts.destroy', $post->slug) }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Kamu yakin?')">

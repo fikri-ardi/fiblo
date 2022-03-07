@@ -2,7 +2,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-lg-5 col-md-5">
             <main class="form-signin">
-                <form action="/login" method="POST">
+                <form action="{{ route('login.store') }}" method="POST">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
 

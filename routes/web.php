@@ -5,36 +5,38 @@ use App\Http\Controllers\{PostController, LoginController, ProfileController, Ca
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\User;
 
-Route::get('/', HomeController::class);
-Route::view('/about', 'about', ['founder' => User::whereUsername('fikri')->first()]);
+Route::get('/', HomeController::class)->name('home');
+Route::view('/about', 'about', ['founder' => User::whereUsername('fikri')->first()])->name('about');
 
 // categories
-Route::get('/posts/categories', [CategoryController::class, 'index']);
+Route::get('/posts/categories', [CategoryController::class, 'index'])->name('categories');
 
 // posts
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.single');
 
 
 // auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.store');
+Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // profile
-Route::get('/profiles', [ProfileController::class, 'show'])->middleware('auth');
-Route::get('/profiles/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth');
-Route::put('/profiles/{user}', [ProfileController::class, 'update'])->middleware('auth');
+Route::middleware('auth')->prefix('profiles')->group(function () {
+    Route::get('', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::put('{user}', [ProfileController::class, 'update'])->name('profiles.update');
+});
 
 // posts dashboard
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     // route for check & make a slug
     Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
-
-    Route::get('/', DashboardController::class);
     Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
+
+    Route::get('/', DashboardController::class)->name('dashboard.index');
 });
 
 // super admin dashboard
