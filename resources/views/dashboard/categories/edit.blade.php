@@ -5,18 +5,11 @@
         </div>
 
         <div class="col-lg-8 mb-5">
-            <form action="{{ route('categories.update', $category->slug) }}}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Category Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                        value="{{ old('name', $category->name) }}" required>
-                    @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <x-_input name="name" :model="$category" label="Category Name"></x-_input>
+                <x-_button>Ubah</x-_button>
             </form>
         </div>
     </main>

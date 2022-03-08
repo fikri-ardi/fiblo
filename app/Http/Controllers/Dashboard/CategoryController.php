@@ -26,7 +26,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        return view('dashboard.categories.create', [
+            'category' => new Category()
+        ]);
     }
 
     /**

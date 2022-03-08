@@ -28,7 +28,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create', ['categories' => Category::all()]);
+        return view('dashboard.posts.create', [
+            'post' => new Post,
+            'categories' => Category::all()
+        ]);
     }
 
     /**

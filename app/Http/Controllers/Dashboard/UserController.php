@@ -32,7 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create', ['roles' => Role::all()]);
+        return view('dashboard.users.create', [
+            'user' => new User,
+            'roles' => Role::all()
+        ]);
     }
 
     /**

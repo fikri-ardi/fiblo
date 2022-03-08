@@ -7,15 +7,8 @@
         <div class="col-lg-8 mb-5">
             <form action="{{ route('categories.store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Category Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}"
-                        required>
-                    @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary">Buat kategory</button>
+                <x-_input name="name" :model="$category" label="Category Name"></x-_input>
+                <x-_button>Tambah</x-_button>
             </form>
         </div>
     </main>

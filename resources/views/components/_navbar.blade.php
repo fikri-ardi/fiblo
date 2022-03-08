@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light p-4 z-50 w-full top-0 backdrop-blur-xl" style="position: fixed">
+<nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl" style="position: fixed">
     <div class="container d-flex justify-content-between">
         <div>
             <a class="text-red-500 text-3xl font-bold hover:text-red-500" href="/">

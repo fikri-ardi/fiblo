@@ -8,32 +8,9 @@
             <form action="{{ route('users.update', $user) }}" method="POST">
                 @method('put')
                 @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                        value="{{ old('name', $user->name) }}" required>
-                    @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username"
-                        value="{{ old('username', $user->username) }}" required>
-                    @error('username')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                        value="{{ old('email', $user->email) }}" required>
-                    @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+                <x-_input name="name" :model="$user" label="Name"></x-_input>
+                <x-_input name="username" :model="$user" label="Username"></x-_input>
+                <x-_input name="email" :model="$user" label="E-mail" type="email"></x-_input>
 
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
@@ -50,7 +27,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Edit User</button>
+                <x-_button>Ubah User</x-_button>
             </form>
         </div>
     </main>

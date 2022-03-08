@@ -39,7 +39,7 @@
                 @endif
                 <div class="card-body">
                     <h3 class="card-title">
-                        <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
+                        <a href="{{ route('posts.single', $post) }}">{{ $post->title }}</a>
                     </h3>
 
                     <small class="mb-4 d-block">
@@ -51,7 +51,7 @@
                     <p class="card-text">
                         {{ $post->excerpt }}
                     </p>
-                    <a href="{{ route('posts.single', $post->slug) }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
+                    <a href="{{ route('posts.single', $post) }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
                         Lanjut <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </div>

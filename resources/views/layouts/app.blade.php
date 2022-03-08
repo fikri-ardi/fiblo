@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
 
     {{-- Bootstrap icons --}}
@@ -31,15 +30,14 @@
 </head>
 
 <body class="antialiased flex">
-    <x-navbar></x-navbar>
-    <x-notif></x-notif>
+    <x-_navbar></x-_navbar>
+    <x-_notif></x-_notif>
 
     <div class="container main-container mt-2 mb-5 flex flex-col" style="padding-top: 100px">
         {{ $slot }}
     </div>
 
-    <script src="/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 
     <script src="/js/image-previewer.js"></script>
     {{ $style }}

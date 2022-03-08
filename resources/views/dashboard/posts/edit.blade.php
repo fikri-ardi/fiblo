@@ -5,26 +5,11 @@
         </div>
 
         <div class="col-lg-8">
-            <form action="{{ route('posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data" class="mb-4">
+            <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data" class="mb-4">
                 @method('put')
                 @csrf
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                        value="{{ old('title', $post->title) }}" required>
-                    @error('title')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="slug" class="form-label">Slug</label>
-                    <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
-                        value="{{ old('slug', $post->slug) }}" required>
-                    @error('slug')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+                <x-_input name="title" :model="$post" label="Title"></x-_input>
+                <x-_input name="slug" :model="$post" label="Slug"></x-_input>
 
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
@@ -63,7 +48,7 @@
                     <trix-editor input="body"></trix-editor>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Ubah Post</button>
+                <x-_button>Ubah Post</x-_button>
             </form>
         </div>
     </main>

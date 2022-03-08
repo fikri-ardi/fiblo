@@ -1,7 +1,7 @@
 <x-app-layout title="Profil">
     <div class="flex justify-content-center">
         <h2 class="mb-4 text-center mr-2">Profil Ku</h2>
-        <a href="{{ route('profiles.edit', $user->username) }}"
+        <a href="{{ route('profiles.edit', $user) }}"
             class="bi bi-pencil bg-red-100 text-red-500 h-8 w-8 rounded-full flex justify-content-center align-items-center"></a>
     </div>
     <div class="d-flex align-items-center flex-column">

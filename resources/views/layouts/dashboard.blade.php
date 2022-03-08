@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.css">
 
     {{-- Bootstrap icons --}}
     <link rel="stylesheet" href="/font/bootstrap-icons.css">
@@ -36,12 +36,12 @@
 </head>
 
 <body class="antialiased">
-    <x-notif></x-notif>
-    <x-dashboard.header></x-dashboard.header>
+    <x-_notif></x-_notif>
+    <x-dashboard._header></x-dashboard._header>
 
     <div class="container-fluid">
         <div class="row">
-            <x-dashboard.sidebar></x-dashboard.sidebar>
+            <x-dashboard._sidebar></x-dashboard._sidebar>
 
             {{ $slot }}
 

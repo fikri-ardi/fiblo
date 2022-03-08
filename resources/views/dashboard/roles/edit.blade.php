@@ -5,18 +5,11 @@
         </div>
 
         <div class="col-lg-8 mb-5">
-            <form action="{{ route('roles.update', $role->slug) }}" method="POST">
+            <form action="{{ route('roles.update', $role) }}" method="POST">
                 @method('put')
                 @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Role Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                        value="{{ old('name', $role->name) }}" required>
-                    @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary">Edit Role</button>
+                <x-_input name="name" :model="$role" label="Role Name"></x-_input>
+                <x-_button>Ubah Role</x-_button>
             </form>
         </div>
     </main>

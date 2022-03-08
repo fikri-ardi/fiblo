@@ -17,8 +17,8 @@
             {{-- Action Button --}}
             <div class="mx-4">
                 <a href="{{ route('posts.index') }}" class="btn btn-success"><span data-feather="arrow-left"></span> Kembali</a>
-                <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-warning"><span data-feather="edit-3"></span> Ubah</a>
-                <form action="{{ route('posts.destroy', $post->slug) }}" method="post" class="d-inline">
+                <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning"><span data-feather="edit-3"></span> Ubah</a>
+                <form action="{{ route('posts.destroy', $post) }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Kamu yakin?')">

@@ -24,11 +24,11 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post->slug) }}" class="badge bg-success text-white"> <span data-feather="eye"></span>
+                            <a href="{{ route('posts.show', $post) }}" class="badge bg-success text-white"> <span data-feather="eye"></span>
                             </a>
-                            <a href="{{ route('posts.edit', $post->slug) }}" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
+                            <a href="{{ route('posts.edit', $post) }}" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
                             </a>
-                            <form action="{{ route('posts.destroy', $post->slug) }}" method="post" class="d-inline">
+                            <form action="{{ route('posts.destroy', $post) }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span

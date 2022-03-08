@@ -26,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('dashboard.roles.create');
+        return view('dashboard.roles.create', ['role' => new Role()]);
     }
 
     /**

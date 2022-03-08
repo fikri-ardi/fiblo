@@ -23,10 +23,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $role->name }}</td>
                             <td>
-                                <a href="{{ route('roles.edit', $role->slug) }}" class="badge bg-warning text-dark">
+                                <a href="{{ route('roles.edit', $role) }}" class="badge bg-warning text-dark">
                                     <span data-feather="edit-3"></span>
                                 </a>
-                                <form action="{{ route('roles.destroy', $role->slug) }}" method="post" class="d-inline">
+                                <form action="{{ route('roles.destroy', $role) }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="badge bg-danger text-white border-0" onclick="return confirm('Kamu yakin?')"> <span

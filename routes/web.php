@@ -5,7 +5,7 @@ use App\Http\Controllers\{PostController, LoginController, ProfileController, Ca
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\User;
 
-Route::get('/', HomeController::class)->name('home');
+Route::view('/', 'home', ['posts' => App\Models\Post::latest()->limit(6)->get()])->name('home');
 Route::view('/about', 'about', ['founder' => User::whereUsername('fikri')->first()])->name('about');
 
 // categories
@@ -18,9 +18,9 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.s
 
 // auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.store');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // profile
@@ -35,8 +35,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     // route for check & make a slug
     Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
     Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
-
-    Route::get('/', DashboardController::class)->name('dashboard.index');
+    Route::view('/', 'dashboard.index')->name('dashboard.index');
 });
 
 // super admin dashboard
