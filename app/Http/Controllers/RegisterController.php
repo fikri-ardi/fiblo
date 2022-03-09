@@ -14,9 +14,7 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $validatedData = $request->all();
-        $validatedData['password'] = bcrypt($request->password);
-        User::create($validatedData);
+        User::create($request->all());
         return redirect('login')->with(['message' => 'Registrasi kamu berhasil! silahkan login', 'type' => 'success']);
     }
 }

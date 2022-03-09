@@ -868,18 +868,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
-.bg-opacity-95 {
-  --tw-bg-opacity: 0.95;
-}
-.bg-opacity-90 {
-  --tw-bg-opacity: 0.9;
-}
-.bg-opacity-70 {
-  --tw-bg-opacity: 0.7;
-}
-.bg-opacity-60 {
-  --tw-bg-opacity: 0.6;
-}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;

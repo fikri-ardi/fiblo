@@ -30,7 +30,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (auth()->user()->photo)
-                    <img src="/storage/{{ auth()->user()->photo }}" class="img-preview rounded-circle w-7 h-7 object-cover d-inline-block"
+                    <img src="/storage/{{ auth()->user()->photo }}" class="rounded-circle w-7 h-7 object-cover d-inline-block"
                         alt="{{ auth()->user()->name }}">
                     @else
                     <span class="bg-red-100 text-red-500 font-bold text-lg h-10 w-10 text-center d-inline-block rounded-full"

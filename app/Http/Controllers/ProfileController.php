@@ -24,10 +24,7 @@ class ProfileController extends Controller
 
     public function update(ProfileRequest $request, User $user)
     {
-        $validatedData = $request->all();
-        !$request->photo ?: $validatedData['photo'] = $request->photo->store('images/posts');
-        $user->update($validatedData);
-
+        $user->update($request->all());
         return redirect('/profiles')->with(['message' => 'Profil kamu berhasil diupdate :)', 'type' => 'success']);
     }
 }

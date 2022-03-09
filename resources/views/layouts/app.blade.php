@@ -40,7 +40,7 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
 
     <script src="/js/image-previewer.js"></script>
-    {{ $style }}
+    {{ $script ?? null }}
 </body>
 
 </html>
