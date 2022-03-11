@@ -23,7 +23,7 @@
     <article class="row mt-5">
         @foreach ($posts as $post)
         <div class="col-md-4">
-            <div class="card mb-3 pb-4 border-0 b-shadow relative">
+            <div class="card mb-3 pb-4 border-0 shadow-md relative">
                 <a href="{{ route('posts', ['category' => $post->category->slug]) }}">
                     <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2  bg-opacity-40 backdrop-blur-lg">{{
                         $post->category->name
