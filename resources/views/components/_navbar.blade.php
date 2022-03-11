@@ -41,7 +41,7 @@
                     <i class="bi bi-chevron-down"></i>
                 </a>
 
-                <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" href="{{ route('profiles.show') }}">
                             <i class="bi bi-person text-lg mr-2"></i> Profil

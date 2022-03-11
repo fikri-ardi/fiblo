@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ])
-    .sass('resources/scss/bootstrap.scss', 'public/css');
+    .sass('resources/scss/bootstrap.scss', 'public/css')
+    .sourceMaps();

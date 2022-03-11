@@ -62,11 +62,6 @@ a {
     opacity: 1;
 }
 
-.dropdown .dropdown-menu {
-    position: absolute;
-    transform: translateX(-64%);
-}
-
 h1,
 h2,
 h3,

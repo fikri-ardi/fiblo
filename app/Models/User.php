@@ -71,4 +71,9 @@ class User extends Authenticatable
         }
         return $this->attributes['photo'] = $photo->store('images/users');
     }
+
+    public function follows()
+    {
+        return $this->hasMany(User::class);
+    }
 }

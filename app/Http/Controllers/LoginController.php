@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function index(Request $request)
     {
-        return view('auth.login.index', ['user' => new User()]);
+        return view('auth.login', ['user' => new User()]);
     }
 
     public function authenticate()
