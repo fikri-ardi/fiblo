@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'name' => 'Fikri',
             'username' => 'fikri',
             'email' => 'fikri@gmail.com',
-            'password' => bcrypt('password'),
+            'bio' => 'Seorang IT antusias yang suka main gitar, nyanyi. Hobi futsal, ngoding, bikin eksperimen, dan suka mencoba hal yang jarang dilakukan orang lain.',
+            'password' => 'password',
         ]);
     }
 }

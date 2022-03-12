@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
+use App\Models\{User, Post, Category};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +20,6 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class
         ]);
 
-        User::factory(3)->create();
-        Post::factory(20)->create();
+        User::factory()->hasPosts(5)->count(5)->create();
     }
 }

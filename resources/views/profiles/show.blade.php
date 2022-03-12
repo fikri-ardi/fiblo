@@ -2,8 +2,10 @@
     {{-- Header --}}
     <div class="flex justify-content-center">
         <h2 class="mb-4 text-center mr-2">Profil Ku</h2>
+        @can('username', $user->username)
         <a href="{{ route('profiles.edit', $user) }}"
             class="bi bi-pencil bg-red-100 text-red-500 h-8 w-8 rounded-full flex justify-content-center align-items-center"></a>
+        @endcan
     </div>
 
     {{-- Content --}}
@@ -18,11 +20,11 @@
         {{-- Profile Info --}}
         <div class="flex item-center mb-3">
             <small class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">16</div>
+                <div class="font-semibold text-lg">{{ $user->posts->count() }}</div>
                 Post
             </small>
             <small class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">136k</div>
+                <div class="font-semibold text-lg">{{ $user->followers->count() }}</div>
                 Follower
             </small>
             <small class="following w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out" onclick="show()">

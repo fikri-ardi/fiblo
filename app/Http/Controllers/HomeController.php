@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         return view('home', [
-            'posts' => auth()->user() ? auth()->user()->followedPost()->limit(6)->get() : Post::latest()->limit(6)->get()
+            'posts' => auth()->user() ? auth()->user()->follows->count() ? auth()->user()->followedPost()->limit(6)->get() : Post::latest()->limit(6)->get()  : Post::latest()->limit(6)->get()
         ]);
     }
 }
