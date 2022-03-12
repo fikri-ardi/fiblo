@@ -18,6 +18,8 @@
     {{-- Bootstrap icons --}}
     <link rel="stylesheet" href="/font/bootstrap-icons.css">
 
+    <script src="/js/app.js" defer></script>
+
     {{-- Google Fonts --}}
     {{--
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +41,6 @@
     </div>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
-
     <script src="/js/image-previewer.js"></script>
     {{ $script ?? null }}
 </body>

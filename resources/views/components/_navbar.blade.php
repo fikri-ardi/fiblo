@@ -25,10 +25,10 @@
         </div>
 
         {{-- Right Nav --}}
-        <ul class="navbar-nav">
+        <ul x-data="{ open: false }" class="navbar-nav">
             @auth
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li class="nav-item relative">
+                <div class="cursor-pointer" @click="open = ! open">
                     @if (auth()->user()->photo)
                     <img src="/storage/{{ auth()->user()->photo }}" class="rounded-circle w-7 h-7 object-cover d-inline-block"
                         alt="{{ auth()->user()->name }}">
@@ -39,28 +39,28 @@
                     </span>
                     @endif
                     <i class="bi bi-chevron-down"></i>
-                </a>
+                    </d>
 
-                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('profiles.show', auth()->user()) }}">
-                            <i class="bi bi-person text-lg mr-2"></i> Profil
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('dashboard.index') }}">
-                            <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button class="dropdown-item" type="submit">
-                                <i class="bi bi-box-arrow-left mr-2"></i> Logout
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                    <ul x-show="open" x-transition class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden">
+                        <li>
+                            <a class="dropdown-item pl-1 pr-3 py-2" href="{{ route('profiles.show', auth()->user()) }}">
+                                <i class="bi bi-person text-lg mr-2"></i> Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item pl-1 pr-3 py-2" href="{{ route('dashboard.index') }}">
+                                <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class="dropdown-item pl-1 pr-3 py-2" type="submit">
+                                    <i class="bi bi-box-arrow-left mr-2"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
             </li>
             @else
             <li class="nav-item">
