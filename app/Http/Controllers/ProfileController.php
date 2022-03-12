@@ -7,11 +7,9 @@ use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function show(User $user)
     {
-        return view('profiles.show', [
-            'user' => auth()->user()
-        ]);
+        return view('profiles.show', compact('user'));
     }
 
     public function edit(User $user)

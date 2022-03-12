@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             request()->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
 
         return back()->with(['message' => 'Maaf, data yang kamu masukin ngga cocok', 'type' => 'danger']);

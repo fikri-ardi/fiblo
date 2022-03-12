@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{PostController, LoginController, ProfileController, CategoryController, RegisterController, HomeController};
-use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\User;
 
-Route::view('/', 'home', ['posts' => App\Models\Post::latest()->limit(6)->get()])->name('home');
+Route::get('/', HomeController::class)->name('home');
 Route::view('/about', 'about', ['founder' => User::whereUsername('fikri')->first()])->name('about');
 
 // categories
@@ -25,7 +24,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // profile
 Route::middleware('auth')->prefix('profiles')->group(function () {
-    Route::get('', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('{user}', [ProfileController::class, 'show'])->name('profiles.show');
     Route::get('{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('{user}', [ProfileController::class, 'update'])->name('profiles.update');
 });
