@@ -7,3 +7,9 @@ document.addEventListener('scroll', () => {
         navbar.classList.remove('shadow-md')
     }
 })
+
+function setScollPaddingTop() {
+    document.querySelector(':root').style.setProperty('scroll-padding-top', `${navbar.clientHeight}px`);
+}
+
+window.addEventListener('resize', setScollPaddingTop);

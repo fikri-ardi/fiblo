@@ -1,5 +1,6 @@
     :root {
         --primary-color: #df2736;
+        scroll-behavior: smooth;
     }
 
     * {
@@ -19,6 +20,10 @@
 
     .dropdown-toggle::after {
         display: none;
+    }
+
+    .navbar {
+        position: fixed !important;
     }
 
     .navbar .navbar-nav .nav-item .active {

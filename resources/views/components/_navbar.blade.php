@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl" style="position: fixed">
+<nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl">
     <div class="container d-flex justify-content-between">
         <div>
             <a class="text-red-500 text-3xl font-bold hover:text-red-500" href="/">
@@ -39,9 +39,8 @@
                     </span>
                     @endif
                     <i class="bi bi-chevron-down"></i>
-                    </d>
 
-                    <ul x-show="open" x-transition class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden">
+                    <ul x-show="open" x-transition class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden z-50 bg-white">
                         <li>
                             <a class="dropdown-item pl-1 pr-3 py-2" href="{{ route('profiles.show', auth()->user()) }}">
                                 <i class="bi bi-person text-lg mr-2"></i> Profil

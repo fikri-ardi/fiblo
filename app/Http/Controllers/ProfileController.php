@@ -23,6 +23,13 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request, User $user)
     {
         $user->update($request->all());
-        return redirect('/profiles')->with(['message' => 'Profil kamu berhasil diupdate :)', 'type' => 'success']);
+        return back()->with(['message' => 'Profil kamu berhasil diupdate :)', 'type' => 'success']);
+    }
+
+    public function follow(User $user)
+    {
+        $action = auth()->user()->wasFollow($user) ? 'unfollow' : 'follow';
+        auth()->user()->wasFollow($user) ? auth()->user()->unfollow($user) : auth()->user()->follow($user);
+        return back()->with(['message' => "Kamu berhasil $action $user->name"]);
     }
 }

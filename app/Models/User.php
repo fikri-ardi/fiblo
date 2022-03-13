@@ -89,6 +89,18 @@ class User extends Authenticatable
         // lalu akan mengisi field following_user_id dengan $user->id yang dikirim di parameter User $user
     }
 
+    public function unfollow(User $user)
+    {
+        return $this->follows()->detach($user);
+        // jadi di belakang layar, kode diatas akan mengakses table follows, 
+        // lalu memisahkan user_id dengan following_user_id atau menghapus baris data tersebut tersebut
+    }
+
+    public function wasFollow(User $user)
+    {
+        return $this->follows()->where('following_user_id', $user->id)->first();
+    }
+
     public function followedPost()
     {
         $following = $this->follows()->pluck('id');

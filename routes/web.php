@@ -27,6 +27,8 @@ Route::middleware('auth')->prefix('profiles')->group(function () {
     Route::get('{user}', [ProfileController::class, 'show'])->name('profiles.show');
     Route::get('{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('{user}', [ProfileController::class, 'update'])->name('profiles.update');
+
+    Route::post('{user}/follow', [ProfileController::class, 'follow'])->name('profiles.follow');
 });
 
 // posts dashboard
