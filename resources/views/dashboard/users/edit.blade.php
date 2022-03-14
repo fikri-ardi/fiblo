@@ -27,7 +27,12 @@
                     @enderror
                 </div>
 
-                <x-_button>Ubah User</x-_button>
+                <div class="flex justify-end">
+                    <x-_button>
+                        <span class="bi bi-pencil"></span>
+                        Ubah User
+                    </x-_button>
+                </div>
             </form>
         </div>
     </main>

@@ -48,7 +48,12 @@
                     <trix-editor input="body"></trix-editor>
                 </div>
 
-                <x-_button>Ubah Post</x-_button>
+                <div class="flex justify-end">
+                    <x-_button>
+                        <span class="bi bi-pencil"></span>
+                        Ubah Post
+                    </x-_button>
+                </div>
             </form>
         </div>
     </main>

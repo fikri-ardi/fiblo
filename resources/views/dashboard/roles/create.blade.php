@@ -4,11 +4,13 @@
             <h1 class="h2">Buat Role Baru</h1>
         </div>
 
-        <div class="col-lg-8 mb-5">
+        <div class="col-lg-4 mb-5">
             <form action="{{ route('roles.store') }}" method="POST">
                 @csrf
                 <x-_input name="name" :model="$role" label="Role Name"></x-_input>
-                <x-_button>Buat Role</x-_button>
+                <div class="flex justify-end mt-3">
+                    <x-_button>Buat Role</x-_button>
+                </div>
             </form>
         </div>
     </main>

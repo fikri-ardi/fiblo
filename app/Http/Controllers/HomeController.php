@@ -15,8 +15,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home', [
-            'posts' => auth()->user() ? auth()->user()->follows->count() ? auth()->user()->followedPost()->limit(6)->get() : Post::latest()->limit(6)->get()  : Post::latest()->limit(6)->get()
-        ]);
+        $posts = Post::exclude('body')->latest()->limit(6)->get();
+
+        if (auth()->user()) {
+            if (auth()->user()->follows->count()) {
+                $posts = auth()->user()->followedPost()->exclude('body')->limit(6)->get();
+            }
+        }
+
+        return view('home', compact('posts'));
     }
 }

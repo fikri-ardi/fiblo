@@ -10,11 +10,14 @@
                     <x-_input name="password" type="password" :model="$user" label="Password"></x-_input>
 
                     <div class="flex justify-end">
-                        <x-_button>Login</x-_button>
+                        <x-_button>
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Login
+                        </x-_button>
                     </div>
-                </form>
 
-                <small class="d-block text-center mt-3">Belum punya akun? <a href="/register" class="link">Buat akun</a></small>
+                    <small class="d-block text-center mt-3">Belum punya akun? <a href="{{ route('register') }}" class="link">Buat akun</a></small>
+                </form>
             </main>
         </div>
     </div>

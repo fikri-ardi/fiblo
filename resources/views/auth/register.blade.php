@@ -11,12 +11,15 @@
                     <x-_input name="email" :model="$user" label="E-Mail" type="email"></x-_input>
                     <x-_input name="password" :model="$user" label="password" type="Password"></x-_input>
 
-                    <div class="flex justify-end">
-                        <x-_button>Register</x-_button>
+                    <div class="flex justify-end mt-3">
+                        <x-_button>
+                            <i class="bi bi-send-plus"></i>
+                            Register
+                        </x-_button>
                     </div>
                 </form>
 
-                <small class="d-block text-center mt-3">Udah punya akun? <a href="/login" class="link">Login</a></small>
+                <small class="d-block text-center mt-3">Udah punya akun? <a href="{{ route('login') }}" class="link">Login</a></small>
             </main>
         </div>
     </div>

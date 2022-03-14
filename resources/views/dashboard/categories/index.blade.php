@@ -5,7 +5,10 @@
         </div>
 
         <div class="table-responsive">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Kategory</a>
+            <div class="flex mb-3">
+                <x-_link href="{{ route('categories.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Kategory
+                </x-_link>
+            </div>
 
             @if ($categories->count())
             <div class="col-md-5">

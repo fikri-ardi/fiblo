@@ -25,6 +25,7 @@
         </div>
 
         {{-- action button --}}
+        @auth
         <div class="flex mb-3">
             @can('username', $user->username)
             <form action="{{ route('profiles.edit', $user) }}" method="get">
@@ -43,6 +44,7 @@
             </form>
             @endcan
         </div>
+        @endauth
 
         {{-- Hidden Following Elements --}}
         <div x-show="open"

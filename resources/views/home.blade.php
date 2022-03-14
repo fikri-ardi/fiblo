@@ -6,7 +6,8 @@
         <p class="text-red-500">Until It's Done</p>
         <p class="text-base lh-base text-gray-500 font-normal max-w-xl mx-auto mt-10 sm:text-lg">
             Hai! Salam kenal, saya Fikri, seseorang yang ngakunya programmer, hoby main gitar, nyanyi, futsal, suka baca buku, bikin eksperimen,
-            ngoding dan juga suka sama kamu <span class="bi bi-emoji-smile-upside-down"></span>
+            ngoding dan juga suka sama kamu
+            <span class="inline-block"><span class="bi bi-emoji-smile-upside-down"></span></span>
         </p>
 
         @if ($posts->count())

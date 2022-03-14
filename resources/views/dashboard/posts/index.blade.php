@@ -5,7 +5,9 @@
         </div>
 
         <div class="table-responsive">
-            <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Post</a>
+            <div class="flex mb-3">
+                <x-_link href="{{ route('posts.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Post</x-_link>
+            </div>
 
             @if ($posts->count())
             <table class="table table-striped table-sm">

@@ -31,7 +31,7 @@
                     <div class="w-full">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
                         <p class="lh-base text-lg my-2">{{ $post->author->bio }}</p>
-                        <div class="text-lg">
+                        <div class="text-lg flex items-center space-x-4">
                             <span class="bi bi-instagram mr-2 col-primary"></span>
                             <span class="bi bi-facebook mr-2 col-primary"></span>
                             <span class="bi bi-twitter mr-2 col-primary"></span>
@@ -39,9 +39,11 @@
                     </div>
                 </div>
 
-                <a href="{{ route('posts') }}" class="btn btn-danger btn-sm text-white mt-3 mb-5 d-inline-block">
-                    <span class="bi bi-chevron-compact-left"></span> Kembali
-                </a>
+                <div class="flex">
+                    <x-_link href="{{ route('posts') }}" class="btn btn-danger btn-sm text-white mt-3 mb-5 d-inline-block">
+                        <span class="bi bi-chevron-compact-left"></span> Kembali
+                    </x-_link>
+                </div>
             </div>
         </div>
     </div>

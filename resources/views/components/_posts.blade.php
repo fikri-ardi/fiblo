@@ -25,10 +25,12 @@
                 <p class="card-text">
                     {{ $post->excerpt }}
                 </p>
-                <x-_link href="{{ route('posts.single', $post) }}">
-                    Lanjut
-                    <i class="bi bi-chevron-compact-right"></i>
-                </x-_link>
+                <div class="flex">
+                    <x-_link href="{{ route('posts.single', $post) }}">
+                        Lanjut
+                        <i class="bi bi-chevron-compact-right"></i>
+                    </x-_link>
+                </div>
             </div>
         </div>
     </div>

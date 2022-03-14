@@ -4,12 +4,17 @@
             <h1 class="h2">Ubah Kategori {{ $category->name }}</h1>
         </div>
 
-        <div class="col-lg-8 mb-5">
+        <div class="col-lg-4 mb-5">
             <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <x-_input name="name" :model="$category" label="Category Name"></x-_input>
-                <x-_button>Ubah</x-_button>
+                <div class="flex justify-end mt-3">
+                    <x-_button>
+                        <span class="bi bi-pencil"></span>
+                        Ubah
+                    </x-_button>
+                </div>
             </form>
         </div>
     </main>

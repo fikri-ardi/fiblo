@@ -17,7 +17,7 @@ class PostController extends Controller
 
         return view('posts.index', [
             'pageTitle' => $pageTitle,
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
+            "posts" => Post::exclude('body')->latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 
@@ -25,14 +25,6 @@ class PostController extends Controller
     {
         return view('posts.show', [
             "post" => $post
-        ]);
-    }
-
-    public function author(User $user)
-    {
-        return view('posts.index', [
-            "title" => "Post By $user->name",
-            "posts" => $user->posts
         ]);
     }
 }

@@ -24,7 +24,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // profile
 Route::middleware('auth')->prefix('profiles')->group(function () {
-    Route::get('{user}', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('{user}', [ProfileController::class, 'show'])->name('profiles.show')->withoutMiddleware('auth');
     Route::get('{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('{user}', [ProfileController::class, 'update'])->name('profiles.update');
 

@@ -44,7 +44,12 @@
                     <trix-editor input="body"></trix-editor>
                 </div>
 
-                <x-_button>Buat Post</x-_button>
+                <div class="flex justify-end">
+                    <x-_button>
+                        <span class="bi bi-upload"></span>
+                        Buat Post
+                    </x-_button>
+                </div>
             </form>
         </div>
     </main>

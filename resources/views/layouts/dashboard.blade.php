@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ env('APP_NAME') ." | Dashboard - ". $title ?? '' }}</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/app.css">
 
@@ -41,7 +38,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <x-dashboard._sidebar></x-dashboard._sidebar>
+            <x-sidebar></x-sidebar>
 
             {{ $slot }}
 

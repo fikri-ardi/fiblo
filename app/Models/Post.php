@@ -14,7 +14,6 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['author', 'category'];
 
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -79,5 +78,23 @@ class Post extends Model
             Storage::delete($this->attributes['image']);
         }
         return $this->attributes['image'] = $image->store('images/posts');
+    }
+
+    public function getTableColumns()
+    {
+        return \Illuminate\Support\Facades\Cache::rememberForever('MigrMod:' . filemtime(database_path('migrations')), function () {
+            return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+        });
+    }
+
+    public function scopeExclude($query, ...$columns)
+    {
+        if ($columns !== []) {
+            if (count($columns) !== count($columns, COUNT_RECURSIVE)) {
+                $columns = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($columns)));
+            }
+            return $query->select(array_diff($this->getTableColumns(), $columns));
+        }
+        return $query;
     }
 }

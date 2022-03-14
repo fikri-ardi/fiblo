@@ -21,19 +21,19 @@
     <script src="/js/app.js" defer></script>
 
     {{-- Google Fonts --}}
-
+    {{--
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
 
     <title>{{ env('APP_NAME') ." | ". $title ?? '' }}</title>
     {{ $style }}
 </head>
 
 <body class="antialiased">
-    <x-_navbar></x-_navbar>
+    <x-navbar></x-navbar>
     <x-_notif></x-_notif>
 
     <div class="container main-container mt-2 mb-5 flex flex-col pt-28 min-h-screen">
