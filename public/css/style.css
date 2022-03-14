@@ -34,7 +34,7 @@
     .navbar .navbar-nav .nav-item .active::after {
         content: '';
         position: absolute;
-        bottom: -5px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
         width: 8px;
@@ -54,7 +54,7 @@
     .nav-link::after {
         content: '';
         position: absolute;
-        bottom: -5px;
+        bottom: -15px;
         left: 50%;
         transform: translate(-50%, 60%);
         width: 8px;
@@ -83,14 +83,14 @@
     body {
         font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto !important;
         background-color: rgb(250, 250, 250);
-        min-height: 100vh;
     }
 
     a.category,
     a.author,
     a.link {
         color: rgb(224, 51, 74);
-        text-decoration: underline;
+        /* text-decoration: underline; */
+        font-weight: 600;
     }
 
     .slide {
@@ -194,5 +194,9 @@
 
         .main-container {
             padding-top: 70px !important;
+        }
+
+        footer {
+            margin-bottom: 64px;
         }
     }

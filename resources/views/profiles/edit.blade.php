@@ -35,7 +35,12 @@
                     @enderror
                 </div>
 
-                <x-_button>Ubah</x-_button>
+                <div class="flex justify-end">
+                    <x-_button>
+                        <x-slot name="icon"> <small class="bi bi-pencil"></small> </x-slot>
+                        Ubah
+                    </x-_button>
+                </div>
             </form>
         </div>
     </main>

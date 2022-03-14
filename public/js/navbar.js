@@ -12,4 +12,5 @@ function setScollPaddingTop() {
     document.querySelector(':root').style.setProperty('scroll-padding-top', `${navbar.clientHeight}px`);
 }
 
+setScollPaddingTop();
 window.addEventListener('resize', setScollPaddingTop);

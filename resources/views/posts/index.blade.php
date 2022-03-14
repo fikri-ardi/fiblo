@@ -3,6 +3,8 @@
         <div class="col-md-5">
             <h2 class="mb-4">{{ $pageTitle }}</h2>
         </div>
+
+        {{-- Search Bar --}}
         <div class="col-md-7 col-sm-10" style="max-width: 400px">
             <form action="/posts" class="mb-3">
                 <div class="input-group">
@@ -23,14 +25,8 @@
     </div>
 
     @if ($posts->count())
-    <div class="card mb-3 pb-4 text-center border-0 b-shadow">
-        @if ($posts[0]->image)
-        <img src="/storage/{{ $posts[0]->image }}" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-            style="left: 0; max-height: 420px; object-fit: cover">
-        @else
-        <img src="/images/hero.jpg" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-            style="left: 0; max-height: 420px; object-fit: cover">
-        @endif
+    <div class="card mb-5 pb-4 text-center border-0 shadow-xl">
+        <x-_banner :post="$posts[0]"></x-_banner>
 
         <div class="card-body">
             <h3 class="card-title">
@@ -49,52 +45,15 @@
                 {{ $posts[0]->excerpt }}
             </p>
             <div class="d-flex justify-content-center">
-                <a href="/posts/{{ $posts[0]->slug }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
-                    Lanjut <i class="bi bi-chevron-compact-right"></i>
-                </a>
+                <x-_link href="{{ route('posts.single', $posts[0]) }}">
+                    Lanjut
+                    <i class="bi bi-chevron-compact-right"></i>
+                </x-_link>
             </div>
         </div>
     </div>
 
-    <article class="row mt-5">
-        @foreach ($posts->skip(1) as $post)
-        <div class="col-md-4">
-            <div class="card mb-3 pb-4 border-0 shadow-lg relative">
-                <a href="{{ route('posts', ['category' => $post->category->slug]) }}">
-                    <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2  bg-opacity-40 backdrop-blur-lg">{{
-                        $post->category->name
-                        }}</small>
-                </a>
-
-                @if ($post->image)
-                <img src="/storage/{{ $post->image }}" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-                    style="left: 0; max-height: 250px; object-fit: cover">
-                @else
-                <img src="/images/hero.jpg" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-                    style="left: 0; max-height: 250px; object-fit: cover">
-                @endif
-                <div class="card-body">
-                    <h3 class="card-title">
-                        <a href="{{ route('posts.single', $post) }}">{{ $post->title }}</a>
-                    </h3>
-
-                    <small class="mb-4 d-block">
-                        Ditulis oleh
-                        <a class="author" href="{{ route('posts', ['author' => $post->author->username]) }}">{{ $post->author->name }}</a>
-                        <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
-                    </small>
-
-                    <p class="card-text">
-                        {{ $post->excerpt }}
-                    </p>
-                    <a href="{{ route('posts.single', $post) }}" class="btn btn-sm btn-danger font-weight-bold mt-4">
-                        Lanjut <i class="bi bi-chevron-compact-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </article>
+    <x-_posts :posts="$posts->skip(1)"></x-_posts>
 
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else

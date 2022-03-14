@@ -5,7 +5,7 @@ use App\Http\Controllers\{PostController, LoginController, ProfileController, Ca
 use App\Models\User;
 
 Route::get('/', HomeController::class)->name('home');
-Route::view('/about', 'about', ['founder' => User::whereUsername('fikri')->first()])->name('about');
+Route::view('/about', 'profiles.show', ['user' => User::where('role_id', 1)->first()])->name('about');
 
 // categories
 Route::get('/posts/categories', [CategoryController::class, 'index'])->name('categories');

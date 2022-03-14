@@ -16,7 +16,7 @@
                         href="{{ route('posts') }}">Blog</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="{{ route('categories') }}"> Kategori</a>
+                    <a class="nav-link{{ request()->is('posts/categories') ? ' active' : '' }}" href="{{ route('categories') }}">Kategori</a>
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link{{ request()->is('about') ? ' active' : '' }}" href="{{ route('about') }}">Tentang</a>
@@ -28,19 +28,13 @@
         <ul x-data="{ open: false }" class="navbar-nav">
             @auth
             <li class="nav-item relative">
+                {{-- Nav Toggler --}}
                 <div class="cursor-pointer" @click="open = ! open">
-                    @if (auth()->user()->photo)
-                    <img src="/storage/{{ auth()->user()->photo }}" class="rounded-circle w-7 h-7 object-cover d-inline-block"
-                        alt="{{ auth()->user()->name }}">
-                    @else
-                    <span class="bg-red-100 text-red-500 font-bold text-lg h-10 w-10 text-center d-inline-block rounded-full"
-                        style="line-height: 40px">
-                        <span>{{ strtoupper(substr(auth()->user()->username, 0, 1)) }}</span>
-                    </span>
-                    @endif
+                    <x-_photo :user="auth()->user()" size="sm"></x-_photo>
                     <i class="bi bi-chevron-down"></i>
 
-                    <ul x-show="open" x-transition class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden z-50 bg-white">
+                    <ul x-show="open" @click.away="open = false" x-transition
+                        class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden z-50 bg-white">
                         <li>
                             <a class="dropdown-item pl-1 pr-3 py-2" href="{{ route('profiles.show', auth()->user()) }}">
                                 <i class="bi bi-person text-lg mr-2"></i> Profil

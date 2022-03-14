@@ -24,12 +24,9 @@
                 {{-- author's bio --}}
                 <div class="d-flex align-items-center my-16">
                     <div class="w-52 mr-4 sm:w-40 sm:mr-8">
-                        @if ($post->author->photo)
-                        <img src="/storage/{{ $post->author->photo }}" class="rounded-circle w-full object-cover border-5 border-slate-200"
-                            alt="{{ $post->author->name }}">
-                        @else
-                        <div class="bi bi-person text-4xl w-full p-5 border-2 rounded-full"></div>
-                        @endif
+                        <a href="{{ route('profiles.show', $post->author) }}">
+                            <x-_photo :user="$post->author" size="md"></x-_photo>
+                        </a>
                     </div>
                     <div class="w-full">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
