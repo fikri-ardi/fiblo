@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{PostController, LoginController, ProfileController, CategoryController, RegisterController, HomeController};
+use App\Http\Controllers\{PostController, ProfileController, CategoryController, RegisterController, HomeController};
 use App\Models\User;
 
 Route::get('/', HomeController::class)->name('home');
@@ -13,14 +13,6 @@ Route::get('/posts/categories', [CategoryController::class, 'index'])->name('cat
 // posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.single');
-
-
-// auth
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // profile
 Route::middleware('auth')->prefix('profiles')->group(function () {
@@ -45,3 +37,5 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->group(function (
     Route::resource('categories', App\Http\Controllers\Dashboard\CategoryController::class)->except('show');
     Route::resource('roles', App\Http\Controllers\Dashboard\RoleController::class)->except('show');
 });
+
+require 'auth.php';

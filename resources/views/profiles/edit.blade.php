@@ -45,4 +45,7 @@
         </div>
     </main>
 
+    <x-slot name="script">
+        <script src="/js/image-previewer.js"></script>
+    </x-slot>
 </x-app-layout>

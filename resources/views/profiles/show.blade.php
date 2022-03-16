@@ -3,8 +3,13 @@
     <div x-data="{open: false}" class="d-flex align-items-center flex-column border-bottom border-gray-500 pb-4 mb-4">
         {{-- User Photo --}}
         <div class="font-semibold text-lg mb-2">{{ $user->name }}</div>
-        <div class="flex flex-col align-items-center mb-2">
-            <x-_photo :user="$user" size="md"></x-_photo>
+        <div class="flex flex-col align-items-center mb-2" @click="open='photo'">
+            <div class="w-40 h-40 rounded-full border-5 border-slate-800 p-1 text-5xl">
+                <x-_photo :user="$user"></x-_photo>
+            </div>
+            <div x-show="open == 'photo'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full" style="z-index: 999">
+                <img @click.away="open = false" src="/storage/{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
+            </div>
         </div>
         <div class="font-semibold text-lg mb-2">{{ "@$user->username" }}</div>
 
@@ -53,7 +58,7 @@
             <div x-show="open == 'following'" x-transition @click.away="open = false"
                 class="absolute rounded-xl shadow-lg h-96 w-56 py-3 overflow-y-scroll bg-white">
                 <div class="font-bold text-lg mb-3 bg-white w-full text-center">
-                    Following
+                    Mengikuti
                 </div>
                 <x-_followments :user="$user" type="follows"></x-_followments>
             </div>
@@ -61,7 +66,7 @@
             <div x-show="open == 'followers'" x-transition @click.away="open = false"
                 class="absolute rounded-xl shadow-lg h-96 w-56 py-3 overflow-y-scroll bg-white">
                 <div class="font-bold text-lg mb-3 bg-white w-full text-center">
-                    Followers
+                    Pengikut
                 </div>
                 <x-_followments :user="$user" type="followers"></x-_followments>
             </div>

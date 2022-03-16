@@ -17,8 +17,10 @@
                 </h3>
 
                 <small class="mb-4 flex items-center">
-                    <x-_photo :user="$post->author" size="sm"></x-_photo>
-                    <a class="author ml-2" href="{{ route('posts', ['author' => $post->author->username]) }}">{{ $post->author->name }}</a>
+                    <div class="h-8 w-8">
+                        <x-_photo :user="$post->author"></x-_photo>
+                    </div>
+                    <a class="author ml-2" href="{{ route('profiles.show', $post->author) }}">{{ $post->author->name }}</a>
                     <small class="text-muted ml-2">{{ $post->created_at->diffForHumans() }}</small>
                 </small>
 

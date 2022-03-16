@@ -26,22 +26,22 @@ class Navbar extends Component
         $links = [
             'Beranda' => [
                 'route' => route('home'),
-                'active' => '/',
+                'isActive' => request()->routeIs('home'),
                 'icon' => 'bi bi-house-door',
             ],
             'Blog' => [
                 'route' => route('posts'),
-                'active' => 'posts*',
+                'isActive' => request()->routeIs('posts*') && !request()->routeIs('posts/categories'),
                 'icon' => 'bi bi-journal-text',
             ],
             'Categories' => [
                 'route' => route('categories'),
-                'active' => 'posts/categories',
+                'isActive' => request()->routeIs('categories'),
                 'icon' => 'bi bi-grid',
             ],
             'About' => [
                 'route' => route('about'),
-                'active' => 'about',
+                'isActive' => request()->routeIs('about'),
                 'icon' => 'bi bi-info-circle',
             ],
         ];

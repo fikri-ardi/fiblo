@@ -35,7 +35,7 @@
 
             <small class="mb-4 d-block">
                 Ditulis oleh
-                <a class="author" href="{{ route('posts', [ 'author' => $posts[0]->author->username]) }}">{{ $posts[0]->author->name }}</a>
+                <a class="author" href="{{ route('profiles.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
                 di
                 <a class="category" href="{{ route('posts', [ 'category' => $posts[0]->category->name]) }}">{{ $posts[0]->category->name }}</a>
                 <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
@@ -57,6 +57,6 @@
 
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else
-    <h2>Ups!maaf ya, sekarang masih belum ada article nih :(</h2>
+    <div class="text-center text-lg text-slate-800 mt-10">Ups!maaf ya, sekarang masih belum ada article nih :(</div>
     @endif
 </x-app-layout>

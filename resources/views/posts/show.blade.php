@@ -19,19 +19,19 @@
                     di
                     <a class="category" href="{{ route('posts', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
-                <article class="fs-5">{!! $post->body !!}</article>
+                <article class="fs-5 mb-5 text-justify">{!! $post->body !!}</article>
 
                 {{-- author's bio --}}
-                <div class="d-flex align-items-center my-16">
-                    <div class="w-52 mr-4 sm:w-40 sm:mr-8">
-                        <a href="{{ route('profiles.show', $post->author) }}">
-                            <x-_photo :user="$post->author" size="md"></x-_photo>
-                        </a>
-                    </div>
-                    <div class="w-full">
+                <div class="flex items-center flex-col mb-5 sm:flex-row">
+                    <a href="{{ route('profiles.show', $post->author) }}">
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 sm:mr-8">
+                            <x-_photo :user="$post->author" class="text-5xl"></x-_photo>
+                        </div>
+                    </a>
+                    <div class="flex items-center flex-col sm:items-start">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
-                        <p class="lh-base text-lg my-2">{{ $post->author->bio }}</p>
-                        <div class="text-lg flex items-center space-x-4">
+                        <p class="lh-base text-lg my-2 text-justify">{{ $post->author->bio }}</p>
+                        <div class="text-lg flex justify-center items-center space-x-4 sm:justify-start">
                             <span class="bi bi-instagram mr-2 col-primary"></span>
                             <span class="bi bi-facebook mr-2 col-primary"></span>
                             <span class="bi bi-twitter mr-2 col-primary"></span>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="flex">
+                <div class="flex mb-44">
                     <x-_link href="{{ route('posts') }}" class="btn btn-danger btn-sm text-white mt-3 mb-5 d-inline-block">
                         <span class="bi bi-chevron-compact-left"></span> Kembali
                     </x-_link>

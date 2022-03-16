@@ -10,7 +10,7 @@
             <ul class="navbar-nav">
                 @foreach ($links as $name => $value)
                 <li class="nav-item px-3">
-                    <a class="nav-link{{ request()->is($value['active']) ? ' active' : '' }}" href="{{ $value['route'] }}">{{ $name }}</a>
+                    <a class="nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">{{ $name }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -21,17 +21,22 @@
             @auth
             <li class="nav-item relative">
                 {{-- Nav Toggler --}}
-                <div class="flex items-center cursor-pointer" @click="open = ! open">
-                    <x-_photo :user="auth()->user()" size="sm"></x-_photo>
+                <div class="flex items-center cursor-pointer" @mouseover="open = true">
+                    <div class="w-8 h-8 mr-1 border-2 border-slate-800 rounded-full">
+                        <x-_photo :user="auth()->user()"></x-_photo>
+                    </div>
                     <i class="bi bi-chevron-down"></i>
 
                     <ul x-show="open" @click.away="open = false" x-transition
-                        class="absolute shadow-lg rounded-xl right-0 top-14 overflow-hidden z-50 bg-white">
+                        class="absolute shadow-lg rounded-xl right-0 top-full overflow-hidden z-50 bg-white min-w-full w-44">
                         <x-_list-link :href="route('profiles.show', auth()->user())">
                             <i class="bi bi-person text-lg mr-2"></i> Profil
                         </x-_list-link>
                         <x-_list-link :href="route('dashboard.index', auth()->user())">
                             <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
+                        </x-_list-link>
+                        <x-_list-link :href="route('password.edit')">
+                            <i class="bi bi-shield-lock mr-2"></i> Ubah Password
                         </x-_list-link>
 
                         <li>
@@ -62,7 +67,7 @@
     <ul class="navbar-nav d-flex flex-row justify-content-center">
         @foreach ($links as $name => $value)
         <li class="nav-item px-3">
-            <a style="color: black" class="text-center nav-link{{ request()->is($value['active']) ? ' active' : '' }}" href="{{ $value['route'] }}">
+            <a style="color: black" class="text-center nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">
                 <span class="{{ $value['icon'] }} py-1 px-2 text-xl"></span>
                 <small class="d-block text-xs mt-1">{{ $name }}</small>
             </a>

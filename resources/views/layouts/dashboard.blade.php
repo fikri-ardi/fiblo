@@ -51,7 +51,6 @@
 
     <script src="/js/dashboard.js"></script>
 
-    <script src="/js/image-previewer.js"></script>
 </body>
 
 </html>
