@@ -17,14 +17,12 @@ class PostController extends Controller
 
         return view('posts.index', [
             'pageTitle' => $pageTitle,
-            "posts" => Post::exclude('body')->latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
+            "posts" => Post::exclude(['body', 'published_at', 'updated_at'])->latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 
     public function show(Post $post)
     {
-        return view('posts.show', [
-            "post" => $post
-        ]);
+        return view('posts.show', compact('post'));
     }
 }

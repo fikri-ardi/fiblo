@@ -78,7 +78,7 @@
     </div>
 
     @if ($user->posts->count())
-    <x-_posts :posts="$user->posts"></x-_posts>
+    <x-_posts :posts="$user->posts()->latest()->get()"></x-_posts>
 
     @else
     <div class="text-center mt-3 text-lg">{{ $user->name }} belum punya postingan.</div>

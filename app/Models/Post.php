@@ -82,6 +82,11 @@ class Post extends Model
 
     public function getTableColumns()
     {
+        /**
+         * Get all table columns in posts table
+         * @return array
+         */
+
         return \Illuminate\Support\Facades\Cache::rememberForever('MigrMod:' . filemtime(database_path('migrations')), function () {
             return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
         });
@@ -90,10 +95,19 @@ class Post extends Model
     public function scopeExclude($query, ...$columns)
     {
         if ($columns !== []) {
+            // Post::exclude('body', 'published_at', 'updated_at') -> parameter yang dipassing di method exclude akan ditangkap $columns,
+            // lalu setiap parameter yang dipassing akan menjadi anggota dari array satu dimensi di $columns.
+            // Post::exclude(['body', 'published_at', 'updated_at']) -> setiap parameter di method exclude, akan masuk ke array index 0 di array $columns, 
+            // yang di dalamnya berisi array lagi yang berisi 0 => 'body', 1 => 'published_at' dst.
+
+            // jika $columns berupa array dua dimensi, dalam kata lain, kita memakai array saat passing parameter di method exclude, contoh :
+            // Post::exclude(['body', 'published_at', 'updated_at'])
             if (count($columns) !== count($columns, COUNT_RECURSIVE)) {
+                // ubah $columns menjadi array 1 dimensi
+                dd(iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($columns))));
                 $columns = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($columns)));
             }
-            return $query->select(array_diff($this->getTableColumns(), $columns));
+            // return $query->select(array_diff($this->getTableColumns(), $columns));
         }
         return $query;
     }

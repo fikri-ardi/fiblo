@@ -38,7 +38,7 @@ class Sidebar extends Component
 
         $adminLinks = [
             'Users' => [
-                'active' => 'users',
+                'active' => 'dashboard/users',
                 'route' => route('users.index'),
                 'icon' => 'users',
             ],
