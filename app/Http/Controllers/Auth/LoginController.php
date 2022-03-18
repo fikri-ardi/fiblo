@@ -22,7 +22,7 @@ class LoginController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials,  request('remember') ? true : false)) {
             request()->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }

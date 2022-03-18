@@ -104,10 +104,9 @@ class Post extends Model
             // Post::exclude(['body', 'published_at', 'updated_at'])
             if (count($columns) !== count($columns, COUNT_RECURSIVE)) {
                 // ubah $columns menjadi array 1 dimensi
-                dd(iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($columns))));
                 $columns = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($columns)));
             }
-            // return $query->select(array_diff($this->getTableColumns(), $columns));
+            return $query->select(array_diff($this->getTableColumns(), $columns));
         }
         return $query;
     }

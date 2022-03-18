@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\{User, Post};
 
 class PostController extends Controller
 {
@@ -13,7 +10,7 @@ class PostController extends Controller
     {
         $pageTitle = 'Semua Post';
         $pageTitle .= request('category') ? ' di ' . ucwords(str_replace('-', ' ', request('category'))) : '';
-        $pageTitle .= request('author') ? ' oleh ' . User::firstWhere('username', request('author'))->name : '';
+        $pageTitle .= request('author') ? ' oleh ' . User::firstWhere('username', request('author')->name) : '';
 
         return view('posts.index', [
             'pageTitle' => $pageTitle,

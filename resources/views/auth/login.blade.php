@@ -8,6 +8,7 @@
 
                     <x-_input name="email" type="email" :model="$user" label="E-Mail"></x-_input>
                     <x-_input name="password" type="password" :model="$user" label="Password"></x-_input>
+                    <input type="checkbox" name="remember" id="remember"> Ingat aku
 
                     <div class="flex justify-end">
                         <x-_button>

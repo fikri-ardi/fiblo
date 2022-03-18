@@ -18,11 +18,11 @@ class HomeController extends Controller
     {
         $posts =  Post::exclude(['body', 'published_at', 'updated_at'])->latest()->limit(6)->get();
 
-        // if (auth()->user()) {
-        //     if (auth()->user()->follows->count()) {
-        //         $posts = auth()->user()->followedPost()->exclude('body', 'published_at', 'updated_at')->limit(6)->get();
-        //     }
-        // }
+        if (auth()->user()) {
+            if (auth()->user()->follows->count()) {
+                $posts = auth()->user()->followedPost()->exclude('body', 'published_at', 'updated_at')->limit(6)->get();
+            }
+        }
 
         return view('home', compact('posts'));
     }
