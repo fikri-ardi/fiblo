@@ -6,10 +6,24 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public $title;
+    public $style = null;
+    public $js = null;
+
     /**
-     * Get the view / contents that represents the component.
+     * Create a new component instance.
      *
-     * @return \Illuminate\View\View
+     * @return void
+     */
+    public function __construct($title = null)
+    {
+        $this->title = $title ?? 'Fiblo';
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
     {

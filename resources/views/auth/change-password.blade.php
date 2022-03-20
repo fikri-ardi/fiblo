@@ -3,7 +3,7 @@
         <i class="bi bi-shield-lock mb-2 text-3xl text-red-500"></i>
         <div class="text-2xl font-semibold mb-2">Ubah Password</div>
 
-        <form action="{{ route('password.update') }}" method="post">
+        <form action="{{ route('password.change') }}" method="post">
             @method('put')
             @csrf
             <x-_input name="current_password" type="password" label="Password saat ini">Current Password</x-_input>

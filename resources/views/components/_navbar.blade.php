@@ -33,10 +33,10 @@
                         <x-_list-link :href="route('profiles.show', auth()->user())">
                             <i class="bi bi-person text-lg mr-2"></i> Profil
                         </x-_list-link>
-                        <x-_list-link :href="route('dashboard.index', auth()->user())">
+                        <x-_list-link :href="route('dashboard')">
                             <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
                         </x-_list-link>
-                        <x-_list-link :href="route('password.edit')">
+                        <x-_list-link :href="route('password.change')">
                             <i class="bi bi-shield-lock mr-2"></i> Ubah Password
                         </x-_list-link>
 

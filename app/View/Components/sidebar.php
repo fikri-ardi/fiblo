@@ -26,7 +26,7 @@ class Sidebar extends Component
         $userLinks = [
             'Dashboard' => [
                 'active' => 'dashboard',
-                'route' => route('dashboard.index'),
+                'route' => route('dashboard'),
                 'icon' => 'home',
             ],
             'Posts' => [

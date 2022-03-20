@@ -8,7 +8,7 @@
                     <h1 class="h2">Edit Profil</h1>
                     <div class="relative flex justify-center">
                         @if (auth()->user()->photo)
-                        <img src="/storage/{{ auth()->user()->photo }}"
+                        <img src="{{ auth()->user()->photo }}"
                             class="img-preview rounded-circle w-48 h-48 object-cover mb-3 border-5 border-slate-200" alt="{{ auth()->user()->name }}">
                         @else
                         <span class="bi bi-person bg-red-100 text-red-500 p-14 text-7xl rounded-full d-inline-block mb-3 shadow-md"></span>

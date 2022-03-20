@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
-    public function edit()
+    public function change()
     {
-        return view('auth.edit-password');
+        return view('auth.change-password');
     }
     public function update()
     {
