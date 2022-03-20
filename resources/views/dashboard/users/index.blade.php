@@ -6,7 +6,7 @@
 
         <div class="table-responsive">
             <div class="flex mb-3">
-                <x-_link href="{{ route('users.create') }}" class="btn btn-primary mb-3"><span class="bi bi-person-plus"></span> Tambah User</x-_link>
+                <x-_link href="{{ route('users.create') }}"><span class="bi bi-person-plus"></span> Tambah User</x-_link>
             </div>
 
             @if ($users->count())

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
@@ -13,6 +15,9 @@ class Post extends Model
 
     protected $guarded = ['id'];
     protected $with = ['author', 'category'];
+    protected $casts = [
+        'status' => PostStatus::class
+    ];
 
     public function category()
     {
@@ -72,12 +77,28 @@ class Post extends Model
         ];
     }
 
-    public function setImageAttribute($image)
+    public function title(): Attribute
     {
-        if (isset($this->attributes['image'])) {
-            Storage::delete($this->attributes['image']);
-        }
-        return $this->attributes['image'] = $image->store('images/posts');
+        return new Attribute(
+            fn ($value) => ucwords($value),
+            fn ($value) => str($value)->lower(),
+        );
+    }
+
+    public function image(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? asset("storage/$value") : null,
+            set: function ($value) {
+                /**
+                 * $this->arrtibutes['image'] berisi data yang ada di dalam field image di table posts
+                 */
+                if (isset($this->attributes['image'])) {
+                    Storage::delete($this->attributes['image']);
+                }
+                return $this->attributes['image'] = $value->store('images/posts');
+            }
+        );
     }
 
     public function getTableColumns()

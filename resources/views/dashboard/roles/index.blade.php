@@ -6,7 +6,7 @@
 
         <div class="table-responsive">
             <div class="flex mb-3">
-                <x-_link href="{{ route('roles.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Role</x-_link>
+                <x-_link href="{{ route('roles.create') }}"><span data-feather="plus"></span> Buat Role</x-_link>
             </div>
 
             @if ($roles->count())

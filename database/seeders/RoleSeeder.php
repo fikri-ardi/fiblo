@@ -19,8 +19,7 @@ class RoleSeeder extends Seeder
 
         $roles->each(function ($role) {
             Role::create([
-                'name' => $role,
-                'slug' => Str::slug($role)
+                'name' => $role
             ]);
         });
     }

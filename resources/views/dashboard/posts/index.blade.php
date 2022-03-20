@@ -6,7 +6,19 @@
 
         <div class="table-responsive">
             <div class="flex mb-3">
-                <x-_link href="{{ route('posts.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Post</x-_link>
+                <x-_link href="{{ route('posts.create') }}" class="mb-3 mr-1"><span data-feather="plus"></span> Buat Post</x-_link>
+                <x-_link href="{{ route('posts.index') }}"
+                    class="mb-3 mr-1{{ request()->is('dashboard/posts') ?: ' bg-slate-300 text-slate-900 hover:text-inherit hover:bg-slate-400' }}">
+                    All Posts
+                </x-_link>
+                <x-_link href="{{ route('posts.status', 'published') }}"
+                    class="mb-3 mr-1{{ request()->is('dashboard/posts/published/status') ?: ' bg-slate-300 text-slate-900 hover:text-inherit hover:bg-slate-400' }}">
+                    Published
+                </x-_link>
+                <x-_link href="{{ route('posts.status', 'draft') }}"
+                    class="mb-3 mr-1{{ request()->is('dashboard/posts/draft/status') ?: ' bg-slate-300 text-slate-900 hover:text-inherit hover:bg-slate-400' }}">
+                    Draft
+                </x-_link>
             </div>
 
             @if ($posts->count())
@@ -17,6 +29,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Category</th>
                         <th scope="col">Action</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +38,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
-                        <td>
+                        <td class="flex items-center justify-between">
                             <a href="{{ route('posts.show', $post) }}" class="badge bg-success text-white"> <span data-feather="eye"></span>
                             </a>
                             <a href="{{ route('posts.edit', $post) }}" class="badge bg-warning text-dark"> <span data-feather="edit-3"></span>
@@ -38,12 +51,22 @@
                                 </button>
                             </form>
                         </td>
+                        <td>
+                            <form action="{{ route('posts.publish', ['post' => $post, 'status' => $post->status]) }}" method="post">
+                                @method('put')
+                                @csrf
+                                <x-_button class="text-center">
+                                    {{ $post->status->value == 'draft' ? 'publish' : 'unpublish' }}
+                                </x-_button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             @else
-            <div class="alert alert-info">Data post kamu belum ada karena kamu belum buat postnya :v</div>
+            <div class=" alert alert-info">Data post kamu belum ada karena kamu belum buat postnya :v
+            </div>
             @endif
         </div>
     </main>

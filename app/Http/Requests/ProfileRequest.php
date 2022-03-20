@@ -30,7 +30,6 @@ class ProfileRequest extends FormRequest
             'username' => 'required|min:3|max:255|unique:users,username,' . $id,
             'email' => 'required|email|max:255|unique:users,email,' . $id,
             'photo' => 'image|file|max:2048',
-            'bio' => 'string',
         ];
     }
 }

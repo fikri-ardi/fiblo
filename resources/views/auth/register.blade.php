@@ -13,7 +13,7 @@
 
                     <div class="flex justify-end mt-3">
                         <x-_button>
-                            <i class="bi bi-send-plus"></i>
+                            <i class="bi bi-send-plus mr-1"></i>
                             Register
                         </x-_button>
                     </div>

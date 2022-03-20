@@ -27,8 +27,9 @@
                     </div>
                     <i class="bi bi-chevron-down"></i>
 
+                    {{-- Dropdown Content --}}
                     <ul x-show="open" @click.away="open = false" x-transition
-                        class="absolute shadow-lg rounded-xl right-0 top-full overflow-hidden z-50 bg-white min-w-full w-44">
+                        class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white min-w-full w-44">
                         <x-_list-link :href="route('profiles.show', auth()->user())">
                             <i class="bi bi-person text-lg mr-2"></i> Profil
                         </x-_list-link>
@@ -54,7 +55,7 @@
             <li class="nav-item">
                 <a href="{{ route('login') }}"
                     class="flex items-center hover:text-slate-500 transition{{ request()->segment(1) == 'login' ? ' active' : '' }}">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
+                    <i class="bi bi-box-arrow-in-right mr-1"></i> Login
                 </a>
             </li>
             @endauth

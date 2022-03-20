@@ -31,6 +31,7 @@ class PostFactory extends Factory
             'slug' => $this->faker->unique()->slug(),
             'excerpt' => $this->faker->paragraph(),
             'body' => collect($this->faker->paragraphs(mt_rand(5, 9)))->map(fn ($paragraph) => "<p>$paragraph</p>")->implode(''),
+            'status' => collect(['draft', 'published'])->random()
         ];
     }
 }

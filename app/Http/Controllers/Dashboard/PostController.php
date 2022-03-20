@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\PostStatus;
 use Illuminate\Support\Str;
 use App\Models\{Post, Category};
 use App\Http\Requests\PostRequest;
@@ -13,7 +14,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('dashboard.posts.index', ['posts' => auth()->user()->posts]);
+        return view('dashboard.posts.index', ['posts' =>  auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')]);
     }
 
     public function create()
@@ -64,5 +65,23 @@ class PostController extends Controller
     {
         $slug = SlugService::createSlug(Post::class, 'slug', request('title'));
         return response()->json(['slug' => $slug]);
+    }
+
+    public function status(PostStatus $status)
+    {
+        return view('dashboard.posts.index', [
+            'posts' =>  Post::select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get(),
+            'status' => $status
+        ]);
+    }
+
+    public function publish(Post $post)
+    {
+        $action = $post->status == PostStatus::Draft ? 'publish' : 'unpublish';
+        $post->update([
+            'status' => $post->status == PostStatus::Draft ? 'published' : 'draft'
+        ]);
+
+        return back()->with(['message' => "Post kamu berhasil di$action"]);
     }
 }

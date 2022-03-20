@@ -9,7 +9,8 @@
                 <div class="absolute bg-slate-100 bg-opacity-30 text-slate-800 font-semibold fs-4 text-center w-100 p-3 backdrop-blur-lg">
                     {{ $category->name }}
                 </div>
-                <img src="/images/hero.jpg" class="hero-image w-full h-100 overflow-hidden rounded-3xl">
+                <img src="{{ asset('storage').'/images/posts/thumb.jpg' }}"
+                    class="hero-image w-full h-100 object-cover object-center overflow-hidden rounded-3xl">
             </div>
         </div>
         @empty

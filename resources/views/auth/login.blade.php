@@ -12,7 +12,7 @@
 
                     <div class="flex justify-end">
                         <x-_button>
-                            <i class="bi bi-box-arrow-in-right"></i>
+                            <i class="bi bi-box-arrow-in-right mr-1"></i>
                             Login
                         </x-_button>
                     </div>

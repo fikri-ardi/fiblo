@@ -9,7 +9,7 @@
             @endforeach
         </ul>
 
-        @can('role', 'admin')
+        @can('role', 'founder')
         <h6 class="p-3 text-gray-500">ADMINISTRATOR</h6>
         <ul class="nav flex-column">
             @foreach ($adminLinks as $name => $value)

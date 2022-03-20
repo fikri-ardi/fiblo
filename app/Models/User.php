@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -60,16 +61,25 @@ class User extends Authenticatable
         return 'username';
     }
 
-    public function setPasswordAttribute($password)
+    public function password(): Attribute
     {
-        return $this->attributes['password'] = bcrypt($password);
+        return new Attribute(
+            set: fn ($value) => bcrypt($value)
+        );
     }
 
-    public function setPhotoAttribute($photo)
+    public function photo(): Attribute
     {
-        if (isset($this->attributes['photo'])) {
-            Storage::delete($this->attributes['photo']);
-        }
-        return $this->attributes['photo'] = $photo->store('images/users');
+        return new Attribute(
+            set: function ($value) {
+                /**
+                 * $this->arrtibutes['photo'] berisi data yang ada di dalam field photo di table users
+                 */
+                if (isset($this->attributes['photo'])) {
+                    Storage::delete($this->attributes['photo']);
+                }
+                return $this->attributes['photo'] = $value->store('images/users');
+            }
+        );
     }
 }

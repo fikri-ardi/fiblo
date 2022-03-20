@@ -92,6 +92,7 @@
         font-weight: 600;
     }
 
+    /* notif */
     .slide {
         animation: slide 5s ease-out 1;
         transform: translate(-50%, -100%);

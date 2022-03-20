@@ -6,7 +6,7 @@
 
         <div class="table-responsive">
             <div class="flex mb-3">
-                <x-_link href="{{ route('categories.create') }}" class="btn btn-primary mb-3"><span data-feather="plus"></span> Buat Kategory
+                <x-_link href="{{ route('categories.create') }}"><span data-feather="plus"></span> Buat Kategory
                 </x-_link>
             </div>
 

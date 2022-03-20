@@ -3,13 +3,17 @@
     <div x-data="{open: false}" class="d-flex align-items-center flex-column border-bottom border-gray-500 pb-4 mb-4">
         {{-- User Photo --}}
         <div class="font-semibold text-lg mb-2">{{ $user->name }}</div>
-        <div class="flex flex-col align-items-center mb-2" @click="open='photo'">
+        <div class="flex flex-col align-items-center mb-2" @click="open='{{ $user->photo }}'">
             <div class="w-40 h-40 rounded-full border-5 border-slate-800 p-1 text-5xl">
-                <x-_photo :user="$user"></x-_photo>
+                <x-_photo :user="$user">
+                    <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
+                        style="z-index: 999">
+                        <img @click.away="open = false" src="/storage/{{ $user->photo }}" alt="{{ $user->name }}"
+                            class="w-56 h-56 object-cover rounded-xl">
+                    </div>
+                </x-_photo>
             </div>
-            <div x-show="open == 'photo'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full" style="z-index: 999">
-                <img @click.away="open = false" src="/storage/{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
-            </div>
+
         </div>
         <div class="font-semibold text-lg mb-2">{{ "@$user->username" }}</div>
 
@@ -73,7 +77,7 @@
         </div>
 
         <div class="text-center">
-            <p class="text-sm font-italic w-72"><i>"{{ $user->bio ?? 'Bio kamu masih kosong' }}"</i></p>
+            <p class="text-sm font-italic w-72"><i>{{ "$user->bio" ?? '' }}</i></p>
         </div>
     </div>
 

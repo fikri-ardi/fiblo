@@ -28,8 +28,8 @@
 
                 <div class="mb-3">
                     <label for="bio" class="form-label">Biography</label>
-                    <textarea type="text" class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio"
-                        required> {{ old('bio', $user->bio) }}</textarea>
+                    <textarea type="text" class="form-control @error('bio') is-invalid @enderror" id="bio"
+                        name="bio">{{ old('bio', $user->bio) }}</textarea>
                     @error('bio')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

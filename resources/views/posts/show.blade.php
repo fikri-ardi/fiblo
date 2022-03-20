@@ -3,14 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-7">
 
-                {{-- Post Banner --}}
-                @if ($post->image)
-                <img src="/storage/{{ $post->image }}" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-                    style="left: 0; max-height: 400px; object-fit: cover">
-                @else
-                <img src="/images/hero.jpg" class="card-img-top w-100 h-100 hero-image position-relative img-fluid"
-                    style="left: 0; max-height: 400px">
-                @endif
+                <x-_banner :post="$post"></x-_banner>
 
                 <h2 class="my-3">{{ $post->title }}</h2>
                 <p class="mb-3">
