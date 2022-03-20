@@ -71,7 +71,8 @@ class User extends Authenticatable
     public function photo(): Attribute
     {
         return new Attribute(
-            set: function ($value) {
+            fn ($value) => $value ? asset("storage/$value") : null,
+            function ($value) {
                 /**
                  * $this->arrtibutes['photo'] berisi data yang ada di dalam field photo di table users
                  */

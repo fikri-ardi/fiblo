@@ -8,8 +8,7 @@
                 <x-_photo :user="$user">
                     <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
                         style="z-index: 999">
-                        <img @click.away="open = false" src="/storage/{{ $user->photo }}" alt="{{ $user->name }}"
-                            class="w-56 h-56 object-cover rounded-xl">
+                        <img @click.away="open = false" src="{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
                     </div>
                 </x-_photo>
             </div>

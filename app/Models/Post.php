@@ -88,8 +88,8 @@ class Post extends Model
     public function image(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => $value ? asset("storage/$value") : null,
-            set: function ($value) {
+            fn ($value) => $value ? asset("storage/$value") : null,
+            function ($value) {
                 /**
                  * $this->arrtibutes['image'] berisi data yang ada di dalam field image di table posts
                  */

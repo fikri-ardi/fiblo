@@ -8,7 +8,7 @@
                 <h2 class="my-3">{{ $post->title }}</h2>
                 <p class="mb-3">
                     Ditulis oleh
-                    <a class="author" href="{{ route('posts', ['author' => $post->author->username]) }}">{{ $post->author->name }}</a>
+                    <a class="author" href="{{ route('profiles.show', $post->author) }}">{{ $post->author->name }}</a>
                     di
                     <a class="category" href="{{ route('posts', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
