@@ -21,12 +21,12 @@ Route::controller(ProfileController::class)->middleware('auth')->prefix('profile
     Route::get('{user}/edit', 'edit')->name('edit');
     Route::put('{user}', 'update')->name('update');
 
-    Route::post('{user}/follow', 'follow')->name('follow');
+    Route::post('{user}/follow', 'follow')->name('follow')->middleware('verified');
 });
 // });
 
 // posts dashboard
-Route::middleware('auth')->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     // route for check & make a slug
     Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
     Route::get('posts/{status}/status', [App\Http\Controllers\Dashboard\PostController::class, 'status'])->name('posts.status');

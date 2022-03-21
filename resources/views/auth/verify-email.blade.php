@@ -1,39 +1,23 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+<x-app-layout>
+    <div class="flex flex-column w-80 shadow-lg p-4 rounded-xl mx-auto mt-32">
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('Eits! Verifikasi E-mail kamu dulu ya. Kami udah kirim link ke E-mail kamu buat verifikasi. Kalo ngga ada E-mailnya, tap tombol
+            dibawah ya.') }}
         </div>
-
         @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
-
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
-
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
-            </form>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ __('Link baru buat verifikasi E-mail udah kami kirim ke E-mail kamu.') }}
         </div>
-    </x-auth-card>
-</x-guest-layout>
+        @endif
+        <form method="POST" action="{{ route('verification.send') }}" class="block">
+            @csrf
+            <div class="flex items-center justify-between">
+                <x-_button>
+                    {{ __('Kirim Email Verifikasi Lagi') }}
+                </x-_button>
+
+                <a class="text-slate-500 text-base" href="{{ route('home') }}">Nanti</a>
+            </div>
+        </form>
+    </div>
+</x-app-layout>

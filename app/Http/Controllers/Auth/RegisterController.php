@@ -16,6 +16,6 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         User::create($request->all());
-        return redirect('login')->with(['message' => 'Registrasi kamu berhasil! silahkan login', 'type' => 'success']);
+        return to_route('verification.notice')->with('message', 'Registrasi kamu berhasil!');
     }
 }

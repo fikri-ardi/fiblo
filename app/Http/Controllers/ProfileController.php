@@ -30,6 +30,6 @@ class ProfileController extends Controller
     {
         $action = auth()->user()->wasFollow($user) ? 'unfollow' : 'follow';
         auth()->user()->wasFollow($user) ? auth()->user()->unfollow($user) : auth()->user()->follow($user);
-        return back()->with(['message' => "Kamu berhasil $action $user->name"]);
+        return back()->with(['message' => "Kamu berhasil $action @$user->username"]);
     }
 }

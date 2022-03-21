@@ -17,14 +17,14 @@
                 {{-- author's bio --}}
                 <div class="flex items-center flex-col mb-5 sm:flex-row">
                     <a href="{{ route('profiles.show', $post->author) }}">
-                        <div class="w-28 h-28 sm:w-32 sm:h-32 sm:mr-8">
+                        <div class="w-28 h-28 mb-3 sm:w-32 sm:h-32 sm:mr-8">
                             <x-_photo :user="$post->author" class="text-5xl"></x-_photo>
                         </div>
                     </a>
                     <div class="flex items-center flex-col sm:items-start">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
                         <p class="lh-base text-lg my-2 text-justify">{{ $post->author->bio }}</p>
-                        <div class="text-lg flex justify-center items-center space-x-4 sm:justify-start">
+                        <div class="text-xl flex justify-center items-center space-x-4 sm:justify-start mt-2">
                             <span class="bi bi-instagram mr-2 col-primary"></span>
                             <span class="bi bi-facebook mr-2 col-primary"></span>
                             <span class="bi bi-twitter mr-2 col-primary"></span>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="flex mb-44">
-                    <x-_link href="{{ route('posts') }}" class="btn btn-danger btn-sm text-white mt-3 mb-5 d-inline-block">
+                    <x-_link href="{{ route('posts') }}">
                         <span class="bi bi-chevron-compact-left"></span> Kembali
                     </x-_link>
                 </div>

@@ -95,28 +95,28 @@
     /* notif */
     .slide {
         animation: slide 5s ease-out 1;
-        transform: translate(-50%, -100%);
+        transform: translate(50%, -200%);
     }
 
     @keyframes slide {
         0% {
-            transform: translate(-50%, -100%);
+            transform: translate(50%, -100%);
         }
 
         10% {
-            transform: translate(-50%, 40%);
+            transform: translate(50%, 40%);
         }
 
         50% {
-            transform: translate(-50%, 40%);
+            transform: translate(50%, 40%);
         }
 
         95% {
-            transform: translate(-50%, 40%);
+            transform: translate(50%, 40%);
         }
 
         100% {
-            transform: translate(-50%, -100%);
+            transform: translate(50%, -200%);
         }
     }
 

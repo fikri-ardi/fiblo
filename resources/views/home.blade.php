@@ -17,8 +17,6 @@
         @endif
     </div>
 
-    <x-_blue-blur />
-
     @if ($posts->count())
     <div class="text-center text-5xl py-5" id="posts">
         Tulisan Terbaru
