@@ -14,7 +14,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('dashboard.posts.index', ['posts' =>  auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')]);
+        $posts = auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status');
+        return view('dashboard.posts.index', compact('posts'));
     }
 
     public function create()
@@ -69,8 +70,9 @@ class PostController extends Controller
 
     public function status(PostStatus $status)
     {
+        $posts = auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get();
         return view('dashboard.posts.index', [
-            'posts' =>  Post::select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get(),
+            'posts' =>  $posts,
             'status' => $status
         ]);
     }

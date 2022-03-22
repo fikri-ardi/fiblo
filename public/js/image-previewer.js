@@ -1,3 +1,5 @@
+document.querySelector('.img-preview').style.display = 'none';
+
 function previewImage() {
     const imgInput = document.querySelector('.img-input');
     const imgPreview = document.querySelector('.img-preview');

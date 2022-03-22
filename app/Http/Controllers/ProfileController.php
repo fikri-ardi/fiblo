@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Role, User};
+use App\Http\Requests\LinkRequest;
 use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
@@ -16,13 +17,26 @@ class ProfileController extends Controller
     {
         return view('profiles.edit', [
             'user' => $user,
-            'roles' => Role::all()
+            'links' => $user->links
         ]);
     }
 
     public function update(ProfileRequest $request, User $user)
     {
         $user->update($request->all());
+        if ($user->links) {
+            $user->links()->update([
+                'instagram' => $request->instagram,
+                'twitter' => $request->twitter,
+                'facebook' => $request->facebook,
+            ]);
+        } else {
+            $user->links()->create([
+                'instagram' => $request->instagram,
+                'twitter' => $request->twitter,
+                'facebook' => $request->facebook,
+            ]);
+        }
         return to_route('profiles.show', compact('user'))->with(['message' => 'Profil kamu berhasil diupdate :)', 'type' => 'success']);
     }
 

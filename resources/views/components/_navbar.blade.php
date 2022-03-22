@@ -1,12 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl">
     <div class="container flex justify-content-between">
         <div>
-            <a class="flex items-center text-red-500 text-3xl font-bold hover:text-red-500" href="/">
-                <i class="bi bi-cursor mr-1"></i> Fiblo
+            <a class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
+                <img src="{{ asset('storage/images/logo/fiblo.png') }}" alt="{{ config('app_name') }}" class="w-10 mr-2">
+                <span class="text-4xl">Fiblo</span>
             </a>
         </div>
 
-        <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+        <div class="collapse navbar-collapse flex-grow-0 -ml-16" id="navbarNav">
             <ul class="navbar-nav">
                 @foreach ($links as $name => $value)
                 <li class="nav-item px-3">

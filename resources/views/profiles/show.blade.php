@@ -51,6 +51,7 @@
                 </x-_button>
             </form>
             @endcan
+            <x-_social-media :user="$user" />
         </div>
         @endauth
 

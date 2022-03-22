@@ -5061,6 +5061,11 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+tailwindcss-animation-delay@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/tailwindcss-animation-delay/-/tailwindcss-animation-delay-1.0.7.tgz#7ba82fdc99f2cf67e38754352d955a08dd573265"
+  integrity sha512-nJIQGJ7zePh7FiLFiZJOi7Vo+dRo+2Tqt8BRFa9yk8um0OFpuD7K3i8bZaNO3C8qMxdv0Y7YlHtCZq4/ydok9A==
+
 tailwindcss@^3.0.18:
   version "3.0.23"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.23.tgz#c620521d53a289650872a66adfcb4129d2200d10"

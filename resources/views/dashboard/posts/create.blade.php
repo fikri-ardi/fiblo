@@ -7,7 +7,23 @@
         <div class="col-lg-8 mb-5">
             <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <x-_input name="title" :model="$post" label="Title"></x-_input>
+                <div class="mb-3">
+                    <div class="relative w-full h-48 sm:h-96 bg-slate-300 rounded-xl flex items-center justify-center overflow-hidden">
+                        <img class="img-preview img-fluid rounded-lg w-full h-full object-cover object-center absolute">
+                        <i class="bi bi-camera-fill font-bold text-4xl text-slate-500"></i>
+                        <input class="absolute h-full w-full opacity-0 form-control img-input @error('image') is-invalid @enderror" type="file"
+                            id="image" name="image" onchange="previewImage()">
+                        <div
+                            class="absolute bottom-0 left-0 right-0 h-10 bg-black bg-opacity-50 flex items-center justify-center font-semibold text-white backdrop-blur-xl pointer-events-none">
+                            Ubah
+                        </div>
+                    </div>
+                    @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <x-_input name="title" :model="$post" label="Title" class="text-4xl font-semibold border-0"></x-_input>
                 <x-_input name="slug" :model="$post" label="Slug"></x-_input>
 
                 <div class="mb-3">
@@ -21,16 +37,6 @@
                         @endforelse
                     </select>
                     @error('category_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="image" class="form-label">Banner</label>
-                    <img class="img-preview img-fluid col-sm-5 rounded-lg">
-                    <input class="form-control img-input @error('image') is-invalid @enderror" type="file" id="image" name="image"
-                        onchange="previewImage()">
-                    @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

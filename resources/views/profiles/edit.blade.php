@@ -27,7 +27,7 @@
                 <x-_input name="email" :model="$user" label="email" type="email"></x-_input>
 
                 <div class="mb-3">
-                    <label for="bio" class="form-label">Biography</label>
+                    <label for="bio" class="form-label mt-4">Biografi</label>
                     <textarea type="text" class="form-control @error('bio') is-invalid @enderror" id="bio"
                         name="bio">{{ old('bio', $user->bio) }}</textarea>
                     @error('bio')
@@ -35,7 +35,12 @@
                     @enderror
                 </div>
 
-                <div class="flex justify-end">
+                <label for="bio" class="form-label">Link</label>
+                <x-_input name="instagram" :model="$links" label="Masukkan Username Instagram kamu"></x-_input>
+                <x-_input name="twitter" :model="$links" label="Masukkan Username Twitter kamu"></x-_input>
+                <x-_input name="facebook" :model="$links" label="Masukkan Username Facebook kamu"></x-_input>
+
+                <div class="flex justify-end mt-3">
                     <x-_button>
                         <x-slot name="icon"> <small class="bi bi-pencil"></small> </x-slot>
                         Ubah

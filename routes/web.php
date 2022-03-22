@@ -4,7 +4,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{HomeController, PostController, ProfileController, CategoryController};
 
-// Route::middleware('cache.response')->group(function () {
 Route::get('/', HomeController::class)->name('home');
 Route::view('/about', 'profiles.show', ['user' => User::where('role_id', 1)->first()])->name('about');
 
@@ -20,20 +19,19 @@ Route::controller(ProfileController::class)->middleware('auth')->prefix('profile
     Route::get('{user}', 'show')->name('show')->withoutMiddleware('auth');
     Route::get('{user}/edit', 'edit')->name('edit');
     Route::put('{user}', 'update')->name('update');
-
     Route::post('{user}/follow', 'follow')->name('follow')->middleware('verified');
 });
-// });
 
 // posts dashboard
-Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
+Route::controller(App\Http\Controllers\Dashboard\PostController::class)->middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     // route for check & make a slug
-    Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
-    Route::get('posts/{status}/status', [App\Http\Controllers\Dashboard\PostController::class, 'status'])->name('posts.status');
-    Route::put('posts/{post}/publish', [App\Http\Controllers\Dashboard\PostController::class, 'publish'])->name('posts.publish');
-    Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
+    Route::get('posts/checkSlug', 'checkSlug');
+    Route::get('posts/{status}/status', 'status')->name('posts.status');
+    Route::put('posts/{post}/publish', 'publish')->name('posts.publish');
+    Route::resource('posts', 'index');
     Route::view('/', 'dashboard.index')->name('dashboard');
 });
+
 
 // founder dashboard
 Route::middleware(['auth', 'role:founder'])->prefix('dashboard')->group(function () {

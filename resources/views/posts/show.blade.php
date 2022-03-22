@@ -24,11 +24,7 @@
                     <div class="flex items-center flex-col sm:items-start">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
                         <p class="lh-base text-lg my-2 text-justify">{{ $post->author->bio }}</p>
-                        <div class="text-xl flex justify-center items-center space-x-4 sm:justify-start mt-2">
-                            <span class="bi bi-instagram mr-2 col-primary"></span>
-                            <span class="bi bi-facebook mr-2 col-primary"></span>
-                            <span class="bi bi-twitter mr-2 col-primary"></span>
-                        </div>
+                        <x-_social-media :user="$post->author" />
                     </div>
                 </div>
 
