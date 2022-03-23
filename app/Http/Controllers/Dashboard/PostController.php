@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\{Post, Category};
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Scopes\PublishedScope;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -14,7 +15,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status');
+        $posts = auth()->user()->hasRole('founder') ? Post::withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->latest()->get();
         return view('dashboard.posts.index', compact('posts'));
     }
 
@@ -70,7 +71,7 @@ class PostController extends Controller
 
     public function status(PostStatus $status)
     {
-        $posts = auth()->user()->hasRole('founder') ? Post::select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get() : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get();
+        $posts = auth()->user()->hasRole('founder') ? Post::withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get() : auth()->user()->posts()->withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get();
         return view('dashboard.posts.index', [
             'posts' =>  $posts,
             'status' => $status

@@ -1,8 +1,8 @@
 <x-app-layout title="Beranda">
     <x-_red-blur />
 
-    <div class="w-full text-center font-bold text-2xl my-32 mx-auto sm:text-7xl sm:my-64">
-        <div class="relative flex items-center justify-center">
+    <div class="w-full text-center font-bold text-2xl -mt-20 sm:text-7xl min-h-screen flex items-center justify-center flex-col">
+        <div class="relative flex items-center justify-center w-full">
             <p class="typewriter inline-block max-w-fit">
                 Tulis Sesuatu Yang Beda.
             </p>
@@ -15,7 +15,7 @@
 
         @if ($posts->count())
         <a href="#posts"
-            class="bi bi-chevron-compact-down text-3xl mx-auto text-red-500 mt-10 animate-bounce shadow-lg bg-white border-1 h-12 w-12 rounded-full d-flex justify-center align-items-center cursor-pointer relative z-10">
+            class="bi bi-chevron-compact-down text-3xl mx-auto text-red-500 mt-10 animate-bounce shadow-lg bg-white border-1 h-12 w-12 rounded-full flex justify-center items-center">
         </a>
         @endif
     </div>

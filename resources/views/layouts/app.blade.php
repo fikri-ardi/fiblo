@@ -39,7 +39,7 @@
     <x-navbar></x-navbar>
     <x-_notif></x-_notif>
 
-    <div class="container main-container mt-2 mb-5 flex flex-col pt-28 min-h-screen">
+    <div class="container main-container mb-5 flex flex-col pt-24 min-h-screen">
         {{ $slot }}
     </div>
 

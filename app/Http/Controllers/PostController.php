@@ -15,7 +15,7 @@ class PostController extends Controller
 
         return view('posts.index', [
             'pageTitle' => $pageTitle,
-            "posts" => Post::exclude(['body', 'updated_at'])->where('status', PostStatus::Published)->latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
+            "posts" => Post::filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString()
         ]);
     }
 

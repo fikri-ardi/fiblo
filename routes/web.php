@@ -28,7 +28,7 @@ Route::controller(App\Http\Controllers\Dashboard\PostController::class)->middlew
     Route::get('posts/checkSlug', 'checkSlug');
     Route::get('posts/{status}/status', 'status')->name('posts.status');
     Route::put('posts/{post}/publish', 'publish')->name('posts.publish');
-    Route::resource('posts', 'index');
+    Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
     Route::view('/', 'dashboard.index')->name('dashboard');
 });
 
