@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, PostController, ProfileController, CategoryController};
+use App\Http\Controllers\{AboutController, HomeController, PostController, ProfileController, CategoryController};
 
 Route::get('/', HomeController::class)->name('home');
-Route::view('/about', 'profiles.show', ['user' => User::where('role_id', 1)->first()])->name('about');
+Route::get('/about', AboutController::class)->name('about');
 
 // categories
 Route::get('/posts/categories', [CategoryController::class, 'index'])->name('categories');
