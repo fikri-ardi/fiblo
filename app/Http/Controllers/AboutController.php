@@ -15,6 +15,8 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('profiles.show', ['user' => User::where('role_id', 1)->first()]);
+        $user = User::where('role_id', 1)->first();
+        $posts = $user->posts()->postState(\App\Enums\PostStatus::Published)->latest()->paginate(6);
+        return view('profiles.show', compact('user', 'posts'));
     }
 }

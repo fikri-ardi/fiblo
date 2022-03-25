@@ -81,8 +81,8 @@
         </div>
     </div>
 
-    @if ($user->posts->count())
-    <x-_posts :posts="$user->posts()->postState(\App\Enums\PostStatus::Published)->latest()->get()"></x-_posts>
+    @if ($posts->count())
+    <x-_posts :posts="$posts"></x-_posts>
 
     @else
     <div class="text-center mt-3 text-lg">{{ "@$user->name" }} belum punya postingan.</div>

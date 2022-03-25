@@ -9,7 +9,8 @@ class ProfileController extends Controller
 {
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        $posts = $user->posts()->postState(\App\Enums\PostStatus::Published)->latest()->paginate(6);
+        return view('profiles.show', compact('user', 'posts'));
     }
 
     public function edit(User $user)
