@@ -12,7 +12,7 @@
                     di
                     <a class="category" href="{{ route('posts', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
-                <article class="fs-5 mb-5 text-justify">{!! $post->body !!}</article>
+                <article class="fs-5 mb-5">{!! $post->body !!}</article>
 
                 {{-- author's bio --}}
                 <div class="flex items-center flex-col mb-5 sm:flex-row">

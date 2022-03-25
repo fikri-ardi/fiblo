@@ -7,14 +7,6 @@
                 <div class="text-center">
                     <h1 class="h2">Edit Profil</h1>
                     <div class="relative flex justify-center">
-                        {{-- @if (auth()->user()->photo)
-                        <img src="{{ auth()->user()->photo }}"
-                            class="img-preview rounded-circle w-48 h-48 object-cover mb-3 border-5 border-slate-200" alt="{{ auth()->user()->name }}">
-                        @else
-                        <span class="bi bi-person bg-red-100 text-red-500 p-14 text-7xl rounded-full d-inline-block mb-3 shadow-md"></span>
-                        <div class="absolute w-48 h-48 rounded-full top-1/2 left-1/2 overflow-hidden mb-1" style="transform: translate(-50%, -53%)">
-                        </div>
-                        @endif --}}
                         <div class="relative w-36 h-36 mb-3 rounded-full overflow-hidden">
                             <img class="img-preview absolute w-full h-full object-cover" style="display: none">
                             <x-_photo :user="$user" class="text-5xl"></x-_photo>

@@ -23,11 +23,22 @@
                     @enderror
                 </div>
 
-                <x-_input name="title" :model="$post" label="Title" class="text-4xl font-semibold border-0"></x-_input>
-                <x-_input name="slug" :model="$post" label="Slug"></x-_input>
+                <div class="mb-3">
+                    <input type="text" id="title" name="title" value="{{ old('title', isset($post) ? $post->title : '') }}" placeholder="Judul"
+                        class="text-2xl sm:text-3xl border-0 w-full focus:ring-0" autofocus>
+                </div>
+
+                <div class="mb-3" style="min-height: 500px;">
+                    @error('body')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input type="hidden" name="body" id="body" value="{{ old('body') }}" required>
+                    <trix-editor input="body" placeholder="Tulis cerita kamu..." class="text-lg border-0"></trix-editor>
+                </div>
+
+                <input type="hidden" id="slug" name="slug" value="{{ old('slug', isset($post) ? $post->slug : '') }}">
 
                 <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
                     <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
                         <option selected disabled>Pilih Category</option>
                         @forelse ($categories as $category)
@@ -39,15 +50,6 @@
                     @error('category_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="category" class="form-label">Body</label>
-                    @error('body')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                    <input type="hidden" name="body" id="body" value="{{ old('body') }}" required>
-                    <trix-editor input="body"></trix-editor>
                 </div>
 
                 <div class="flex justify-end">
