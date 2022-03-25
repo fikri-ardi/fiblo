@@ -37,7 +37,7 @@
                         <x-_list-link :href="route('dashboard')">
                             <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
                         </x-_list-link>
-                        <x-_list-link :href="route('password.change')">
+                        <x-_list-link :href="route('password.edit')">
                             <i class="bi bi-shield-lock mr-2"></i> Ubah Password
                         </x-_list-link>
 
