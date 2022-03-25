@@ -19,7 +19,7 @@
         {{-- Profile Info --}}
         <div class="flex item-center mb-3">
             <a href="#post" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">{{ $user->posts->count() }}</div>
+                <div class="font-semibold text-lg">{{ $posts->count() }}</div>
                 Post
             </a>
             <small @click="open = 'followers'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
