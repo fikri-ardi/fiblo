@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PostStatus;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class CategoryController extends Controller
     {
         return view('posts.index', [
             'title' => "Post by Category $category->name",
-            'posts' => $category->posts
+            'posts' => $category->posts()->postState(PostStatus::Published)
         ]);
     }
 }

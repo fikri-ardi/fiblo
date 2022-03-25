@@ -7,17 +7,24 @@
                 <div class="text-center">
                     <h1 class="h2">Edit Profil</h1>
                     <div class="relative flex justify-center">
-                        @if (auth()->user()->photo)
+                        {{-- @if (auth()->user()->photo)
                         <img src="{{ auth()->user()->photo }}"
                             class="img-preview rounded-circle w-48 h-48 object-cover mb-3 border-5 border-slate-200" alt="{{ auth()->user()->name }}">
                         @else
                         <span class="bi bi-person bg-red-100 text-red-500 p-14 text-7xl rounded-full d-inline-block mb-3 shadow-md"></span>
                         <div class="absolute w-48 h-48 rounded-full top-1/2 left-1/2 overflow-hidden mb-1" style="transform: translate(-50%, -53%)">
-                            <img class="img-preview w-full h-full object-cover" style="display: none">
                         </div>
-                        @endif
+                        @endif --}}
+                        <div class="relative w-36 h-36 mb-3 rounded-full overflow-hidden">
+                            <img class="img-preview absolute w-full h-full object-cover" style="display: none">
+                            <x-_photo :user="$user" class="text-5xl"></x-_photo>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 h-7 font-semibold text-sm bg-black bg-opacity-50 backdrop-blur-lg text-white flex items-center justify-center">
+                                Ubah
+                            </div>
+                        </div>
                         <input type="file" name="photo" id="photo"
-                            class="img-input absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40" style="opacity: 0"
+                            class="img-input absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 cursor-pointer" style="opacity: 0"
                             onchange="previewImage()">
                     </div>
                 </div>
@@ -36,9 +43,9 @@
                 </div>
 
                 <label for="bio" class="form-label">Link</label>
-                <x-_input name="instagram" :model="$links" label="Masukkan Username Instagram kamu"></x-_input>
-                <x-_input name="twitter" :model="$links" label="Masukkan Username Twitter kamu"></x-_input>
-                <x-_input name="facebook" :model="$links" label="Masukkan Username Facebook kamu"></x-_input>
+                <x-_input name="instagram" :model="$links" label="Username Instagram kamu"></x-_input>
+                <x-_input name="twitter" :model="$links" label="Username Twitter kamu"></x-_input>
+                <x-_input name="facebook" :model="$links" label="Username Facebook kamu"></x-_input>
 
                 <div class="flex justify-end mt-3">
                     <x-_button>

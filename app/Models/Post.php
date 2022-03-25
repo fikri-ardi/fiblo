@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Enums\PostStatus;
-use App\Models\Scopes\PublishedScope;
-use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -13,18 +11,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, Sluggable, Searchable;
+    use HasFactory, Sluggable;
 
     protected $guarded = ['id'];
     protected $with = ['author', 'category'];
     protected $casts = [
         'status' => PostStatus::class
     ];
-
-    public static function booted()
-    {
-        static::addGlobalScope(new PublishedScope);
-    }
 
     public function category()
     {
@@ -88,7 +81,7 @@ class Post extends Model
     {
         return new Attribute(
             fn ($value) => ucwords($value),
-            fn ($value) => str($value)->lower(),
+            fn ($value) => strtolower($value),
         );
     }
 
@@ -139,31 +132,8 @@ class Post extends Model
         return $query;
     }
 
-    public function toSearchableArray()
+    public function scopePostState($query, $state)
     {
-        return [
-            'title' => $this->title,
-            'body' => $this->body,
-        ];
-    }
-
-    protected function makeAllSearchableUsing($query)
-    {
-        return $query->with('author');
-    }
-
-    public function isPublished()
-    {
-        return $this->status == PostStatus::Published;
-    }
-
-    /**
-     * Determine if the model should be searchable.
-     *
-     * @return bool
-     */
-    public function shouldBeSearchable()
-    {
-        return $this->isPublished();
+        return $query->where('status', $state);
     }
 }

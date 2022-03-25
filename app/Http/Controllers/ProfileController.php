@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Role, User};
-use App\Http\Requests\LinkRequest;
+use App\Models\User;
 use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
@@ -37,13 +36,13 @@ class ProfileController extends Controller
                 'facebook' => $request->facebook,
             ]);
         }
-        return to_route('profiles.show', compact('user'))->with(['message' => 'Profil kamu berhasil diupdate :)', 'type' => 'success']);
+        return to_route('profiles.show', compact('user'))->with('message', 'Profil kamu berhasil diupdate :)');
     }
 
     public function follow(User $user)
     {
         $action = auth()->user()->wasFollow($user) ? 'unfollow' : 'follow';
         auth()->user()->wasFollow($user) ? auth()->user()->unfollow($user) : auth()->user()->follow($user);
-        return back()->with(['message' => "Kamu berhasil $action @$user->username"]);
+        return back()->with('message', "Kamu berhasil $action @$user->username");
     }
 }

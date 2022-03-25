@@ -15,7 +15,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = auth()->user()->hasRole('founder') ? Post::withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->latest()->get() : auth()->user()->posts()->withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->latest()->get();
+        $posts = auth()->user()->hasRole('founder')
+            ? Post::select('title', 'category_id', 'slug', 'status')->latest()->get()
+            : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')->latest()->get();
+
         return view('dashboard.posts.index', compact('posts'));
     }
 
@@ -29,10 +32,10 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $request['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
+        $request['excerpt'] = Str::limit(strip_tags($request->body), 160, '...');
         $request['user_id'] = auth()->id();
         Post::create($request->all());
-        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dibuat :)', 'type' => 'success']);
+        return to_route('posts.index')->with('message', 'Post kamu berhasil dibuat :)');
     }
 
     public function show(Post $post)
@@ -53,29 +56,29 @@ class PostController extends Controller
         $request['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
         $request['user_id'] = auth()->id();
         $post->update($request->all());
-        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil diubah :)', 'type' => 'success']);
+        return to_route('posts.index')->with('message', 'Post kamu berhasil diubah :)');
     }
 
     public function destroy(Post $post)
     {
         !$post->image ?: Storage::delete($post->image);
         Post::destroy($post->id);
-        return redirect('/dashboard/posts')->with(['message' => 'Post kamu berhasil dihapus :)', 'type' => 'success']);
+        return to_route('posts.index')->with('message', 'Post kamu berhasil dihapus :)');
     }
 
     public function checkSlug()
     {
         $slug = SlugService::createSlug(Post::class, 'slug', request('title'));
-        return response()->json(['slug' => $slug]);
+        return response()->json(compact('slug'));
     }
 
     public function status(PostStatus $status)
     {
-        $posts = auth()->user()->hasRole('founder') ? Post::withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get() : auth()->user()->posts()->withoutGlobalScope(PublishedScope::class)->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get();
-        return view('dashboard.posts.index', [
-            'posts' =>  $posts,
-            'status' => $status
-        ]);
+        $posts = auth()->user()->hasRole('founder')
+            ? Post::select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get()
+            : auth()->user()->posts()->select('title', 'category_id', 'slug', 'status')->where('status', $status)->latest()->get();
+
+        return view('dashboard.posts.index', compact('posts', 'status'));
     }
 
     public function publish(Post $post)
@@ -85,6 +88,6 @@ class PostController extends Controller
             'status' => $post->status == PostStatus::Draft ? 'published' : 'draft'
         ]);
 
-        return back()->with(['message' => "Post kamu berhasil di$action"]);
+        return back()->with('message', "Post kamu berhasil di$action");
     }
 }

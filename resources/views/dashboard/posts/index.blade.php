@@ -52,7 +52,7 @@
                             </form>
                         </td>
                         <td>
-                            <form action="{{ route('posts.publish', ['post' => $post, 'status' => $post->status->value]) }}" method="post">
+                            <form action="{{ route('posts.publish', $post) }}" method="post">
                                 @method('put')
                                 @csrf
                                 <x-_button class="text-center">

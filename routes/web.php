@@ -22,11 +22,11 @@ Route::controller(ProfileController::class)->middleware('auth')->prefix('profile
 });
 
 // posts dashboard
-Route::controller(App\Http\Controllers\Dashboard\PostController::class)->middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     // route for check & make a slug
-    Route::get('posts/checkSlug', 'checkSlug');
-    Route::get('posts/{status}/status', 'status')->name('posts.status');
-    Route::put('posts/{post}/publish', 'publish')->name('posts.publish');
+    Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
+    Route::put('posts/{post}/publish', [App\Http\Controllers\Dashboard\PostController::class, 'publish'])->name('posts.publish');
+    Route::get('posts/{status}/status', [App\Http\Controllers\Dashboard\PostController::class, 'status'])->name('posts.status');
     Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
     Route::view('/', 'dashboard.index')->name('dashboard');
 });
