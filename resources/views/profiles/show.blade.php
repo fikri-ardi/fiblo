@@ -4,7 +4,7 @@
         {{-- User Photo --}}
         <div class="font-semibold text-lg mb-2">{{ $user->name }}</div>
         <div class="flex flex-col align-items-center mb-2" @click="open='{{ $user->photo }}'">
-            <div class="w-40 h-40 rounded-full border-5 border-slate-800 p-1 text-5xl">
+            <div class="w-24 h-24 rounded-full border-3 border-slate-800 p-1 text-5xl">
                 <x-_photo :user="$user">
                     <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
                         style="z-index: 999">
@@ -34,7 +34,7 @@
 
         {{-- action button --}}
         @auth
-        <div class="flex mb-3">
+        <div class="flex mb-3 space-x-2">
             @can('username', $user->username)
             <form action="{{ route('profiles.edit', $user) }}" method="get">
                 <x-_button>
