@@ -23,16 +23,21 @@ class Navbar extends Component
      */
     public function render()
     {
-        $links = [
+        $links = collect([
             'Beranda' => [
                 'route' => route('home'),
                 'isActive' => request()->routeIs('home'),
                 'icon' => 'bi bi-house-door',
             ],
             'Blog' => [
-                'route' => route('posts'),
-                'isActive' => request()->routeIs('posts*') && !request()->routeIs('posts/categories'),
-                'icon' => 'bi bi-journal-text',
+                'route' => route('user_posts.index'),
+                'isActive' => request()->routeIs('user_posts*') && !request()->routeIs('user_posts/categories') && !request()->routeIs('user_posts.create'),
+                'icon' => 'bi bi-file-post',
+            ],
+            'Buat Post' => [
+                'route' => route('user_posts.create'),
+                'isActive' => request()->routeIs('user_posts.create') && !request()->routeIs('user_posts/categories'),
+                'icon' => 'bi bi-plus-circle',
             ],
             'Categories' => [
                 'route' => route('categories'),
@@ -44,8 +49,12 @@ class Navbar extends Component
                 'isActive' => request()->routeIs('about'),
                 'icon' => 'bi bi-info-circle',
             ],
-        ];
+        ]);
 
-        return view('components._navbar', compact('links'));
+        $desktop = $links->filter(function ($value, $key) {
+            return $key != 'Buat Post';
+        });
+
+        return view('components._navbar', compact('links', 'desktop'));
     }
 }

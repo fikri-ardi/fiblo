@@ -21,7 +21,7 @@
     </div>
 
     @if ($posts->count())
-    <div class="text-center text-5xl py-5" id="posts">
+    <div class="text-center text-2xl sm:text-4xl py-3 sm:py-5" id="posts">
         Tulisan Terbaru
     </div>
 

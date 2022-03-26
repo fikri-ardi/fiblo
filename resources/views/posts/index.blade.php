@@ -6,7 +6,7 @@
 
         {{-- Search Bar --}}
         <div class="col-md-7 col-sm-10" style="max-width: 400px">
-            <form action="/posts" class="mb-3">
+            <form action="{{ route('user_posts.index') }}" class="mb-3">
                 <div class="input-group">
                     @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
@@ -30,14 +30,15 @@
 
         <div class="card-body">
             <h3 class="card-title">
-                <a href="{{ route('posts.single', $posts[0]) }}">{{ $posts[0]->title }}</a>
+                <a href="{{ route('user_posts.show', $posts[0]) }}">{{ $posts[0]->title }}</a>
             </h3>
 
             <small class="mb-4 d-block">
                 Ditulis oleh
                 <a class="author" href="{{ route('profiles.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
                 di
-                <a class="category" href="{{ route('posts', [ 'category' => $posts[0]->category->name]) }}">{{ $posts[0]->category->name }}</a>
+                <a class="category" href="{{ route('user_posts.index', [ 'category' => $posts[0]->category->name]) }}">{{ $posts[0]->category->name
+                    }}</a>
                 <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
             </small>
 
@@ -45,7 +46,7 @@
                 {{ $posts[0]->excerpt }}
             </p>
             <div class="d-flex justify-content-center">
-                <x-_link href="{{ route('posts.single', $posts[0]) }}">
+                <x-_link href="{{ route('user_posts.show', $posts[0]) }}">
                     Lanjut
                     <i class="bi bi-chevron-compact-right"></i>
                 </x-_link>

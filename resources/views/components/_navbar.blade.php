@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse flex-grow-0 -ml-16" id="navbarNav">
             <ul class="navbar-nav">
-                @foreach ($links as $name => $value)
+                @foreach ($desktop as $name => $value)
                 <li class="nav-item px-3">
                     <a class="nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">{{ $name }}</a>
                 </li>
@@ -18,8 +18,15 @@
         </div>
 
         {{-- Right Nav --}}
-        <ul x-data="{ open: false }" class="navbar-nav">
+        <ul x-data="{ open: false }" class="navbar-nav space-x-2">
             @auth
+            <li class="hidden sm:inline-block nav-item relative">
+                <a href="{{ route('user_posts.create') }}"
+                    class="flex items-center justify-center bg-slate-200 rounded-full h-8 w-8 active:bg-slate-400">
+                    <i class="bi bi-plus text-xl font-bold"></i>
+                </a>
+            </li>
+
             <li class="nav-item relative">
                 {{-- Nav Toggler --}}
                 <div class="flex items-center cursor-pointer" @mouseover="open = true">
@@ -34,9 +41,11 @@
                         <x-_list-link :href="route('profiles.show', auth()->user())">
                             <i class="bi bi-person text-lg mr-2"></i> Profil
                         </x-_list-link>
+                        @can('role', 'founder')
                         <x-_list-link :href="route('dashboard')">
                             <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
                         </x-_list-link>
+                        @endcan
                         <x-_list-link :href="route('password.edit')">
                             <i class="bi bi-shield-lock mr-2"></i> Ubah Password
                         </x-_list-link>
@@ -68,10 +77,10 @@
 <div id="mobile-nav" class="fixed bottom-0 w-full z-50 backdrop-blur-lg shadow-md" style="background: #ffffff90">
     <ul class="navbar-nav d-flex flex-row justify-content-center">
         @foreach ($links as $name => $value)
-        <li class="nav-item px-3">
+        <li class="nav-item px-3 active:bg-slate-400 transition">
             <a style="color: black" class="text-center nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">
-                <span class="{{ $value['icon'] }} py-1 px-2 text-xl"></span>
-                <small class="d-block text-xs mt-1">{{ $name }}</small>
+                <span class="{{ $value['isActive'] ? $value['icon'].'-fill' : $value['icon'] }} py-1 px-2 text-xl text-slate-500"></span>
+                <small class="d-block text-xs">{{ $name }}</small>
             </a>
         </li>
         @endforeach

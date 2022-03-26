@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Enums\PostStatus;
-use Illuminate\Support\Str;
 use App\Models\{Post, Category};
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Scopes\PublishedScope;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -32,9 +30,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $request['excerpt'] = Str::limit(strip_tags($request->body), 160, '...');
-        $request['user_id'] = auth()->id();
-        Post::create($request->all());
+        $request->insert();
         return to_route('posts.index')->with('message', 'Post kamu berhasil dibuat :)');
     }
 
@@ -53,9 +49,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        $request['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-        $request['user_id'] = auth()->id();
-        $post->update($request->all());
+        $request->update($post);
         return to_route('posts.index')->with('message', 'Post kamu berhasil diubah :)');
     }
 

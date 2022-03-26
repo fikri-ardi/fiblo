@@ -54,7 +54,7 @@
 
     <div class="flex justify-end">
         <x-_button>
-            <span class="bi bi-upload"></span>
+            <span class="bi bi-upload mr-1"></span>
             {{ $button ?? 'Tambah' }}
         </x-_button>
     </div>

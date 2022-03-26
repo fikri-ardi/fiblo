@@ -4,7 +4,7 @@
         {{-- User Photo --}}
         <div class="font-semibold text-lg mb-2">{{ $user->name }}</div>
         <div class="flex flex-col align-items-center mb-2" @click="open='{{ $user->photo }}'">
-            <div class="w-24 h-24 rounded-full border-3 border-slate-800 p-1 text-5xl">
+            <div class="w-24 h-24 rounded-full border-3 border-slate-800 text-5xl">
                 <x-_photo :user="$user">
                     <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
                         style="z-index: 999">
@@ -46,7 +46,7 @@
             <form action="{{ route('profiles.follow', $user) }}" method="post">
                 @csrf
                 <x-_button>
-                    <span class="bi bi-person-{{ auth()->user()->wasFollow($user) ? 'dash' : 'plus' }}"></span>
+                    <span class="bi bi-person-{{ auth()->user()->wasFollow($user) ? 'dash' : 'plus' }} mr-1"></span>
                     {{ auth()->user()->wasFollow($user) ? 'Unfollow' : 'Follow' }}
                 </x-_button>
             </form>
@@ -56,9 +56,7 @@
         @endauth
 
         {{-- Hidden Following Elements --}}
-        <div x-show="open"
-            class="fixed flex justify-center align-items-center w-full h-full bg-black bg-opacity-50 top-0 left-0 z-50 backdrop-blur-md transition">
-
+        <x-_blur-layer>
             <div x-show="open == 'following'" x-transition @click.away="open = false"
                 class="absolute rounded-xl shadow-lg h-96 w-56 py-3 overflow-y-scroll bg-white">
                 <div class="font-bold text-lg mb-3 bg-white w-full text-center">
@@ -74,7 +72,7 @@
                 </div>
                 <x-_followments :user="$user" type="followers"></x-_followments>
             </div>
-        </div>
+        </x-_blur-layer>
 
         <div class="text-center">
             <p class="text-sm font-italic w-72"><i>{{ "$user->bio" ?? '' }}</i></p>

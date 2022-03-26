@@ -232,7 +232,6 @@
 
         #mobile-nav .active span {
             color: var(--primary-color);
-            background: #00000010;
             position: relative;
             border-radius: 10px;
         }

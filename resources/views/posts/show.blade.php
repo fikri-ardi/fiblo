@@ -3,14 +3,16 @@
         <div class="row justify-content-center">
             <div class="col-md-7">
 
-                <x-_banner :post="$post"></x-_banner>
+                <div class="max-h-96 overflow-hidden">
+                    <x-_banner :post="$post"></x-_banner>
+                </div>
 
                 <h2 class="my-3">{{ $post->title }}</h2>
                 <p class="mb-3">
                     Ditulis oleh
                     <a class="author" href="{{ route('profiles.show', $post->author) }}">{{ $post->author->name }}</a>
                     di
-                    <a class="category" href="{{ route('posts', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
+                    <a class="category" href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
                 <article class="fs-5 mb-5">{!! $post->body !!}</article>
 
@@ -29,7 +31,7 @@
                 </div>
 
                 <div class="flex mb-44">
-                    <x-_link href="{{ route('posts') }}">
+                    <x-_link href="{{ route('user_posts.index') }}">
                         <span class="bi bi-chevron-compact-left"></span> Kembali
                     </x-_link>
                 </div>

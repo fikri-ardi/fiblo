@@ -10,8 +10,7 @@ Route::get('/about', AboutController::class)->name('about');
 Route::get('/posts/categories', [CategoryController::class, 'index'])->name('categories');
 
 // posts
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.single');
+Route::resource('posts', PostController::class)->middleware('auth')->names('user_posts');
 
 // profile
 Route::controller(ProfileController::class)->middleware('auth')->prefix('profiles')->name('profiles.')->group(function () {

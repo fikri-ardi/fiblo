@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -32,5 +33,19 @@ class PostRequest extends FormRequest
             'category_id' => 'required',
             'body' => 'required',
         ];
+    }
+
+    public function insert()
+    {
+        $this['excerpt'] = str()->limit(strip_tags($this->body), 160, '...');
+        $this['user_id'] = auth()->id();
+        $this['status'] = 'published';
+        Post::create($this->all());
+    }
+
+    public function update(Post $post)
+    {
+        $this['excerpt'] = str()->limit(strip_tags($this->body), 200, '...');
+        $post->update($this->all());
     }
 }
