@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         $pageTitle = 'Semua Post';
@@ -29,7 +34,7 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        if ($request->user()->hasVerifiedEmail() == false) {
+        if (!$request->user()->hasVerifiedEmail()) {
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
@@ -42,7 +47,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        if ($request->user()->hasVerifiedEmail() == false) {
+        if (!$request->user()->hasVerifiedEmail()) {
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
@@ -53,7 +58,7 @@ class PostController extends Controller
 
     public function edit(Request $request, Post $post)
     {
-        if ($request->user()->hasVerifiedEmail() == false) {
+        if (!$request->user()->hasVerifiedEmail()) {
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
@@ -66,7 +71,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        if ($request->user()->hasVerifiedEmail() == false) {
+        if (!$request->user()->hasVerifiedEmail()) {
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
@@ -77,7 +82,7 @@ class PostController extends Controller
 
     public function destroy(Request $request, Post $post)
     {
-        if ($request->user()->hasVerifiedEmail() == false) {
+        if (!$request->user()->hasVerifiedEmail()) {
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
