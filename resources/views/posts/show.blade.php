@@ -14,7 +14,7 @@
                     di
                     <a class="category" href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
-                <article class="fs-5 mb-5">{!! $post->body !!}</article>
+                <article class="fs-5 mb-5 text-slate-800">{!! $post->body !!}</article>
 
                 {{-- author's bio --}}
                 <div class="flex items-center flex-col mb-5 sm:flex-row">
@@ -25,7 +25,7 @@
                     </a>
                     <div class="flex items-center flex-col sm:items-start">
                         <div class="text-3xl font-bold">{{ $post->author->name }}</div>
-                        <p class="lh-base text-lg my-2 text-justify">{{ $post->author->bio }}</p>
+                        <p class="lh-base text-lg my-2 text-justify text-slate-800">{{ $post->author->bio }}</p>
                         <x-_social-media :user="$post->author" />
                     </div>
                 </div>

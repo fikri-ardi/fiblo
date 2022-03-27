@@ -29,7 +29,8 @@
 
             <li class="nav-item relative">
                 {{-- Nav Toggler --}}
-                <div class="flex items-center cursor-pointer" @mouseover="open = true">
+                <div class="flex items-center cursor-pointer active:bg-slate-300 hover:bg-slate-300 rounded-full pr-2 transition"
+                    @mouseover="open = true">
                     <div class="w-8 h-8 mr-1 border-2 border-slate-800 rounded-full">
                         <x-_photo :user="auth()->user()"></x-_photo>
                     </div>
@@ -65,7 +66,7 @@
             <li class="nav-item">
                 <a href="{{ route('login') }}"
                     class="flex items-center hover:text-slate-500 transition{{ request()->segment(1) == 'login' ? ' active' : '' }}">
-                    <i class="bi bi-box-arrow-in-right mr-1"></i> Login
+                    <i class="bi bi-box-arrow-in-right mr-1"></i> Masuk
                 </a>
             </li>
             @endauth

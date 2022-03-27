@@ -2,7 +2,8 @@
     @method($method ?? 'post')
     @csrf
     <div class="mb-3">
-        <div class="relative w-full h-48 sm:h-96 bg-slate-300 rounded-xl flex items-center justify-center overflow-hidden">
+        <div
+            class="relative w-full h-48 sm:h-96 bg-slate-200 active:bg-slate-300 transition rounded-xl flex items-center justify-center overflow-hidden">
             @if ($post->image)
             <img src="{{ $post->image }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
             @endif
@@ -15,30 +16,27 @@
                 Ubah
             </div>
         </div>
-        @error('image')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
+        <x-_error name="image"></x-_error>
     </div>
 
     <div class="mb-3">
         <input type="text" id="title" name="title" value="{{ old('title', isset($post) ? $post->title : '') }}" placeholder="Judul"
-            class="text-2xl sm:text-3xl border-0 w-full focus:ring-0" autofocus>
+            class="bg-inherit text-2xl sm:text-4xl border-0 w-full focus:ring-0 font-semibold" autofocus>
+        <x-_error name="title"></x-_error>
     </div>
 
     <div class="mb-3" style="min-height: 500px;">
-        @error('body')
-        <p class="text-danger">{{ $message }}</p>
-        @enderror
         <input type="hidden" name="body" id="body" value="{{ old('body', $post->body) }}" required>
-        <trix-editor input="body" placeholder="Tulis cerita kamu..." class="text-lg border-0"></trix-editor>
+        <trix-editor input="body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800"></trix-editor>
+        <x-_error name="body"></x-_error>
     </div>
 
     <input type="hidden" id="slug" name="slug" value="{{ old('slug', isset($post) ? $post->slug : '') }}">
 
     <div class="mb-3">
-        <label for="category" class="form-label">Category</label>
+        <label for="category" class="form-label">Topik</label>
         <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
-            <option selected disabled>Pilih Category</option>
+            <option selected disabled>Pilih Topik</option>
             @forelse ($categories as $category)
             <option value="{{ $category->id }}" {{ $category->id == old('category_id', $post->category_id) ? 'selected' : '' }}>{{
                 $category->name }}
@@ -47,9 +45,7 @@
             <option disabled>Maaf, kamu belum punya category :v</option>
             @endforelse
         </select>
-        @error('category_id')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
+        <x-_error name="category_id"></x-_error>
     </div>
 
     <div class="flex justify-end">

@@ -16,7 +16,8 @@
                     {{ __('Kirim Email Verifikasi Lagi') }}
                 </x-_button>
 
-                <a class="text-slate-500 text-base" href="{{ route('home') }}">Nanti</a>
+                <a class="text-slate-700 text-base bg-slate-200 px-2 py-1 rounded-xl flex items-center active:bg-slate-300"
+                    href="{{ route('home') }}">Nanti</a>
             </div>
         </form>
     </div>

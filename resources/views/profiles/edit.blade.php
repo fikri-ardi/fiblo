@@ -1,6 +1,6 @@
 <x-app-layout title="Ubah Profil">
     <main class="flex align-items-center flex-col">
-        <div class="col-lg-4 mb-5">
+        <div class="w-full sm:w-1/3 mb-5">
             <form action="{{ route('profiles.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf

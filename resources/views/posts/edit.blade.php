@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="/css/trix.css">
     </x-slot>
 
-    <div class="w-3/4 sm:w-2/3 mb-5 mx-auto">
+    <div class="w-full sm:w-2/3 mb-5 mx-auto">
         <x-posts._form :action="route('user_posts.update', $post)" :categories="$categories" :post="$post" method="put" button="publish">
         </x-posts._form>
     </div>

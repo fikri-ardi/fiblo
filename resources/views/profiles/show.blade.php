@@ -24,11 +24,11 @@
             </a>
             <small @click="open = 'followers'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
                 <div class="font-semibold text-lg">{{ $user->followers->count() }}</div>
-                Follower
+                Pengikut
             </small>
             <small @click="open = 'following'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
                 <div class="font-semibold text-lg">{{ $user->follows->count() }}</div>
-                Following
+                Mengikuti
             </small>
         </div>
 
@@ -38,7 +38,7 @@
             @can('username', $user->username)
             <form action="{{ route('profiles.edit', $user) }}" method="get">
                 <x-_button>
-                    <span class="bi bi-pencil text-xs"></span>
+                    <span class="bi bi-pencil text-xs mr-1"></span>
                     Ubah
                 </x-_button>
             </form>

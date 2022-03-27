@@ -39,12 +39,12 @@ class Navbar extends Component
                 'isActive' => request()->routeIs('user_posts.create') && !request()->routeIs('user_posts/categories'),
                 'icon' => 'bi bi-plus-circle',
             ],
-            'Categories' => [
+            'Topik' => [
                 'route' => route('categories'),
                 'isActive' => request()->routeIs('categories'),
                 'icon' => 'bi bi-grid',
             ],
-            'About' => [
+            'Tentang' => [
                 'route' => route('about'),
                 'isActive' => request()->routeIs('about'),
                 'icon' => 'bi bi-info-circle',

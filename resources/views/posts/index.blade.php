@@ -26,7 +26,9 @@
 
     @if ($posts->count())
     <div class="card mb-5 pb-4 text-center border-0 shadow-xl">
-        <x-_banner :post="$posts[0]"></x-_banner>
+        <div class="h-60 sm:h-96">
+            <x-_banner :post="$posts[0]"></x-_banner>
+        </div>
 
         <div class="card-body">
             <h3 class="card-title">
@@ -37,12 +39,13 @@
                 Ditulis oleh
                 <a class="author" href="{{ route('profiles.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
                 di
-                <a class="category" href="{{ route('user_posts.index', [ 'category' => $posts[0]->category->name]) }}">{{ $posts[0]->category->name
-                    }}</a>
+                <a class="category" href="{{ route('user_posts.index', [ 'category' => $posts[0]->category->name]) }}">
+                    {{ $posts[0]->category->name }}
+                </a>
                 <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
             </small>
 
-            <p class="card-text">
+            <p class="card-text text-slate-800">
                 {{ $posts[0]->excerpt }}
             </p>
             <div class="d-flex justify-content-center">

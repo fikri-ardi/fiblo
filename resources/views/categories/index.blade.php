@@ -1,18 +1,12 @@
-<x-app-layout title="Semua Kategori">
-    <h2 class="mb-5">Kategori Post</h2>
+<x-app-layout title="Semua Topik">
+    <h2 class="mb-5">Topik Post</h2>
 
-    <div class="row">
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-9 gap-3">
         @forelse ($categories as $category)
-        <div class="col-lg-3 col-md-4 mb-4">
-            <div class="relative flex justify-center items-center">
-                <a href="{{ route('user_posts.index', ['category' => $category]) }}" class="stretched-link"></a>
-                <div class="absolute bg-slate-100 bg-opacity-30 text-slate-800 font-semibold fs-4 text-center w-100 p-3 backdrop-blur-lg">
-                    {{ $category->name }}
-                </div>
-                <img src="{{ asset('storage').'/images/posts/thumb.jpg' }}"
-                    class="hero-image w-full h-100 object-cover object-center overflow-hidden rounded-3xl">
-            </div>
-        </div>
+        <a href="{{ route('user_posts.index', ['category' => $category]) }}"
+            class="bg-slate-200 py-2 font-semibold active:bg-slate-300 rounded-full hover:text-inherit transition text-center">
+            {{ $category->name }}
+        </a>
         @empty
         <div class="text-center font-semibold text-lg text-slate-700">Ups! Maaf sekarang masih belum ada category nih :(</div>
         @endforelse
