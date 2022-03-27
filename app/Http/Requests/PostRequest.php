@@ -35,17 +35,12 @@ class PostRequest extends FormRequest
         ];
     }
 
-    public function insert()
+    public function updateOrInsert($post = null)
     {
         $this['excerpt'] = str()->limit(strip_tags($this->body), 160, '...');
         $this['user_id'] = auth()->id();
         $this['status'] = 'published';
-        Post::create($this->all());
-    }
 
-    public function update(Post $post)
-    {
-        $this['excerpt'] = str()->limit(strip_tags($this->body), 200, '...');
-        $post->update($this->all());
+        $post ? $post->update($this->all()) : Post::create($this->all());
     }
 }

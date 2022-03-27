@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -31,5 +32,15 @@ class UserRequest extends FormRequest
             'email' => 'required|email:dns|max:255|unique:users,email,' . $id,
             'role_id' => 'required',
         ];
+    }
+
+    public function inserOrUpdate($user = null)
+    {
+        if ($user) {
+            $user->update($this->all());
+        } else {
+            $this['password'] = 'password';
+            User::create($this->all());
+        }
     }
 }

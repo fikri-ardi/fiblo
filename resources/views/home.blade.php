@@ -8,8 +8,7 @@
             </p>
         </div>
         <p class="text-base lh-base text-gray-500 font-normal max-w-xl mx-auto mt-10 sm:text-lg animate-show" style="animation-delay: 2.5s">
-            Hai! Salam kenal, saya Fikri, seseorang yang ngakunya programmer, hoby main gitar, nyanyi, futsal, suka baca buku dan suka bikin
-            eksperimen.
+            Tulis karya, kenangan, opini dan hal unik kamu lainnya di sini biar orang lain tau dan bisa kamu baca lagi di masa depan nanti.
             <span class="inline-block"><span class="bi bi-emoji-smile-upside-down"></span></span>
         </p>
 

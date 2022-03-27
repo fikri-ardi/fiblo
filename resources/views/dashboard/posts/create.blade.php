@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-lg-8 mb-5">
-            <x-posts._form :action="route('posts.store')" :categories="$categories" :post="$post"></x-posts._form>
+            <x-posts._form :action="route('posts.store')" :categories="$categories"></x-posts._form>
         </div>
     </main>
 

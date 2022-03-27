@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enums\PostStatus;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -15,8 +17,9 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = User::where('role_id', 1)->first();
-        $posts = $user->posts()->postState(\App\Enums\PostStatus::Published)->latest()->paginate(6);
+        $user = User::firstWhere('role_id', 1);
+        $posts = $user->posts()->postState(PostStatus::Published)->latest()->paginate(6);
+
         return view('profiles.show', compact('user', 'posts'));
     }
 }

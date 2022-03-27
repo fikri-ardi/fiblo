@@ -7,12 +7,11 @@
         <div class="col-lg-8 mb-5">
             <form action="{{ route('users.store') }}" method="POST">
                 @csrf
-                <x-_input name="name" :model="$user" label="Name"></x-_input>
-                <x-_input name="username" :model="$user" label="Username"></x-_input>
-                <x-_input name="email" :model="$user" label="E-mail" type="email"></x-_input>
+                <x-_input name="name" label="Name"></x-_input>
+                <x-_input name="username" label="Username"></x-_input>
+                <x-_input name="email" label="E-mail" type="email"></x-_input>
 
                 <div class="mb-3">
-                    <label for="role" class="form-label">Role</label>
                     <select class="form-select @error('role_id') is-invalid @enderror" name="role_id">
                         <option selected disabled>Pilih Role</option>
                         @forelse ($roles as $role)

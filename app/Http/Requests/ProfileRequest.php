@@ -32,4 +32,15 @@ class ProfileRequest extends FormRequest
             'photo' => 'image|file|max:2048',
         ];
     }
+
+    public function update($user)
+    {
+        $user->update($this->all());
+        $action = $user->links ? 'update' : 'create';
+        $user->links()->$action([
+            'instagram' => $this->instagram,
+            'twitter' => $this->twitter,
+            'facebook' => $this->facebook,
+        ]);
+    }
 }

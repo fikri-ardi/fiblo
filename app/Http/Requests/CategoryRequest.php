@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Category;
 use phpDocumentor\Reflection\Types\This;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
 {
@@ -33,5 +34,11 @@ class CategoryRequest extends FormRequest
             'name' => 'required|unique:categories,name,' . $id,
             'slug' => 'alpha_dash',
         ];
+    }
+
+    public function updateOrInsert($category = null)
+    {
+        $this['slug'] = str()->slug($this->name);
+        $category ? $category->update($this->all()) : Category::create($this->all());
     }
 }

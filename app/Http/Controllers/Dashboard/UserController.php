@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Models\{User, Role};
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
-
-use function PHPSTORM_META\type;
 
 class UserController extends Controller
 {
@@ -21,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         return view('dashboard.users.index', [
-            'users' => User::where('id', '!=', auth()->id())->get()
+            'users' => User::where('id', '!=', auth()->id())->select(['name', 'username', 'email', 'role_id'])->get()
         ]);
     }
 
@@ -32,10 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create', [
-            'user' => new User,
-            'roles' => Role::all()
-        ]);
+        return view('dashboard.users.create', ['roles' => Role::all()]);
     }
 
     /**
@@ -46,9 +38,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $request['password'] = 'password';
-        User::create($request->all());
-        return redirect('/dashboard/users')->with('message', 'Kamu berhasil nambahin user baru :)');
+        $request->inserOrUpdate();
+        return to_route('users.index')->with('message', 'Kamu berhasil nambahin user baru :)');
     }
 
     /**
@@ -74,8 +65,8 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->all());
-        return redirect('/dashboard/users')->with(['message' => 'Kamu berhasil ngubah data user :)', 'type' => 'success']);
+        $request->inserOrUpdate($user);
+        return to_route('users.index')->with('message', 'Kamu berhasil ngubah data user :)');
     }
 
     /**
@@ -87,6 +78,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect('/dashboard/users')->with(['message' => 'Kamu berhasil hapus data user :)', 'type' => 'success']);
+        return to_route('users.index')->with('message', 'Kamu berhasil hapus data user :)');
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PostStatus;
+use App\Models\{Category, Post};
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
-use App\Models\{Category, User, Post};
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\{Gate, Storage};
 
 class PostController extends Controller
 {
@@ -18,13 +18,10 @@ class PostController extends Controller
     public function index()
     {
         $pageTitle = 'Semua Post';
-        $pageTitle .= request('category') ? ' di ' . ucwords(str_replace('-', ' ', request('category'))) : '';
-        $pageTitle .= request('author') ? ' oleh ' . User::firstWhere('username', request('author')->name) : '';
+        $pageTitle .= request('category') ? ' di ' . ucwords(str_replace('-', ' ', request('category'))) : null;
+        $posts = Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString();
 
-        return view('posts.index', [
-            'pageTitle' => $pageTitle,
-            'posts' => Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString()
-        ]);
+        return view('posts.index', compact('posts', 'pageTitle'));
     }
 
     public function show(Post $post)
@@ -39,10 +36,7 @@ class PostController extends Controller
             return to_route('verification.notice');
         }
 
-        return view('posts.create', [
-            'post' => new Post(),
-            'categories' => Category::all(),
-        ]);
+        return view('posts.create', ['categories' => Category::all()]);
     }
 
     public function store(PostRequest $request)
@@ -52,7 +46,7 @@ class PostController extends Controller
             return to_route('verification.notice');
         }
 
-        $request->insert();
+        $request->updateOrInsert();
         return to_route('user_posts.index')->with('message', 'Post kamu berhasil dibuat :)');
     }
 
@@ -62,6 +56,8 @@ class PostController extends Controller
             $request->user()->sendEmailVerificationNotification();
             return to_route('verification.notice');
         }
+
+        Gate::authorize('username', $post->author->username);
 
         return view('posts.edit', [
             'post' => $post,
@@ -76,7 +72,9 @@ class PostController extends Controller
             return to_route('verification.notice');
         }
 
-        $request->update($post);
+        Gate::authorize('username', $post->author->username);
+
+        $request->updateOrInsert($post);
         return to_route('user_posts.index')->with('message', 'Post kamu berhasil diubah :)');
     }
 
@@ -87,8 +85,10 @@ class PostController extends Controller
             return to_route('verification.notice');
         }
 
+        Gate::authorize('username', $post->author->username);
+
         !$post->image ?: Storage::delete($post->image);
         Post::destroy($post->id);
-        return to_route('user_posts.index')->with('message', 'Post kamu berhasil dihapus :)');
+        return back()->with('message', 'Post kamu berhasil dihapus :)');
     }
 }

@@ -7,7 +7,7 @@
         <div class="col-lg-4 mb-5">
             <form action="{{ route('roles.store') }}" method="POST">
                 @csrf
-                <x-_input name="name" :model="$role" label="Role Name"></x-_input>
+                <x-_input name="name" label="Role Name"></x-_input>
                 <div class="flex justify-end mt-3">
                     <x-_button>Buat Role</x-_button>
                 </div>

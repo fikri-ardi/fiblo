@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
@@ -26,9 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create', [
-            'category' => new Category()
-        ]);
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -39,9 +36,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $request['slug'] = Str::slug($request->name);
-        Category::create($request->all());
-        return redirect('/dashboard/categories')->with(['message' => 'Kategori kamu berhasil dibuat :)', 'type' => 'success']);
+        $request->updateOrInsert();
+        return to_route('categories.index')->with('message', 'Kategori kamu berhasil dibuat :)');
     }
 
     /**
@@ -64,9 +60,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-        $request['slug'] = Str::slug($request->name);
-        $category->update($request->all());
-        return redirect('/dashboard/categories')->with(['message' => 'Kategori kamu berhasil diubah :)', 'type' => 'success']);
+        $request->updateOrInsert($category);
+        return to_route('categories.index')->with('message', 'Kategori kamu berhasil diubah :)');
     }
 
     /**
@@ -78,6 +73,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Category::destroy($category->id);
-        return redirect('/dashboard/categories')->with(['message' => 'Kategori kamu berhasil dihapus :)', 'type' => 'success']);
+        return to_route('categories.index')->with('message', 'Kategori kamu berhasil dihapus :)');
     }
 }

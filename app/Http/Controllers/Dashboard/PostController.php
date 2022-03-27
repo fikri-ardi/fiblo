@@ -22,15 +22,12 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('dashboard.posts.create', [
-            'post' => new Post,
-            'categories' => Category::all()
-        ]);
+        return view('dashboard.posts.create', ['categories' => Category::all()]);
     }
 
     public function store(PostRequest $request)
     {
-        $request->insert();
+        $request->updateOrInsert();
         return to_route('posts.index')->with('message', 'Post kamu berhasil dibuat :)');
     }
 
@@ -49,7 +46,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        $request->update($post);
+        $request->updateOrInsert($post);
         return to_route('posts.index')->with('message', 'Post kamu berhasil diubah :)');
     }
 
@@ -77,9 +74,9 @@ class PostController extends Controller
 
     public function publish(Post $post)
     {
-        $action = $post->status == PostStatus::Draft ? 'publish' : 'unpublish';
+        $action = $post->isPublished() ? 'unpublish' : 'publish';
         $post->update([
-            'status' => $post->status == PostStatus::Draft ? 'published' : 'draft'
+            'status' => $post->isPublished() ? 'draft' : 'published'
         ]);
 
         return back()->with('message', "Post kamu berhasil di$action");

@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="w-full sm:w-2/3 mb-5 mx-auto">
-        <x-posts._form :action="route('user_posts.store')" :categories="$categories" :post="$post" button="publish"></x-posts._form>
+        <x-posts._form :action="route('user_posts.store')" :categories="$categories" button="publish"></x-posts._form>
     </div>
 
     <x-slot name="script">

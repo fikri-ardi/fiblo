@@ -136,4 +136,9 @@ class Post extends Model
     {
         return $query->where('status', $state);
     }
+
+    public function isPublished()
+    {
+        return $this->status == PostStatus::Published;
+    }
 }

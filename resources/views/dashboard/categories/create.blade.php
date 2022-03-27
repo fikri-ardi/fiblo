@@ -7,7 +7,7 @@
         <div class="col-lg-8 mb-5">
             <form action="{{ route('categories.store') }}" method="POST">
                 @csrf
-                <x-_input name="name" :model="$category" label="Category Name"></x-_input>
+                <x-_input name="name" label="Category Name"></x-_input>
                 <x-_button>Tambah</x-_button>
             </form>
         </div>

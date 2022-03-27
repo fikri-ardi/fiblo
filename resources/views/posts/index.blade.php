@@ -5,7 +5,7 @@
         </div>
 
         {{-- Search Bar --}}
-        <div class="col-md-7 col-sm-10" style="max-width: 400px">
+        <div class="col-md-7 col-sm-10 rounded-xl overflow-hidden" style="max-width: 400px">
             <form action="{{ route('user_posts.index') }}" class="mb-3">
                 <div class="input-group">
                     @if (request('category'))
@@ -15,10 +15,10 @@
                     <input type="hidden" name="author" value="{{ request('author') }}">
                     @endif
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Kamu lagi cari apa?"
-                        class="form-control border-0 shadow-lg">
-                    <button type="submit" class="btn text-white shadow-md" style="background: rgb(14, 14, 24)">
+                        class="form-control border-0 shadow-md">
+                    <x-_button type="submit">
                         <i class="bi bi-send"></i>
-                    </button>
+                        </x-_butt>
                 </div>
             </form>
         </div>

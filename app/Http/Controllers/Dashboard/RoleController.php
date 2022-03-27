@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Role;
-use Illuminate\Support\Str;
 use App\Http\Requests\RoleRequest;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('dashboard.roles.create', ['role' => new Role()]);
+        return view('dashboard.roles.create');
     }
 
     /**
@@ -37,9 +36,8 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $request['slug'] = Str::slug($request->name);
-        Role::create($request->all());
-        return redirect('/dashboard/roles')->with(['message' => 'Role kamu berhasil dibuat :)', 'type' => 'success']);
+        $request->insertOrUpdate();
+        return to_route('roles.index')->with('message', 'Role kamu berhasil dibuat :)');
     }
 
     /**
@@ -62,9 +60,8 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, Role $role)
     {
-        $request['slug'] = Str::slug($request->name);
-        $role->update($request->all());
-        return redirect('/dashboard/roles')->with(['message' => 'Role kamu berhasil diubah :)', 'type' => 'success']);
+        $request->insertOrUpdate($role);
+        return to_route('roles.index')->with('message', 'Role kamu berhasil diubah :)');
     }
 
     /**
@@ -76,6 +73,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         Role::destroy($role->id);
-        return redirect('/dashboard/roles')->with(['message' => 'Role kamu berhasil dihapus :)', 'type' => 'success']);
+        return to_route('roles.index')->with('message', 'Role kamu berhasil dihapus :)');
     }
 }
