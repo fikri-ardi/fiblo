@@ -3,7 +3,7 @@
         <div>
             <a class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
                 <img src="{{ asset('storage/images/logo/fiblo.png') }}" alt="{{ config('app_name') }}" class="w-7 sm:w-10 mr-2">
-                <span class="text-2xl sm:text-4xl">Fiblo</span>
+                <span class="text-2xl sm:text-4xl">{{ config('app.name') }}</span>
             </a>
         </div>
 

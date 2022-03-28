@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ env('APP_NAME') ." | Dashboard - ". $title ?? '' }}</title>
+    <title>{{ config('app.name') ." | Dashboard " }}{{ $title ? " - $title" : '' }}</title>
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/app.css">
