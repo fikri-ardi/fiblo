@@ -19,7 +19,7 @@
 
                     @can('username', $post->author->username)
                     {{-- action button --}}
-                    <a onclick="open = '{{ $post->slug }}'"
+                    <a @click="open = '{{ $post->slug }}'"
                         class="text-slate-400 text-base rounded-full flex items-center justify-center h-8 w-8 mt-1 active:bg-slate-400 cursor-pointer">
                         <i class="bi bi-three-dots-vertical text-lg"></i>
                     </a>
