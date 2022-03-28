@@ -14,7 +14,7 @@
                     di
                     <a class="category" href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                 </p>
-                <article class="fs-5 mb-5 text-slate-800">{!! $post->body !!}</article>
+                <article class="mb-5 text-slate-800 text-lg sm:text-xl">{!! $post->body !!}</article>
 
                 {{-- author's bio --}}
                 <div class="flex items-center flex-col mb-5 sm:flex-row">

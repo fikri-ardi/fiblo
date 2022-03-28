@@ -33,8 +33,8 @@
         </div>
 
         {{-- action button --}}
-        @auth
         <div class="flex mb-3 space-x-2">
+            @auth
             @can('username', $user->username)
             <form action="{{ route('profiles.edit', $user) }}" method="get">
                 <x-_button>
@@ -51,9 +51,9 @@
                 </x-_button>
             </form>
             @endcan
+            @endauth
             <x-_social-media :user="$user" />
         </div>
-        @endauth
 
         {{-- Hidden Following Elements --}}
         <x-_blur-layer>
