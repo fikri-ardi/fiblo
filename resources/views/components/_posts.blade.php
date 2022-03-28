@@ -19,7 +19,7 @@
 
                     @can('username', $post->author->username)
                     {{-- action button --}}
-                    <a @click="open = '{{ $post->slug }}'"
+                    <a onclick="open = '{{ $post->slug }}'"
                         class="text-slate-400 text-base rounded-full flex items-center justify-center h-8 w-8 mt-1 active:bg-slate-400 cursor-pointer">
                         <i class="bi bi-three-dots-vertical text-lg"></i>
                     </a>
@@ -34,7 +34,8 @@
                             <form action="{{ route('user_posts.destroy', $post) }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button @click="return confirm('Kamu yakin?')" class="px-4 py-2 flex items-center text-slate-700 active:bg-slate-400">
+                                <button onclick="return confirm('Kamu yakin?')"
+                                    class="px-4 py-2 flex items-center text-slate-700 active:bg-slate-400">
                                     <i class="bi bi-trash mr-1"></i> Hapus
                                 </button>
                             </form>
