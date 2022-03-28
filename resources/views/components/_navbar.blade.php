@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <div class="collapse navbar-collapse flex-grow-0 -ml-16" id="navbarNav">
+        <div class="collapse navbar-collapse flex-grow-0 -ml-14" id="navbarNav">
             <ul class="navbar-nav">
                 @foreach ($desktop as $name => $value)
                 <li class="nav-item px-3">

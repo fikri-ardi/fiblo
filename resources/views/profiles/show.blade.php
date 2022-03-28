@@ -83,6 +83,6 @@
     <x-_posts :posts="$posts"></x-_posts>
 
     @else
-    <div class="text-center mt-3 text-lg">{{ "@$user->name" }} belum punya postingan.</div>
+    <div class="text-center mt-3 text-lg">{{ "@$user->username" }} belum punya postingan.</div>
     @endif
 </x-app-layout>

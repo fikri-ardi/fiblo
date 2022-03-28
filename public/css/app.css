@@ -751,8 +751,8 @@ select {
 .mr-2 {
   margin-right: 0.5rem;
 }
-.-ml-16 {
-  margin-left: -4rem;
+.-ml-14 {
+  margin-left: -3.5rem;
 }
 .mr-1 {
   margin-right: 0.25rem;
@@ -2085,9 +2085,9 @@ select {
     line-height: 2.5rem;
   }
 
-  .sm\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .sm\:text-7xl {
@@ -2097,11 +2097,6 @@ select {
 
   .sm\:text-lg {
     font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .sm\:text-xl {
-    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
