@@ -31,6 +31,7 @@ class UserRequest extends FormRequest
             'username' => 'required|alpha_dash|min:3|max:255|unique:users,username,' . $id,
             'email' => 'required|email:dns|max:255|unique:users,email,' . $id,
             'role_id' => 'required',
+            'photo' => 'image|file|max:2048',
         ];
     }
 
