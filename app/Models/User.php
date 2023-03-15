@@ -81,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
             fn ($value) => $value ? asset("storage/$value") : null,
             function ($value) {
                 /**
-                 * $this->arrtibutes['photo'] berisi data yang ada di dalam field photo di table users
+                 * $this->attibutes['photo'] berisi data yang ada di dalam field photo di table users
                  */
                 if (isset($this->attributes['photo'])) {
                     Storage::delete($this->attributes['photo']);

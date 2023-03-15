@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AboutController, HomeController, PostController, ProfileController, CategoryController};
+use App\Models\Role;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/about', AboutController::class)->name('about');
@@ -29,7 +30,6 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::resource('posts', App\Http\Controllers\Dashboard\PostController::class);
     Route::view('/', 'dashboard.index')->name('dashboard');
 });
-
 
 // founder dashboard
 Route::middleware(['auth', 'role:founder'])->prefix('dashboard')->group(function () {
