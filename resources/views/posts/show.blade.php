@@ -25,12 +25,15 @@
 
                             {{-- action button --}}
                             @auth
+                            @can('username', $post->author->username)
+                            @else
                             <form action="{{ route('profiles.follow', $post->author) }}" method="post" class="flex align-bottom">
                                 @csrf
                                 <button class="text-gray-500 hover:text-gray-600">
                                     <span class="bi bi-person-{{ auth()->user()->wasFollow($post->author) ? 'check' : 'plus' }}-fill mr-1"></span>
                                 </button>
                             </form>
+                            @endcan
                             @endauth
                         </div>
 

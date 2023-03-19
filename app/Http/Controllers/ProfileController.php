@@ -30,8 +30,9 @@ class ProfileController extends Controller
 
     public function follow(User $user)
     {
-        $action = auth()->user()->wasFollow($user) ? 'unfollow' : 'follow';
-        auth()->user()->wasFollow($user) ? auth()->user()->unfollow($user) : auth()->user()->follow($user);
+        if (auth()->id() !== $user->id) {
+            auth()->user()->wasFollow($user) ? auth()->user()->unfollow($user) : auth()->user()->follow($user);
+        }
 
         return back();
     }
