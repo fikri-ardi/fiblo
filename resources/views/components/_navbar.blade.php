@@ -2,7 +2,6 @@
     <div class="container flex justify-content-between">
         <div>
             <a class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
-                <img src="{{ asset('storage/images/logo/fiblo.png') }}" alt="{{ config('app_name') }}" class="w-7 sm:w-10 mr-2">
                 <span class="text-2xl sm:text-4xl">{{ config('app.name') }}</span>
             </a>
         </div>
@@ -78,7 +77,7 @@
 <div id="mobile-nav" class="fixed bottom-0 w-full z-50 backdrop-blur-lg shadow-md" style="background: #ffffff90">
     <ul class="navbar-nav d-flex flex-row justify-content-center">
         @foreach ($links as $name => $value)
-        <li class="nav-item px-3 active:bg-slate-400 transition">
+        <li class="nav-item px-3 active:bg-slate-300 transition">
             <a style="color: black" class="text-center nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">
                 <span class="{{ $value['isActive'] ? $value['icon'].'-fill' : $value['icon'] }} py-1 px-2 text-xl text-slate-500"></span>
                 <small class="d-block text-xs">{{ $name }}</small>

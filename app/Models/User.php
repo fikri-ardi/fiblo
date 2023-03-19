@@ -43,19 +43,36 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $with = ['role'];
 
+    /**
+     * Get all of the user's post
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
 
+    /**
+     * Get the user role
+     */
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
+    /**
+     * Get the user links
+     */
     public function links()
     {
         return $this->hasOne(Link::class);
+    }
+
+    /**
+     * Get all of the users's visitors 
+     */
+    public function visitors()
+    {
+        return $this->morphMany(Visitor::class, 'visitable');
     }
 
     public function hasRole($role)

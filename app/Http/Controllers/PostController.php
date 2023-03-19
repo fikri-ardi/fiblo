@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PostStatus;
-use App\Models\{Category, Post};
 use Illuminate\Http\Request;
+use App\Models\{Category, Post};
 use App\Http\Requests\PostRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\{Gate, Storage};
 
 class PostController extends Controller
@@ -26,6 +29,14 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        if (request()->cookie('visitor_id') && $post->visitors()->where('visitor_id', request()->cookie('visitor_id'))->first()) {
+            return view('posts.show', compact('post'));
+        }
+
+        $visitor = auth()->id() ?? str()->uuid();
+        Cookie::queue(Cookie::make('visitor_id', $visitor));
+        $post->visitors()->create(['visitor_id' => $visitor]);
+
         return view('posts.show', compact('post'));
     }
 

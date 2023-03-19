@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\PostStatus;
+use Coderflex\Laravisit\Concerns\CanVisit;
+use Coderflex\Laravisit\Concerns\HasVisits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -19,14 +21,28 @@ class Post extends Model
         'status' => PostStatus::class
     ];
 
+    /**
+     * Get the post category
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Get the post author
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Get all of the post's visitors 
+     */
+    public function visitors()
+    {
+        return $this->morphMany(Visitor::class, 'visitable');
     }
 
     public function scopeFilter($resource, array $filters)
