@@ -17,16 +17,19 @@
 
                     {{-- author information --}}
                     <div class="flex flex-col justify-evenly">
-                        {{-- author name --}}
-                        <a class="text-gray-900 font-semibold text-xl" href="{ route('profiles.show', $post->author) }}">{{ $post->author->name }}</a>
-                        {{-- action button --}}
-                        <div class="flex mb-3 space-x-2">
+                        <div class="flex align-bottom">
+                            {{-- author name --}}
+                            <a class="text-gray-700 font-semibold text-xl mr-2" href="{{  route('profiles.show', $post->author)  }}">{{
+                                $post->author->name
+                                }}</a>
+
+                            {{-- action button --}}
                             @auth
-                            <form action="{{ route('profiles.follow', $user) }}" method="post">
+                            <form action="{{ route('profiles.follow', $post->author) }}" method="post" class="flex align-bottom">
                                 @csrf
-                                <x-_button>
-                                    <span class="bi bi-person-{{ auth()->user()->wasFollow($user) ? 'dash' : 'plus' }} mr-1"></span>
-                                </x-_button>
+                                <button class="text-gray-500 hover:text-gray-600">
+                                    <span class="bi bi-person-{{ auth()->user()->wasFollow($post->author) ? 'check' : 'plus' }}-fill mr-1"></span>
+                                </button>
                             </form>
                             @endauth
                         </div>
