@@ -1,5 +1,6 @@
 <x-app-layout title="Semua Post">
     <div class="row justify-content-between">
+        {{-- Page Title --}}
         <div class="col-md-5">
             <h2 class="mb-4">{{ $pageTitle }}</h2>
         </div>
@@ -25,7 +26,9 @@
     </div>
 
     @if ($posts->count())
+    {{-- First Post --}}
     <div class="card mb-5 pb-4 text-center border-0 shadow-xl">
+        {{-- Banner --}}
         <div class="h-60 sm:h-96">
             <x-_banner :post="$posts[0]"></x-_banner>
         </div>
@@ -39,7 +42,7 @@
                 Ditulis oleh
                 <a class="author" href="{{ route('profiles.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
                 di
-                <a class="category" href="{{ route('user_posts.index', [ 'category' => $posts[0]->category->name]) }}">
+                <a class="category" href="{{ route('user_posts.index', [ 'category' => $posts[0]->category->slug]) }}">
                     {{ $posts[0]->category->name }}
                 </a>
                 <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
@@ -57,6 +60,7 @@
         </div>
     </div>
 
+    {{-- All Post --}}
     <x-_posts :posts="$posts->skip(1)"></x-_posts>
 
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>

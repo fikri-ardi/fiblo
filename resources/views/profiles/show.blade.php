@@ -24,7 +24,7 @@
             </a>
             <small @click="open = 'followers'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
                 <div class="font-semibold text-lg">{{ $user->followers->count() }}</div>
-                Pengikut
+                Pengikut`
             </small>
             <small @click="open = 'following'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
                 <div class="font-semibold text-lg">{{ $user->follows->count() }}</div>

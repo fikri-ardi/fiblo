@@ -17,7 +17,7 @@ class LinkSeeder extends Seeder
     {
         Link::create([
             'user_id' => 1,
-            'instagram' => 'fikriar_di',
+            'instagram' => 'fikriar.di',
         ]);
     }
 }

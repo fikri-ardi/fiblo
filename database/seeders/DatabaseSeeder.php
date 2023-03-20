@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             LinkSeeder::class
         ]);
 
-        User::factory()->hasPosts(5)->count(5)->create();
+        User::factory()->hasPosts(10)->count(5)->create();
     }
 }
