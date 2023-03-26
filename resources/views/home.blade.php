@@ -3,13 +3,12 @@
 
     <div class="w-full text-center font-bold text-2xl -mt-20 sm:text-7xl min-h-screen flex items-center justify-center flex-col">
         <div class="relative flex items-center justify-center w-full">
-            <p class="typewriter inline-block max-w-fit">
-                Tulis Sesuatu Yang Beda.
+            <p class="typewriter inline-block max-w-fit text-slate-700 sm:h-20">
+                Good {{ auth()->user() ? $greet .', '.auth()->user()->name : $greet }}.
             </p>
         </div>
         <p class="text-base lh-base text-gray-500 font-normal max-w-xl mx-auto mt-10 sm:text-lg animate-show" style="animation-delay: 2.5s">
-            Tulis karya, kenangan, opini dan hal unik kamu lainnya di sini biar orang lain tau dan bisa kamu baca lagi di masa depan nanti.
-            <span class="inline-block"><span class="bi bi-emoji-smile-upside-down"></span></span>
+            "{{ __($responseBody->content) }}"
         </p>
 
         @if ($posts->count())
