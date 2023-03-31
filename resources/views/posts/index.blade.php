@@ -1,30 +1,4 @@
 <x-app-layout title="Semua Post">
-    <div class="row justify-content-between">
-        {{-- Page Title --}}
-        <div class="col-md-5">
-            <h2 class="mb-4">{{ $pageTitle }}</h2>
-        </div>
-
-        {{-- Search Bar --}}
-        <div class="col-md-7 col-sm-10 rounded-xl overflow-hidden" style="max-width: 400px">
-            <form action="{{ route('user_posts.index') }}" class="mb-3">
-                <div class="input-group">
-                    @if (request('category'))
-                    <input type="hidden" name="category" value="{{ request('category') }}">
-                    @endif
-                    @if (request('author'))
-                    <input type="hidden" name="author" value="{{ request('author') }}">
-                    @endif
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Kamu lagi cari apa?"
-                        class="form-control border-0 shadow-md">
-                    <x-_button type="submit">
-                        <i class="bi bi-send"></i>
-                        </x-_butt>
-                </div>
-            </form>
-        </div>
-    </div>
-
     @if ($posts->count())
     {{-- First Post --}}
     <div class="card mb-5 pb-4 text-center border-0 shadow-xl">

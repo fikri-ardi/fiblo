@@ -29,7 +29,7 @@ class Navbar extends Component
                 'isActive' => request()->routeIs('home'),
                 'icon' => 'bi bi-house-door',
             ],
-            'Blog' => [
+            'Tulisan' => [
                 'route' => route('user_posts.index'),
                 'isActive' => request()->routeIs('user_posts*') && !request()->routeIs('user_posts/categories') && !request()->routeIs('user_posts.create'),
                 'icon' => 'bi bi-file-post',
@@ -39,15 +39,10 @@ class Navbar extends Component
                 'isActive' => request()->routeIs('user_posts.create') && !request()->routeIs('user_posts/categories'),
                 'icon' => 'bi bi-plus-circle',
             ],
-            'Topik' => [
-                'route' => route('categories'),
-                'isActive' => request()->routeIs('categories'),
-                'icon' => 'bi bi-grid',
-            ],
-            'Tentang' => [
-                'route' => route('about'),
-                'isActive' => request()->routeIs('about'),
-                'icon' => 'bi bi-info-circle',
+            'Eksplor' => [
+                'route' => route('explore'),
+                'isActive' => request()->routeIs('explore'),
+                'icon' => 'bi bi-compass',
             ],
         ]);
 

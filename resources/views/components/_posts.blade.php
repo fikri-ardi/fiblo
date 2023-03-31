@@ -1,21 +1,37 @@
 <article id="post" class="row" id="post" x-data="{open: false}">
     @foreach ($posts as $post)
     <div class="col-md-4">
-        <div class="card mb-3 pb-4 border-0 shadow-md relative active:bg-slate-200 transition">
+        <div class="card mb-3 pb-4 border-0 shadow-md relative">
+            {{-- Post Category --}}
             <a href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">
                 <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2 bg-opacity-40 backdrop-blur-lg">
                     {{ $post->category->name }}
                 </small>
             </a>
 
+            {{-- Post Banner --}}
             <div class="h-60">
                 <x-_banner :post="$post"></x-_banner>
             </div>
+
             <div class="card-body">
+                {{-- Author Info --}}
+                <small class="mb-3 flex items-center">
+                    <a class="flex items-center space-x-2 active:bg-slate-200 rounded-full pr-2 transition"
+                        href="{{ route('profiles.show', $post->author) }}">
+                        <div class="h-8 w-8">
+                            <x-_photo :user="$post->author"></x-_photo>
+                        </div>
+                        <span class="font-semibold text-base">{{ $post->author->name }}</span>
+                    </a>
+                    <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                </small>
+
+                {{-- Post title & Action button--}}
                 <div class="flex items-start justify-between">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                         <a href="{{ route('user_posts.show', $post) }}">{{ $post->title }}</a>
-                    </h3>
+                    </h4>
 
                     @can('username', $post->author->username)
                     {{-- action button --}}
@@ -44,26 +60,23 @@
                     @endcan
                 </div>
 
-                <small class="mb-4 flex items-center">
-                    <a class="author flex items-center space-x-2 active:bg-slate-300 rounded-full pr-2 transition"
-                        href="{{ route('profiles.show', $post->author) }}">
-                        <div class="h-8 w-8">
-                            <x-_photo :user="$post->author"></x-_photo>
-                        </div>
-                        <span>{{ $post->author->name }}</span>
-                    </a>
-                    <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
-                </small>
-
                 <p class="card-text text-slate-800">
-                    {{ $post->excerpt }}
+                    {{ str()->limit($post->excerpt, 100) }}
                 </p>
-                <div class="flex">
-                    <x-_link href="{{ route('user_posts.show', $post) }}">
-                        Lanjut
-                        <i class="bi bi-chevron-compact-right"></i>
-                    </x-_link>
-                </div>
+
+                {{-- post info --}}
+                <span class="flex text-gray-500 font-semibold">
+                    <a class="bg-slate-200 text-gray-600 px-2 py-1 font-semibold text-sm active:bg-slate-300 rounded-full hover:text-inherit transition text-center"
+                        href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name
+                        }}</a>
+                    <span class="bi bi-dot"></span>
+                    <span class="flex align-middle">
+                        <span class="bi bi-eye text-lg mr-2"></span>
+                        <span>{{ $post->visitors->count() }}</span>
+                    </span>
+                    <span class="bi bi-dot"></span>
+                    <span>{{ $post->created_at->format('M d') }}</span>
+                </span>
             </div>
         </div>
     </div>

@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AboutController, HomeController, PostController, ProfileController, CategoryController};
-use App\Models\Role;
+use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\{HomeController, PostController, ProfileController, CategoryController};
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/about', AboutController::class)->name('about');
 
-// categories
-Route::get('/posts/categories', [CategoryController::class, 'index'])->name('categories');
-
-// posts
+// Posts
 Route::resource('posts', PostController::class)->names('user_posts');
+
+// Explore
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
 // profile
 Route::controller(ProfileController::class)->middleware('auth')->prefix('profiles')->name('profiles.')->group(function () {
@@ -21,7 +20,7 @@ Route::controller(ProfileController::class)->middleware('auth')->prefix('profile
     Route::post('{user}/follow', 'follow')->name('follow')->middleware('verified');
 });
 
-// posts dashboard
+// Posts dashboard
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     // route for check & make a slug
     Route::get('posts/checkSlug', [App\Http\Controllers\Dashboard\PostController::class, 'checkSlug']);
@@ -31,7 +30,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::view('/', 'dashboard.index')->name('dashboard');
 });
 
-// founder dashboard
+// Founder's dashboard
 Route::middleware(['auth', 'role:founder'])->prefix('dashboard')->group(function () {
     Route::resource('users', App\Http\Controllers\Dashboard\UserController::class)->except('show');
     Route::resource('categories', App\Http\Controllers\Dashboard\CategoryController::class)->except('show');

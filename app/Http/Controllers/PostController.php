@@ -20,11 +20,9 @@ class PostController extends Controller
 
     public function index()
     {
-        $pageTitle = 'Semua Post';
-        $pageTitle .= request('category') ? ' di ' . ucwords(str_replace('-', ' ', request('category'))) : null;
         $posts = Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString();
 
-        return view('posts.index', compact('posts', 'pageTitle'));
+        return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post)

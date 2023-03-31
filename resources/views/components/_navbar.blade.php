@@ -22,7 +22,7 @@
             <li class="hidden sm:inline-block nav-item relative">
                 <a href="{{ route('user_posts.create') }}"
                     class="flex items-center justify-center bg-slate-200 rounded-full h-8 w-8 active:bg-slate-400">
-                    <i class="bi bi-plus text-xl font-bold"></i>
+                    <i class="bi bi-pencil-square text-xl font-bold"></i>
                 </a>
             </li>
 
@@ -30,7 +30,7 @@
                 {{-- Nav Toggler --}}
                 <div class="flex items-center cursor-pointer active:bg-slate-300 hover:bg-slate-300 rounded-full pr-2 transition"
                     @mouseover="open = true">
-                    <div class="w-8 h-8 mr-1 border-2 border-slate-800 rounded-full">
+                    <div class="w-8 h-8 mr-1 rounded-full">
                         <x-_photo :user="auth()->user()"></x-_photo>
                     </div>
                     <i class="bi bi-chevron-down"></i>
