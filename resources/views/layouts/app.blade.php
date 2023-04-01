@@ -30,6 +30,7 @@
 
     <title>{{ config('app.name') }}{{ $title ? " | $title" : '' }}</title>
     {{ $style }}
+    @livewireStyles
 </head>
 
 <body class="antialiased">
@@ -42,6 +43,7 @@
 
     <x-_footer></x-_footer>
     {{ $script ?? null }}
+    @livewireScripts
 </body>
 
 </html>
