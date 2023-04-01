@@ -8,7 +8,7 @@
             </p>
         </div>
         <p class="text-base lh-base text-gray-500 font-normal max-w-xl mx-auto mt-10 sm:text-lg animate-show" style="animation-delay: 2.5s">
-            "{{ __($responseBody->content) }}"
+            "{{ $responseBody->content }}"
         </p>
 
         @if ($posts->count())

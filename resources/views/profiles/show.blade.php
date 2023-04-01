@@ -17,20 +17,7 @@
         <div class="font-semibold text-lg mb-2">{{ "@$user->username" }}</div>
 
         {{-- Profile Info --}}
-        <div class="flex item-center mb-3">
-            <a href="#post" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">{{ $posts->count() }}</div>
-                Post
-            </a>
-            <small @click="open = 'followers'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">{{ $user->followers->count() }}</div>
-                Pengikut
-            </small>
-            <small @click="open = 'following'" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
-                <div class="font-semibold text-lg">{{ $user->follows->count() }}</div>
-                Mengikuti
-            </small>
-        </div>
+        <livewire:profiles.info :postCount="$posts->count()" :user="$user" />
 
         {{-- action button --}}
         <div class="flex mb-3 space-x-2">
@@ -43,36 +30,11 @@
                 </x-_button>
             </form>
             @else
-            <form action="{{ route('profiles.follow', $user) }}" method="post">
-                @csrf
-                <x-_button>
-                    <span class="bi bi-person-{{ auth()->user()->wasFollow($user) ? 'dash' : 'plus' }} mr-1"></span>
-                    {{ auth()->user()->wasFollow($user) ? 'Unfollow' : 'Follow' }}
-                </x-_button>
-            </form>
+            <livewire:profiles.follow :targetUser="$user" />
             @endcan
             @endauth
             <x-_social-media :user="$user" />
         </div>
-
-        {{-- Hidden Following Elements --}}
-        <x-_blur-layer>
-            <div x-show="open == 'following'" x-transition @click.away="open = false"
-                class="absolute rounded-xl shadow-lg h-96 w-56 py-3 overflow-y-scroll bg-white">
-                <div class="font-bold text-lg mb-3 bg-white w-full text-center">
-                    Mengikuti
-                </div>
-                <x-_followments :user="$user" type="follows"></x-_followments>
-            </div>
-
-            <div x-show="open == 'followers'" x-transition @click.away="open = false"
-                class="absolute rounded-xl shadow-lg h-96 w-56 py-3 overflow-y-scroll bg-white">
-                <div class="font-bold text-lg mb-3 bg-white w-full text-center">
-                    Pengikut
-                </div>
-                <x-_followments :user="$user" type="followers"></x-_followments>
-            </div>
-        </x-_blur-layer>
 
         <div class="text-center">
             <p class="text-sm font-italic w-72"><i>{{ "$user->bio" ?? '' }}</i></p>
