@@ -1,7 +1,7 @@
 <x-app-layout title="Semua Post">
     @if ($posts->count())
     {{-- First Post --}}
-    <div class="card mb-5 pb-4 text-center border-0 shadow-xl">
+    <div class="card mb-5 pb-4 text-center border-0">
         {{-- Banner --}}
         <div class="h-60 sm:h-96">
             <x-_banner :post="$posts[0]"></x-_banner>

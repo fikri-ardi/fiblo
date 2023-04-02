@@ -1,22 +1,5 @@
 <x-app-layout title="Explore">
-    {{-- Search Bar --}}
-    <div class="border-slate-300 border-2 bg-white mb-4 rounded-xl sm:w-1/3 mx-auto">
-        <form action="{{ route('explore') }}">
-            <div class="flex grow w-full">
-                <div class="pl-3 flex">
-                    <i class="bi bi-search m-auto text-slate-400"></i>
-                </div>
-                @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
-                @endif
-                @if (request('author'))
-                <input type="hidden" name="author" value="{{ request('author') }}">
-                @endif
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari"
-                    class="w-full h-full border-0 bg-transparent rounded-xl active:border-none">
-            </div>
-        </form>
-    </div>
+    <livewire:search />
 
     {{-- Category --}}
     <div
