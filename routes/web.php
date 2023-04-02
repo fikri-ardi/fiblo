@@ -6,6 +6,7 @@ use App\Http\Controllers\{HomeController, PostController, ProfileController};
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
 
 Route::get('/', HomeController::class)->name('home');
@@ -31,7 +32,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::put('posts/{post}/publish', [DashboardPostController::class, 'publish'])->name('posts.publish');
     Route::get('posts/{status}/status', [DashboardPostController::class, 'status'])->name('posts.status');
     Route::resource('posts', DashboardPostController::class);
-    Route::view('/', 'dashboard.index')->name('dashboard');
+    Route::get('/', DashboardController::class)->name('dashboard');
 });
 
 // Founder's dashboard

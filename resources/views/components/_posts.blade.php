@@ -1,7 +1,7 @@
 <article id="post" class="row" id="post" x-data="{open: false}">
     @foreach ($posts as $post)
     <div class="col-md-4">
-        <div class="card mb-3 pb-4 border-0 shadow-md relative">
+        <div class="card mb-3 pb-4 border-0 relative">
             {{-- Post Category --}}
             <a href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">
                 <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2 bg-opacity-40 backdrop-blur-lg">
