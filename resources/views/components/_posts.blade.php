@@ -1,5 +1,7 @@
+{{-- Posts --}}
 <article id="post" class="row" id="post" x-data="{open: false}">
     @foreach ($posts as $post)
+    {{-- Post --}}
     <div class="col-md-4">
         <div class="card mb-3 pb-4 border-0 relative">
             {{-- Post Category --}}

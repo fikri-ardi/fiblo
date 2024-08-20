@@ -1,6 +1,7 @@
 <x-app-layout title="Beranda">
     <x-_red-blur />
 
+    {{-- Header --}}
     <div class="w-full text-center font-bold text-2xl -mt-20 sm:text-7xl min-h-screen flex items-center justify-center flex-col">
         <div class="relative flex items-center justify-center w-full">
             <p class="typewriter inline-block max-w-fit text-slate-700 sm:h-20">
@@ -18,6 +19,7 @@
         @endif
     </div>
 
+    {{-- Posts --}}
     @if ($posts->count())
     <div class="text-center text-2xl sm:text-4xl py-3 sm:py-5" id="posts">
         Tulisan Terbaru

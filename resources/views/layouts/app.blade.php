@@ -5,6 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- Use this meta tag to force the browser to use https when calling requests --}}
+    {{--
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
 
     <link rel="shortcut icon" href="{{ asset('icon/favicon.ico') }}" type="image/x-icon">
 
