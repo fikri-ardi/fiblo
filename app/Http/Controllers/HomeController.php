@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Lang;
 class HomeController extends Controller
 {
     /**
+     * Use unsplash API to show some random photos
+     */
+
+
+    /**
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
