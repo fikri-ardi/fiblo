@@ -25,6 +25,6 @@
         Tulisan Terbaru
     </div>
 
-    <x-_posts :posts="$posts"></x-_posts>
+    <x-_posts :posts="$posts" :photos="$photos"></x-_posts>
     @endif
 </x-app-layout>

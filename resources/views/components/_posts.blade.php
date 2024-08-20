@@ -13,7 +13,7 @@
 
             {{-- Post Banner --}}
             <div class="h-60">
-                <x-_banner :post="$post"></x-_banner>
+                <x-_banner :post="$post" :photos="$photos"></x-_banner>
             </div>
 
             <div class="card-body">

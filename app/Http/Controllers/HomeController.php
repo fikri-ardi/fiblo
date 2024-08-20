@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Post;
 use GuzzleHttp\Client;
 use App\Enums\PostStatus;
-use App\Models\Post;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
 class HomeController extends Controller
 {
-    /**
-     * Use unsplash API to show some random photos
-     */
-
-
     /**
      * Handle the incoming request.
      *
@@ -24,6 +19,18 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // Use unsplash API
+        // Configuration
+        \Unsplash\HttpClient::init([
+            'applicationId'    => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
+            'secret'    => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
+            'callbackUrl'    => 'http://127.0.0.1:8000/',
+            'utmSource' => 'Fiblo'
+        ]);
+
+        // Get some random photos
+        $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+
         /**
          * Get the dynamic greetings word
          * @return string
@@ -52,6 +59,6 @@ class HomeController extends Controller
             $posts = auth()->user()->followedPost()->exclude('body', 'status', 'updated_at')->postState(PostStatus::Published)->latest()->limit(6)->get();
         }
 
-        return view('home', compact(['posts', 'responseBody', 'greet']));
+        return view('home', compact(['posts', 'responseBody', 'greet', 'photos']));
     }
 }
