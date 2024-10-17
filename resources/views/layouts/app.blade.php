@@ -22,8 +22,6 @@
 
     {{-- Bootstrap icons --}}
     <link rel="stylesheet" href="{{ asset('font/bootstrap-icons.css') }}">
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
     {{-- Google Fonts --}}
@@ -33,7 +31,6 @@
 
     <title>{{ config('app.name') }}{{ $title ? " | $title" : '' }}</title>
     {{ $style }}
-    @livewireStyles
 </head>
 
 <body class="antialiased">
@@ -46,7 +43,6 @@
 
     <x-_footer></x-_footer>
     {{ $script ?? null }}
-    @livewireScripts
 </body>
 
 </html>
