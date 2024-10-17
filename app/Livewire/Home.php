@@ -12,17 +12,18 @@ class Home extends Component
 {
     public function render()
     {
-        // Use unsplash API
-        // Configuration
-        \Unsplash\HttpClient::init([
-            'applicationId' => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
-            'secret' => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
-            'callbackUrl' => 'http://fiblo.test/',
-            'utmSource' => 'Fiblo'
-        ]);
+        // // Use unsplash API
+        // // Configuration
+        // \Unsplash\HttpClient::init([
+        //     'applicationId' => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
+        //     'secret' => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
+        //     'callbackUrl' => 'http://fiblo.test/',
+        //     'utmSource' => 'Fiblo'
+        // ]);
 
-        // Get some random photos
-        $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+        // // Get some random photos
+        // $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+        $photos = env('DUMMY_IMAGE');
 
         /**
          * Get the dynamic greetings word

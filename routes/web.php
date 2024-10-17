@@ -1,14 +1,15 @@
 <?php
 
+use App\Livewire\Home;
+use App\Livewire\Explore;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\{PostController, ProfileController};
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
+use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
-use App\Livewire\Home;
 
 Route::get('/', Home::class)->name('home');
 
@@ -16,7 +17,7 @@ Route::get('/', Home::class)->name('home');
 Route::resource('posts', PostController::class)->names('user_posts');
 
 // Explore
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+Route::get('/explore', Explore::class)->name('explore');
 
 // profile
 Route::controller(ProfileController::class)->middleware('auth')->prefix('profiles')->name('profiles.')->group(function () {

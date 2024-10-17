@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Livewire;
 
 use App\Models\Post;
+use Livewire\Component;
 use App\Models\Category;
 use App\Enums\PostStatus;
 
-class ExploreController extends Controller
+class Explore extends Component
 {
-    public function index()
+    public function render()
     {
         $categories = Category::all();
         $posts = Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString();
@@ -24,8 +25,8 @@ class ExploreController extends Controller
 
         // // Get some random photos
         // $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
-        $photos = null;
+        $photos = env('DUMMY_IMAGE');
 
-        return view('explore', compact('categories', 'posts', 'photos'));
+        return view('livewire.explore', compact('categories', 'posts', 'photos'));
     }
 }
