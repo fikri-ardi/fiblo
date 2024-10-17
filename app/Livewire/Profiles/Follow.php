@@ -11,7 +11,7 @@ class Follow extends Component
     public function follow()
     {
         auth()->user()->follow($this->targetUser);
-        $this->emit('followersUpdated', $this->targetUser->username); //will be heard by profiles.info livewire component
+        $this->dispatch('followersUpdated', $this->targetUser->username); //will be heard by profiles.info livewire component
     }
 
     public function render()

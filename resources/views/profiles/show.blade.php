@@ -8,12 +8,14 @@
                 <x-_photo :user="$user">
                     <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
                         style="z-index: 999">
-                        <img @click.away="open = false" src="{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
+                        <img x-on:click.outside="open = false" src="{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
                     </div>
                 </x-_photo>
             </div>
 
         </div>
+
+        {{-- User name --}}
         <div class="font-semibold text-lg mb-2">{{ "@$user->username" }}</div>
 
         {{-- Profile Info --}}
@@ -42,7 +44,7 @@
     </div>
 
     @if ($posts->count())
-    <x-_posts :posts="$posts"></x-_posts>
+    <x-_posts :posts="$posts" :photos="$photos"></x-_posts>
 
     @else
     <div class="text-center mt-3 text-lg">{{ "@$user->username" }} belum punya postingan.</div>

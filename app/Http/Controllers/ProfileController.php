@@ -10,8 +10,20 @@ class ProfileController extends Controller
 {
     public function show(User $user)
     {
+        // Use unsplash API
+        // Configuration
+        \Unsplash\HttpClient::init([
+            'applicationId'    => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
+            'secret'    => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
+            'callbackUrl'    => 'http://fiblo.test/',
+            'utmSource' => 'Fiblo'
+        ]);
+
+        // Get some random photos
+        $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+
         $posts = $user->posts()->postState(PostStatus::Published)->latest()->paginate(6);
-        return view('profiles.show', compact('user', 'posts'));
+        return view('profiles.show', compact('user', 'posts', 'photos'));
     }
 
     public function edit(User $user)
