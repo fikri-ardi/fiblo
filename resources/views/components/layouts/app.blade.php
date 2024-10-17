@@ -17,7 +17,7 @@
     </head>
     
     <body class="antialiased">
-        <x-navbar></x-navbar>
+        <livewire:navbar />
         <x-_notif></x-_notif>
     
         <div class="container main-container mb-5 flex flex-col pt-24 min-h-screen">

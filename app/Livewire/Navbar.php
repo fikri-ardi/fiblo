@@ -1,26 +1,11 @@
 <?php
 
-namespace App\View\Components;
+namespace App\Livewire;
 
-use Illuminate\View\Component;
+use Livewire\Component;
 
 class Navbar extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
     public function render()
     {
         $links = collect([
@@ -50,6 +35,6 @@ class Navbar extends Component
             return $key != 'Buat Post';
         });
 
-        return view('components._navbar', compact('links', 'desktop'));
+        return view('components.navbar', compact('links', 'desktop'));
     }
 }
