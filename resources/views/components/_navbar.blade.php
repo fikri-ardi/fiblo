@@ -1,11 +1,14 @@
+{{-- Desktop navigation --}}
 <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl">
     <div class="container flex justify-content-between">
+        {{-- Application logo --}}
         <div>
             <a class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
                 <span class="text-2xl sm:text-4xl">{{ config('app.name') }}</span>
             </a>
         </div>
 
+        {{-- Navigation menu --}}
         <div class="collapse navbar-collapse flex-grow-0 -ml-14" id="navbarNav">
             <ul class="navbar-nav">
                 @foreach ($desktop as $name => $value)
@@ -73,7 +76,7 @@
     </div>
 </nav>
 
-{{-- Mobile nav --}}
+{{-- Mobile navigation --}}
 <div id="mobile-nav" class="fixed bottom-0 w-full z-50 backdrop-blur-lg shadow-md" style="background: #ffffff90">
     <ul class="navbar-nav d-flex flex-row justify-content-center">
         @foreach ($links as $name => $value)
