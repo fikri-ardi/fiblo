@@ -2,7 +2,7 @@
     {{-- Content --}}
     <div x-data="{open: false}" class="d-flex align-items-center flex-column border-bottom border-gray-500 pb-4 mb-4">
         {{-- User Photo --}}
-        <div class="font-semibold text-lg mb-2">{{ $user->name }}</div>
+        <div x-on:click="alert('ok')" class="font-semibold text-lg mb-2">{{ $user->name }}</div>
         <div class="flex flex-col align-items-center mb-2" @click="open='{{ $user->photo }}'">
             <div class="w-24 h-24 rounded-full text-5xl">
                 <x-_photo :user="$user">
@@ -28,7 +28,7 @@
             <form action="{{ route('profiles.edit', $user) }}" method="get">
                 <x-_button>
                     <span class="bi bi-pencil text-xs mr-1"></span>
-                    Ubah
+                    Edit Profile
                 </x-_button>
             </form>
             @else

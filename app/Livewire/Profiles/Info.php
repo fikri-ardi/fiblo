@@ -15,7 +15,7 @@ class Info extends Component
      * maka refresh component ini secara asynchronous.
      * 
      */
-    // protected $listeners = ['followersUpdated' => '$refresh'];
+    protected $listeners = ['followersUpdated' => '$refresh'];
 
     public function render()
     {

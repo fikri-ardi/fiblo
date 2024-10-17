@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExploreController;
-use App\Http\Controllers\{HomeController, PostController, ProfileController};
+use App\Http\Controllers\{PostController, ProfileController};
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
+use App\Livewire\Home;
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', Home::class)->name('home');
 
 // Posts
 Route::resource('posts', PostController::class)->names('user_posts');

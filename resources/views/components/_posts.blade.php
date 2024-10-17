@@ -37,7 +37,7 @@
 
                     @can('username', $post->author->username)
                     {{-- action button --}}
-                    <a @click="open = '{{ $post->slug }}'"
+                    <a x-on:click="open = '{{ $post->slug }}'"
                         class="text-slate-400 text-base rounded-full flex items-center justify-center h-8 w-8 mt-1 active:bg-slate-400 cursor-pointer">
                         <i class="bi bi-three-dots-vertical text-lg"></i>
                     </a>
@@ -45,7 +45,7 @@
                     {{-- action menu --}}
                     <div x-show="open == '{{ $post->slug }}'" x-transition class="w-full h-full fixed left-0 top-0 flex justify-center items-center"
                         style="z-index: 999;">
-                        <div class="bg-white flex flex-col rounded-xl overflow-hidden" @click.away="open=false">
+                        <div class="bg-white flex flex-col rounded-xl overflow-hidden" x-on:click.outside="open=false">
                             <a href="{{ route('user_posts.edit', $post) }}" class="px-4 py-2 flex items-center text-slate-700 active:bg-slate-400">
                                 <i class="bi bi-pencil mr-1"></i> Ubah
                             </a>
@@ -83,5 +83,4 @@
         </div>
     </div>
     @endforeach
-    <x-_blur-layer></x-_blur-layer>
 </article>
