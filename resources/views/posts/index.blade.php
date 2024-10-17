@@ -4,7 +4,7 @@
     <div class="card mb-5 pb-4 text-center border-0">
         {{-- Banner --}}
         <div class="h-60 sm:h-96">
-            <x-_banner :post="$posts[0]"></x-_banner>
+            <x-_banner :post="$posts[0]" :photos="$photos"></x-_banner>
         </div>
 
         <div class="card-body">
@@ -35,7 +35,7 @@
     </div>
 
     {{-- All Post --}}
-    <x-_posts :posts="$posts->skip(1)"></x-_posts>
+    <x-_posts :posts="$posts->skip(1)" :photos="$photos"></x-_posts>
 
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else

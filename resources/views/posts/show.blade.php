@@ -5,7 +5,7 @@
 
                 {{-- Banner --}}
                 <div class="max-h-96 overflow-hidden">
-                    <x-_banner :post="$post"></x-_banner>
+                    <x-_banner :post="$post" :photos="$photos"></x-_banner>
                 </div>
 
                 {{-- Author --}}
@@ -25,10 +25,10 @@
 
                             {{-- action button --}}
                             @auth
-                            @can('username', $post->author->username)
-                            @else
-                            <livewire:posts.follow :author="$post->author" />
-                            @endcan
+                                @can('username', $post->author->username)
+                                @elseb
+                                <livewire:posts.follow :author="$post->author" />
+                                @endcan
                             @endauth
                         </div>
 

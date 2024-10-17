@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Profiles;
+namespace App\Livewire\Profiles;
 
 use Livewire\Component;
 
-class Info extends Component
+class FollowerModal extends Component
 {
-    public $postCount;
     public $user;
+    public $type;
 
     /**
      * Ketika followers sudah diupdate oleh method follow yang ada di Following traits,
@@ -18,6 +18,6 @@ class Info extends Component
 
     public function render()
     {
-        return view('livewire.profiles.info');
+        return view('livewire.profiles.follower-modal');
     }
 }

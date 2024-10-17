@@ -22,20 +22,47 @@ class PostController extends Controller
     {
         $posts = Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString();
 
-        return view('posts.index', compact('posts'));
+        // Use unsplash API
+        // Configuration
+        \Unsplash\HttpClient::init([
+            'applicationId'    => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
+            'secret'    => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
+            'callbackUrl'    => 'http://fiblo.test/',
+            'utmSource' => 'Fiblo'
+        ]);
+
+        // Get some random photos
+        $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+
+        return view('posts.index', compact(['posts', 'photos']));
     }
 
     public function show(Post $post)
     {
+        // Use unsplash API
+        // Configuration
+        \Unsplash\HttpClient::init([
+            'applicationId'    => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
+            'secret'    => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
+            'callbackUrl'    => 'http://fiblo.test/',
+            'utmSource' => 'Fiblo'
+        ]);
+
+        // Get some random photos
+        $photos = \Unsplash\Photo::random(['query' => 'moutain'])->urls['regular'];
+
+        // Jika ada cookie yang berisi id user yang saat ini sedang login, maka jangan tambah data views, langsung
+        // tampilkan halaman show post
         if (request()->cookie('visitor_id') && $post->visitors()->where('visitor_id', request()->cookie('visitor_id'))->first()) {
-            return view('posts.show', compact('post'));
+            return view('posts.show', compact(['post', 'photos']));
         }
 
+        // Buat variabel & cookie visitor yang berisi id user yang sedang login atau katakter uniq jika user belum login
         $visitor = auth()->id() ?? str()->uuid();
         Cookie::queue(Cookie::make('visitor_id', $visitor));
         $post->visitors()->create(['visitor_id' => $visitor]);
 
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact(['post', 'photos']));
     }
 
     public function create(Request $request)

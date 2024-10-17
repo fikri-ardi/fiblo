@@ -23,7 +23,7 @@
     {{-- Posts --}}
     @if ($posts->count())
     {{-- All Post --}}
-    <x-_posts :posts="$posts->skip(1)"></x-_posts>
+    <x-_posts :posts="$posts->skip(1)" :photos="$photos"></x-_posts>
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else
     <div class="text-center text-lg text-slate-800 mt-10">Ups!maaf ya, sekarang masih belum ada article nih :(</div>

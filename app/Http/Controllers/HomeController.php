@@ -24,7 +24,7 @@ class HomeController extends Controller
         \Unsplash\HttpClient::init([
             'applicationId'    => 'PTLofgTCyG3DdSy0VlHNnc3J1XvwMFQqoFvorI0yk94',
             'secret'    => 'goVuwhRJCkSK7WJU8OSESmXB0lHulCxy5wTaNqweSXs',
-            'callbackUrl'    => 'http://127.0.0.1:8000/',
+            'callbackUrl'    => 'http://fiblo.test/',
             'utmSource' => 'Fiblo'
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Post;
 use App\Models\User;
@@ -12,7 +12,7 @@ class Search extends Component
     public $users;
     public $posts;
 
-    public function updating()
+    public function updated()
     {
         $this->users = User::where('name', 'like', "%$this->search%")
             ->orWhere('username', 'like', "%$this->search%")

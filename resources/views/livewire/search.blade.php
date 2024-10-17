@@ -1,4 +1,4 @@
-<div x-data="{searchInput: ''}" class="border-slate-300 border-2 bg-white mb-4 rounded-xl sm:w-1/4 mx-auto relative">
+<div x-data="{searchInput: ''}" class="border-slate-300 border bg-white mb-4 rounded-xl sm:w-1/4 mx-auto relative">
     <form action="{{ route('explore') }}">
         <div class="flex grow w-full">
             <div class="pl-3 flex">
@@ -10,7 +10,7 @@
             @if (request('author'))
             <input type="hidden" name="author" value="{{ request('author') }}">
             @endif
-            <input x-model="searchInput" wire:model="search" type="text" name="search" value="{{ request('search') }}" placeholder="Cari"
+            <input x-model="searchInput" wire:model.live="search" type="text" name="search" value="{{ request('search') }}" placeholder="Cari"
                 class="w-full h-full border-0 bg-transparent rounded-xl active:border-none focus:ring-0">
 
             {{-- Autocomplete --}}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Profiles;
+namespace App\Livewire\Profiles;
 
 use Livewire\Component;
 
