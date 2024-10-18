@@ -20,7 +20,7 @@
                 {{-- Author Info --}}
                 <small class="mb-3 flex items-center">
                     <a class="flex items-center space-x-2 active:bg-slate-200 rounded-full pr-2 transition"
-                        href="{{ route('profiles.show', $post->author) }}">
+                        href="{{ route('users.show', $post->author) }}">
                         <div class="h-8 w-8">
                             <x-_photo :user="$post->author"></x-_photo>
                         </div>

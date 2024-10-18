@@ -24,7 +24,7 @@ Route::resource('posts', PostController::class)->names('user_posts');
 Route::get('/explore', Explore::class)->name('explore');
 
 // profile
-Route::get('/users/{user}', ShowUser::class)->name('profile');
+Route::get('/users/{user}', ShowUser::class)->name('users.show');
 
 Route::controller(ProfileController::class)->middleware('auth')->prefix('profiles')->name('profiles.')->group(function () {
     Route::get('{user}', 'show')->name('show')->withoutMiddleware('auth');
