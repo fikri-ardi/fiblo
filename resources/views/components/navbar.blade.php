@@ -42,7 +42,7 @@
                         {{-- Dropdown Content --}}
                         <ul x-show="open" x-on:click.outside="open = false" x-transition
                             class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white min-w-full w-44">
-                            <x-_list-link :href="route('profiles.show', auth()->user())">
+                            <x-_list-link :href="route('users.show', auth()->user())">
                                 <i class="bi bi-person text-lg mr-2"></i> Profil
                             </x-_list-link>
                             @can('role', 'founder')

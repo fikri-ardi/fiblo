@@ -3,7 +3,6 @@
 use App\Livewire\Home;
 use App\Livewire\Explore;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\{PostController, ProfileController};
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
@@ -46,7 +45,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 });
 
 // Founder's dashboard
-Route::middleware(['auth', 'role:founder'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'role:founder'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::resource('users', DashboardUserController::class)->except('show');
     Route::resource('categories', DashboardCategoryController::class)->except('show');
     Route::resource('roles', DashboardRoleController::class)->except('show');

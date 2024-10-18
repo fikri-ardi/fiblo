@@ -25,7 +25,7 @@
         <div class="flex mb-3 space-x-2">
             @auth
             @can('username', $user->username)
-            <form action="{{ route('profiles.edit', $user) }}" method="get">
+            <form action="{{ route('users.edit', $user) }}" method="get">
                 <x-_button>
                     <span class="bi bi-pencil text-xs mr-1"></span>
                     Edit Profile
