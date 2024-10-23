@@ -32,15 +32,15 @@
     
                 <li class="nav-item relative">
                     {{-- Nav Toggler --}}
-                    <div class="flex items-center cursor-pointer active:bg-slate-300 hover:bg-slate-300 rounded-full pr-2 transition"
-                        @mouseover="open = true">
+                    <div class="flex items-center cursor-pointer active:bg-slate-300 hover:bg-slate-200 rounded-full pr-2 transition"
+                        x-on:mouseover="open = true">
                         <div class="w-8 h-8 mr-1 rounded-full">
                             <x-_photo :user="auth()->user()"></x-_photo>
                         </div>
                         <i class="bi bi-chevron-down"></i>
     
                         {{-- Dropdown Content --}}
-                        <ul x-show="open" x-on:click.outside="open = false" x-transition
+                        <ul x-show="open" x-on:mouseleave="open = false" x-transition
                             class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white min-w-full w-44">
                             <x-_list-link :href="route('users.show', auth()->user())">
                                 <i class="bi bi-person text-lg mr-2"></i> Profil
