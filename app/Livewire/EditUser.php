@@ -53,6 +53,8 @@ class EditUser extends Component
         );
 
         $this->dispatch('user-updated');
+        session()->flash('message', 'Berhasil update data kamu yaa 🫵');
+        $this->redirectRoute('users.show', $this->user, navigate: true);
     }
 
     public function render()

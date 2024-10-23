@@ -18,8 +18,8 @@
     
     <body class="antialiased">
         <livewire:navbar />
-        <x-_notif></x-_notif>
-    
+        <livewire:components.notif />
+        
         <div class="container main-container mb-5 flex flex-col pt-24 min-h-screen">
             {{ $slot }}
         </div>
