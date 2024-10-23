@@ -88,23 +88,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function password(): Attribute
     {
         return new Attribute(
-            set: fn ($value) => bcrypt($value)
+            set: fn($value) => bcrypt($value)
         );
     }
 
     public function photo(): Attribute
     {
         return new Attribute(
-            fn ($value) => $value ? asset("storage/$value") : null,
-            function ($value) {
-                /**
-                 * $this->attibutes['photo'] berisi data yang ada di dalam field photo di table users
-                 */
-                if (isset($this->attributes['photo'])) {
-                    Storage::delete($this->attributes['photo']);
-                }
-                return $this->attributes['photo'] = $value->store('images/users');
-            }
+            // get: fn($value) => $value ? asset("storage/$value") : null,
+            // set: function ($value) {
+            //     /**
+            //      * $this->attibutes['photo'] berisi data yang ada di dalam field photo di table users
+            //      */
+            //     if (isset($this->attributes['photo'])) {
+            //         Storage::delete($this->attributes['photo']);
+            //     }
+            //     return $this->attributes['photo'] = $value->store('images/users');
+            // }
         );
     }
 }

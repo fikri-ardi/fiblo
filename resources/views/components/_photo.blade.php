@@ -1,5 +1,5 @@
 @if ($user->photo)
-<img src="{{ $user->photo }}" class="rounded-circle object-cover border-slate-200 d-inline-block shadow-md w-full h-full" alt="{{ $user->name }}">
+<img src="{{ env("APP_URL").$user->photo }}" class="rounded-circle object-cover border-slate-200 d-inline-block shadow-md w-full h-full" alt="{{ $user->name }}">
 {{ $slot ?? '' }}
 @else
 <span {{ $attributes->merge(['class' => 'bg-red-100 text-red-500 font-bold text-center rounded-full flex justify-center align-items-center

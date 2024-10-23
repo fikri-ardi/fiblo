@@ -8,7 +8,7 @@
                 <x-_photo :user="$user">
                     <div x-show="open == '{{ $user->photo }}'" x-transition class="fixed top-0 left-0 flex justify-center items-center w-full h-full"
                         style="z-index: 999">
-                        <img x-on:click.outside="open = false" src="{{ $user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
+                        <img x-on:click.outside="open = false" src="{{ env('APP_URL').$user->photo }}" alt="{{ $user->name }}" class="w-56 h-56 object-cover rounded-xl">
                     </div>
                 </x-_photo>
             </div>
@@ -39,7 +39,7 @@
         </div>
     
         <div class="text-center">
-            <p class="text-sm font-italic w-72"><i>{{ "$user->bio" ?? '' }}</i></p>
+            <p class="text-sm w-72">{{ "$user->bio" ?? '' }}</p>
         </div>
     </div>
     

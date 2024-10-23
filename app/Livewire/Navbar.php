@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class Navbar extends Component
 {
+    protected $listeners = ['user-updated' => '$refresh'];
+
     public function render()
     {
         $links = collect([

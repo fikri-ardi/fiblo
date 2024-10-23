@@ -10,9 +10,7 @@ use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
 use App\Livewire\EditUser;
-use App\Livewire\Profile;
 use App\Livewire\ShowUser;
-use App\Livewire\User;
 
 Route::get('/', Home::class)->name('home');
 Route::view('/navbar', 'nav');
@@ -25,7 +23,9 @@ Route::get('/explore', Explore::class)->name('explore');
 
 // profile
 Route::get('/users/{user}', ShowUser::class)->name('users.show');
-Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');
+Route::middleware('auth')->group(function () {
+    Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');
+});
 
 Route::controller(ProfileController::class)->middleware('auth')->prefix('profiles')->name('profiles.')->group(function () {
     Route::get('{user}', 'show')->name('show')->withoutMiddleware('auth');
