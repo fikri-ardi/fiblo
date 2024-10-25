@@ -4,7 +4,7 @@
         <div class="container flex justify-content-between">
             {{-- Application logo --}}
             <div>
-                <a class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
+                <a wire:navigate class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
                     <span class="text-2xl sm:text-4xl">{{ config('app.name') }}</span>
                 </a>
             </div>
@@ -14,7 +14,7 @@
                 <ul class="navbar-nav">
                     @foreach ($desktop as $name => $value)
                     <li class="nav-item px-3">
-                        <a class="nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">{{ $name }}</a>
+                        <a wire:navigate class="nav-link{{ $value['isActive'] ? ' active' : '' }}" href="{{ $value['route'] }}">{{ $name }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -24,7 +24,7 @@
             <ul x-data="{ open: false }" class="navbar-nav space-x-2">
                 @auth
                 <li class="hidden sm:inline-block nav-item relative">
-                    <a href="{{ route('user_posts.create') }}"
+                    <a wire:navigate href="{{ route('user_posts.create') }}"
                         class="flex items-center justify-center bg-slate-200 rounded-full h-8 w-8 active:bg-slate-400">
                         <i class="bi bi-pencil-square text-xl font-bold"></i>
                     </a>
@@ -42,18 +42,27 @@
                         {{-- Dropdown Content --}}
                         <ul x-show="open" x-on:mouseleave="open = false" x-transition
                             class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white min-w-full w-44">
-                            <x-_list-link :href="route('users.show', auth()->user())">
-                                <i class="bi bi-person text-lg mr-2"></i> Profil
-                            </x-_list-link>
+                            <li>
+                                <a wire:navigate class="flex items-center no-underline text-gray-800 px-3 py-2 hover:bg-slate-200 hover:text-slate-900{{ request()->is($active ?? '') ? ' active' : '' }}"
+                                    href="{{ route('users.show', auth()->user()) }}">
+                                    <i class="bi bi-person text-lg mr-2"></i> Profil
+                                </a>
+                            </li>
                             @can('role', 'founder')
-                            <x-_list-link :href="route('dashboard')">
-                                <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
-                            </x-_list-link>
+                            <li>
+                                <a wire:navigate class="flex items-center no-underline text-gray-800 px-3 py-2 hover:bg-slate-200 hover:text-slate-900{{ request()->is($active ?? '') ? ' active' : '' }}"
+                                    href="{{ route('dashboard') }}">
+                                    <i class="bi bi-layout-text-sidebar-reverse mr-2"></i> Dashboard
+                                </a>
+                            </li>
                             @endcan
-                            <x-_list-link :href="route('password.edit')">
-                                <i class="bi bi-shield-lock mr-2"></i> Ubah Password
-                            </x-_list-link>
-    
+                            <li>
+                                <a wire:navigate
+                                    class="flex items-center no-underline text-gray-800 px-3 py-2 hover:bg-slate-200 hover:text-slate-900{{ request()->is($active ?? '') ? ' active' : '' }}"
+                                    href="{{ route('password.edit') }}">
+                                    <i class="bi bi-shield-lock mr-2"></i> Ubah Password
+                                </a>
+                            </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf

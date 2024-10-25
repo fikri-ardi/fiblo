@@ -18,6 +18,18 @@ class EditUser extends Component
     public UserForm $form;
     public User $user;
 
+    public function updated($property)
+    {
+        // Jika user sudah memilih file
+        if ($property === 'form.photo') {
+            // Jika format file tidak sesuai dengan livewire config
+            if (!in_array(strtolower($this->form->photo->getClientOriginalExtension()), config('livewire.temporary_file_upload.preview_mimes'))) {
+                // Maka ganti file yang dilipih user dengan filenya yang lama
+                $this->form->photo = $this->user->photo;
+            }
+        }
+    }
+
     public function mount(User $user)
     {
         $this->user = $user;
@@ -52,9 +64,9 @@ class EditUser extends Component
             $this->form->all()
         );
 
+        $this->redirectRoute('users.show', $this->user, navigate: true);
         $this->dispatch('user-updated');
         session()->flash('message', 'Berhasil update data kamu yaa 🫵');
-        $this->redirectRoute('users.show', $this->user, navigate: true);
     }
 
     public function render()

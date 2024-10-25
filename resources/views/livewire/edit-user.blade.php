@@ -4,11 +4,16 @@
             <form wire:submit="update" method="POST" enctype="multipart/form-data">
                 <div class="text-center">
                     <h1 class="h2">Edit Profil</h1>
-                    <div class="relative flex justify-center">
-                        <div class="relative w-36 h-36 mb-3 rounded-full overflow-hidden">
+
+                    {{-- Photo --}}
+                    <div class="relative flex justify-center mt-4 mb-11">
+                        {{-- Temporary Photo Preview --}}
+                        <div class="relative w-36 h-36 rounded-full overflow-hidden">
                             {{-- Jika user sudah upload foto baru, maka tampilkan --}}
-                            @if ($form->photo instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-                            <img src="{{ $form->photo->temporaryUrl() }}" class="absolute w-full h-full object-cover">
+                            @if ($form->photo instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile )
+                                @if ($form->photo->getClientOriginalExtension() == "png" || "jpg")
+                                    <img src="{{ $form->photo->temporaryUrl() }}" class="absolute w-full h-full object-cover">
+                                @endif
                             @endif
                             <x-_photo :user="$user" class="text-5xl"></x-_photo>
                             <div
@@ -16,10 +21,12 @@
                                 Ubah
                             </div>
                         </div>
+
+                        {{-- File input --}}
                         <input wire:model.live="form.photo" type="file" name="form.photo" id="form.photo"
                             class="img-input absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 cursor-pointer" style="opacity: 0" />
                         @error('form.photo')
-                        <div class="text-red-400 bg-red-100 text-sm font-semibold inline-block px-2 py-1 rounded-xl my-1">
+                        <div class="absolute top-full text-red-400 bg-red-100 text-sm font-semibold inline-block px-2 py-1 rounded-xl my-1">
                             {{ $message }}
                         </div>
                         @enderror

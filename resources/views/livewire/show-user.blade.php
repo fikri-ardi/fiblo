@@ -25,12 +25,13 @@
         <div class="flex mb-3 space-x-2">
             @auth
             @can('username', $user->username)
-            <form action="{{ route('users.edit', $user) }}" method="get">
-                <x-_button>
-                    <span class="bi bi-pencil text-xs mr-1"></span>
-                    Edit Profile
-                </x-_button>
-            </form>
+            <a wire:navigate class='flex items-center rounded-2xl text-sm text-capitalize no-underline bg-slate-800 active:bg-slate-900 px-3 py-2
+                text-blue-100
+                font-semibold shadow-lg transition
+                duration-200 hover:text-blue-100' href="{{ route('users.edit', $user) }}" >
+                <span class="bi bi-pencil text-xs mr-1"></span>
+                Edit Profile
+            </a>
             @else
             <livewire:profiles.follow :targetUser="$user" />
             @endcan

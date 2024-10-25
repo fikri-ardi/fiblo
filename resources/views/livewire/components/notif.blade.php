@@ -1,5 +1,5 @@
 <div x-data="notif" class="z-50 relative top-full left-0 w-full flex justify-center">
-    <div x-on:user-updated.window="showNotif" style="z-index: 9999;"
+    <div style="z-index: 9999;"
         id="notif"
         class="@if(session('message')) slide @endif fixed -translate-y-full bg-slate-100 bg-opacity-10 text-slate-900 rounded-3xl backdrop-blur-lg shadow-lg px-3 py-2 flex items-center justify-center space-x-2 ease-in-out">
         <span class="bi bi-bell text-xl text-slate-700 bg-slate-200 p-2 rounded-full"></span>

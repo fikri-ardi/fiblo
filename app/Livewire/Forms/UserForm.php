@@ -7,7 +7,7 @@ use Livewire\Form;
 
 class UserForm extends Form
 {
-    #[Validate('required|min:3|max:255', as: 'nama')]
+    #[Validate('required|min:3|max:255', as: 'Nama')]
     public $name;
 
     #[Validate('required|min:3|max:255')]
@@ -16,7 +16,7 @@ class UserForm extends Form
     #[Validate('required|email|max:255')]
     public $email;
 
-    #[Validate('image|file|max:2048')]
+    #[Validate('mimes:jpg,jpeg,bmp,png,svg|image|file|max:2048', as: 'Foto')]
     public $photo;
 
     #[Validate('min:3|max:2048')]
