@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 use App\Livewire\Forms\UserForm;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,10 @@ class EditUser extends Component
     public UserForm $form;
     public User $user;
 
+    /**
+     * Called after updated property
+     * 
+     */
     public function updated($property)
     {
         // Jika user sudah memilih file
@@ -26,6 +31,15 @@ class EditUser extends Component
             if (!in_array(strtolower($this->form->photo->getClientOriginalExtension()), config('livewire.temporary_file_upload.preview_mimes'))) {
                 // Maka ganti file yang dilipih user dengan filenya yang lama
                 $this->form->photo = $this->user->photo;
+            }
+        }
+
+        // Jika user mengupdate input username
+        if ($property === 'form.username') {
+            // Jika username yang user input sudah dipake & bukan yang saat ini dia pake
+            if (User::where('username', $this->form->username)->get()->count() && $this->form->username != $this->user->username) {
+                // Maka throw error karena username sudah dipake
+                $this->addError('form.username', 'Username yang kamu pilih udah dipake 😌');
             }
         }
     }
@@ -64,7 +78,7 @@ class EditUser extends Component
             $this->form->all()
         );
 
-        $this->redirectRoute('users.show', $this->user, navigate: true);
+        $this->redirectRoute('users.show', $this->form->username, navigate: true);
         $this->dispatch('user-updated');
         session()->flash('message', 'Berhasil update data kamu yaa 🫵');
     }

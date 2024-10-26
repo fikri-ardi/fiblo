@@ -2,15 +2,16 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Illuminate\Validation\Rule;
+use Livewire\Attributes\Validate;
 
 class UserForm extends Form
 {
     #[Validate('required|min:3|max:255', as: 'Nama')]
     public $name;
 
-    #[Validate('required|min:3|max:255')]
+    #[Validate("required|alpha_dash|min:3|max:255")]
     public $username;
 
     #[Validate('required|email|max:255')]
