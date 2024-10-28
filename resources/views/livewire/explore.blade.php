@@ -5,7 +5,7 @@
     <div class="h-10 overflow-hidden relative after:absolute after:w-24 after:h-full after:bg-gradient-to-l from-white after:right-0 after:top-0 mb-10">
         <div class="flex gap-2 overflow-x-scroll">
             @forelse ($categories as $category)
-            <a href="{{ route('explore', ['category' => $category]) }}"
+            <a wire:navigate href="{{ route('explore', ['category' => $category]) }}"
                 class="font-semibold active:bg-slate-300 hover:text-inherit text-center
                     {{ request('category') == $category->slug ? 'bg-slate-800 text-white' : 'bg-slate-200' }} hover:bg-opacity-80 transition py-2 px-3 rounded-xl min-w-max">
                 {{ $category->name }}

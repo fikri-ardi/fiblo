@@ -12,7 +12,12 @@ class Explore extends Component
     public function render()
     {
         $categories = Category::all();
-        $posts = Post::postState(PostStatus::Published)->filter(request(['search', 'category', 'author']))->exclude(['body', 'updated_at'])->latest()->paginate(7)->withQueryString();
+        $posts = Post::postState(PostStatus::Published)
+            ->filter(request(['search', 'category', 'author']))
+            ->exclude(['body', 'updated_at'])
+            ->latest()
+            ->paginate(7)
+            ->withQueryString();
 
         // // Use unsplash API
         // // Configuration
