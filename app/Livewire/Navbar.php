@@ -17,13 +17,13 @@ class Navbar extends Component
                 'icon' => 'bi bi-house-door',
             ],
             'Tulisan' => [
-                'route' => route('user_posts.index'),
-                'isActive' => request()->routeIs('user_posts*') && !request()->routeIs('user_posts/categories') && !request()->routeIs('user_posts.create'),
+                'route' => route('posts.index'),
+                'isActive' => request()->routeIs('posts*') && !request()->routeIs('posts/categories') && !request()->routeIs('posts.create'),
                 'icon' => 'bi bi-file-post',
             ],
             'Buat Post' => [
-                'route' => route('user_posts.create'),
-                'isActive' => request()->routeIs('user_posts.create') && !request()->routeIs('user_posts/categories'),
+                'route' => route('posts.create'),
+                'isActive' => request()->routeIs('posts.create') && !request()->routeIs('posts/categories'),
                 'icon' => 'bi bi-plus-circle',
             ],
             'Eksplor' => [

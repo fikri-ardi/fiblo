@@ -39,17 +39,17 @@ class Sidebar extends Component
         $adminLinks = [
             'Users' => [
                 'active' => 'dashboard/users',
-                'route' => route('users.index'),
+                'route' => route('dashboard.users.index'),
                 'icon' => 'users',
             ],
             'Categories' => [
                 'active' => 'dashboard/categories*',
-                'route' => route('categories.index'),
+                'route' => route('dashboard.categories.index'),
                 'icon' => 'grid',
             ],
             'Roles' => [
                 'active' => 'dashboard/roles*',
-                'route' => route('roles.index'),
+                'route' => route('dashboard.roles.index'),
                 'icon' => 'users',
             ],
         ];

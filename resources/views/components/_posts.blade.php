@@ -5,7 +5,7 @@
     <div class="col-md-4">
         <div class="card mb-3 pb-4 border-0 relative">
             {{-- Post Category --}}
-            <a href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">
+            <a wire:navigate href="{{ route('posts.index', ['category' => $post->category->slug]) }}">
                 <small class="absolute top-0 z-10 left-0 px-3 py-2 text-white bg-slate-900 text-base rounded-2 bg-opacity-40 backdrop-blur-lg">
                     {{ $post->category->name }}
                 </small>
@@ -32,7 +32,7 @@
                 {{-- Post title & Action button--}}
                 <div class="flex items-start justify-between">
                     <h4 class="card-title">
-                        <a href="{{ route('user_posts.show', $post) }}">{{ $post->title }}</a>
+                        <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                     </h4>
 
                     @can('username', $post->author->username)
@@ -46,10 +46,10 @@
                     <div x-show="open == '{{ $post->slug }}'" x-transition class="w-full h-full fixed left-0 top-0 flex justify-center items-center"
                         style="z-index: 999;">
                         <div class="bg-white flex flex-col rounded-xl overflow-hidden" x-on:click.outside="open=false">
-                            <a href="{{ route('user_posts.edit', $post) }}" class="px-4 py-2 flex items-center text-slate-700 active:bg-slate-400">
+                            <a href="{{ route('posts.edit', $post) }}" class="px-4 py-2 flex items-center text-slate-700 active:bg-slate-400">
                                 <i class="bi bi-pencil mr-1"></i> Ubah
                             </a>
-                            <form action="{{ route('user_posts.destroy', $post) }}" method="post" class="d-inline">
+                            <form action="{{ route('posts.destroy', $post) }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button onclick="return confirm('Kamu yakin?')"
@@ -69,7 +69,7 @@
                 {{-- post info --}}
                 <span class="flex text-gray-500 font-semibold">
                     <a class="bg-slate-200 text-gray-600 px-2 py-1 font-semibold text-sm active:bg-slate-300 rounded-full hover:text-inherit transition text-center"
-                        href="{{ route('user_posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name
+                        href="{{ route('posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name
                         }}</a>
                     <span class="bi bi-dot"></span>
                     <span class="flex align-middle">

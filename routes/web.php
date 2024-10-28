@@ -10,13 +10,19 @@ use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
 use App\Livewire\EditUser;
+use App\Livewire\Posts\AllPosts;
+use App\Livewire\Posts\CreatePost;
+use App\Livewire\Posts\ShowPost;
 use App\Livewire\ShowUser;
 
 Route::get('/', Home::class)->name('home');
 Route::view('/navbar', 'nav');
 
 // Posts
-Route::resource('posts', PostController::class)->names('user_posts');
+Route::get('posts', AllPosts::class)->name('posts.index');
+Route::get('posts/{post}', ShowPost::class)->name('posts.show');
+Route::get('posts/create', CreatePost::class)->name('posts.create');
+// Route::resource('posts', PostController::class)->names('user_posts');
 
 // Explore
 Route::get('/explore', Explore::class)->name('explore');
@@ -40,7 +46,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('posts/checkSlug', [PostController::class, 'checkSlug']);
     Route::put('posts/{post}/publish', [DashboardPostController::class, 'publish'])->name('posts.publish');
     Route::get('posts/{status}/status', [DashboardPostController::class, 'status'])->name('posts.status');
-    Route::resource('posts', DashboardPostController::class);
+    Route::resource('posts', DashboardPostController::class)->names('dashboard');
     Route::get('/', DashboardController::class)->name('dashboard');
 });
 

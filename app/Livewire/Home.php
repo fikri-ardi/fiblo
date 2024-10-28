@@ -47,12 +47,20 @@ class Home extends Component
          * Post Data
          * @return Post
          */
-        $posts = Post::exclude('body', 'status', 'updated_at')->postState(PostStatus::Published)->latest()->limit(6)->get();
+        $posts = Post::exclude('body', 'status', 'updated_at')
+            ->postState(PostStatus::Published)
+            ->latest()
+            ->limit(6)
+            ->get();
 
         if (auth()->user() && auth()->user()->follows->count()) {
-            $posts = auth()->user()->followedPost()->exclude('body', 'status', 'updated_at')->postState(PostStatus::Published)->latest()->limit(6)->get();
+            $posts = auth()->user()->followedPost()->exclude('body', 'status', 'updated_at')
+                ->postState(PostStatus::Published)
+                ->latest()
+                ->limit(6)
+                ->get();
         }
 
-        return view('livewire.home', compact('posts', 'responseBody', 'greet', 'photos'))->title('ok');
+        return view('livewire.home', compact('posts', 'responseBody', 'greet', 'photos'));
     }
 }
