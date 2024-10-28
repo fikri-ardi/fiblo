@@ -67,7 +67,7 @@
 
                 {{-- post info --}}
                 <span class="flex text-gray-500 font-semibold">
-                    <a class="bg-slate-200 text-gray-600 px-2 py-1 font-semibold text-sm active:bg-slate-300 rounded-full hover:text-inherit transition text-center"
+                    <a wire:navigate class="bg-slate-200 text-gray-600 px-2 py-1 font-semibold text-sm active:bg-slate-300 rounded-full hover:text-inherit transition text-center"
                         href="{{ route('posts.index', ['category' => $post->category->slug]) }}">{{ $post->category->name
                         }}</a>
                     <span class="bi bi-dot"></span>

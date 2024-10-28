@@ -14,9 +14,9 @@
 
             <small class="mb-4 d-block">
                 Ditulis oleh
-                <a class="author" href="{{ route('profiles.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
+                <a wire:navigate class="author" href="{{ route('users.show', $posts[0]->author) }}">{{ $posts[0]->author->name }}</a>
                 di
-                <a class="category" href="{{ route('posts.index', [ 'category' => $posts[0]->category->slug]) }}">
+                <a wire:navigate class="category" href="{{ route('posts.index', [ 'category' => $posts[0]->category->slug]) }}">
                     {{ $posts[0]->category->name }}
                 </a>
                 <small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
