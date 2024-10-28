@@ -9,7 +9,7 @@
 
         <div class="card-body">
             <h3 class="card-title">
-                <a href="{{ route('posts.show', $posts[0]) }}">{{ $posts[0]->title }}</a>
+                <a wire:navigate href="{{ route('posts.show', $posts[0]) }}">{{ $posts[0]->title }}</a>
             </h3>
 
             <small class="mb-4 d-block">
@@ -35,7 +35,8 @@
     </div>
 
     {{-- All Post --}}
-    <x-_posts :posts="$posts->skip(1)" :photos="$photos"></x-_posts>
+    {{-- <x-_posts :posts="$posts->skip(1)" :photos="$photos"></x-_posts> --}}
+    <livewire:components.posts :posts="$posts->skip(1)" :photos="$photos" />
 
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else
