@@ -43,7 +43,7 @@
                     <div class="py-2">TULISAN</div>
                     @foreach ($posts as $post)
                     <div class="py-2 flex justify-center-center hover:bg-gray-100 cursor-pointer transition">
-                        <a href="{{ route('user_posts.show', $post) }}" class="w-full flex items-center">
+                        <a href="{{ route('posts.show', $post) }}" class="w-full flex items-center">
                             <div class="flex">
                                 <span class="bi bi-pencil-fill m-auto bg-slate-200 text-slate-800 h-10 w-10 rounded-full"></span>
                             </div>

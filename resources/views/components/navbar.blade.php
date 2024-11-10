@@ -24,7 +24,7 @@
             <ul x-data="{ open: false }" class="navbar-nav space-x-2">
                 @auth
                 <li class="hidden sm:inline-block nav-item relative">
-                    <a wire:navigate href="{{ route('posts.create') }}"
+                    <a wire:navigate href="/posts/create"
                         class="flex items-center justify-center bg-slate-200 rounded-full h-8 w-8 active:bg-slate-400">
                         <i class="bi bi-pencil-square text-xl font-bold"></i>
                     </a>

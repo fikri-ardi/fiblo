@@ -1,4 +1,4 @@
-<form method="POST" enctype="multipart/form-data">
+<form wire:submit="store" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         {{-- Banner --}}
         <div
@@ -6,34 +6,34 @@
             @if (isset($post) && $post->image)
             <img src="{{ $post->image }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
             @endif
-            @if ($form->photo instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile )
-                @if ($form->photo->getClientOriginalExtension() == "png" || "jpg")
-                    <img src="{{ $form->photo->temporaryUrl() }}" class="img-fluid rounded-lg w-full h-full object-cover object-center absolute">
-                @endif
+            @if ($form->image instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile )
+            @if ($form->image->getClientOriginalExtension() == "png" || "jpg")
+            <img src="{{ $form->image->temporaryUrl() }}" class="img-fluid rounded-lg w-full h-full object-cover object-center absolute">
+            @endif
             @endif
             <i class="bi bi-camera-fill font-bold text-4xl text-slate-500"></i>
-            <input class="absolute h-full w-full opacity-0 form-control img-input @error('image') is-invalid @enderror" type="file" id="image"
-                name="image" onchange="previewImage()">
+            <input wire:model.live="form.image" class="absolute h-full w-full opacity-0 form-control img-input @error('form.image') is-invalid @enderror" type="file" id="form.image"
+                name="form.image">
             <div
                 class="absolute bottom-0 left-0 right-0 h-10 bg-black bg-opacity-50 flex items-center justify-center font-semibold text-white backdrop-blur-xl pointer-events-none">
                 Ubah
             </div>
         </div>
-        <x-_error name="image"></x-_error>
+        <x-_error name="form.image"></x-_error>
     </div>
 
     {{-- Title --}}
     <div class="mb-3">
-        <input type="text" id="title" name="title" value="{{ old('title', isset($post) ? $post->title : null) }}" placeholder="Judul"
+        <input wire:model.blur="form.title" type="text" id="form.title" name="form.title" placeholder="Judul"
             class="bg-inherit text-2xl sm:text-4xl border-0 w-full focus:ring-0 font-semibold" autofocus>
-        <x-_error name="title"></x-_error>
+        <x-_error name="form.title"></x-_error>
     </div>
 
     {{-- Body --}}
     <div class="mb-3" style="min-height: 500px;">
-        <input type="hidden" name="body" id="body" value="{{ old('body', isset($post) ? $post->body : null) }}" required>
-        <trix-editor input="body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800"></trix-editor>
-        <x-_error name="body"></x-_error>
+        <input type="hidden" name="form.body" id="form.body" required>
+        <trix-editor wire:model.blur="form.body" input="form.body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800"></trix-editor>
+        <x-_error name="form.body"></x-_error>
     </div>
 
     {{-- Slug --}}
@@ -42,7 +42,7 @@
     {{-- Category --}}
     <div class="mb-3">
         <label for="category" class="form-label">Topik</label>
-        <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
+        <select wire:model.blur="form.category_id" class="form-select @error('form.category_id') is-invalid @enderror" name="form.category_id">
             <option selected disabled>Pilih Topik</option>
             @forelse ($categories as $category)
             <option value="{{ $category->id }}" {{ $category->id == old('category_id', isset($post) ? $post->category_id : null) ? 'selected' : ''
@@ -50,10 +50,10 @@
                 $category->name }}
             </option>
             @empty
-            <option disabled>Maaf, kamu belum punya category :v</option>
+            <option disabled>Kamu belum punya category ☹️</option>
             @endforelse
         </select>
-        <x-_error name="category_id"></x-_error>
+        <x-_error name="form.category_id"></x-_error>
     </div>
 
     {{-- Publish button --}}

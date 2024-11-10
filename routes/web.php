@@ -19,9 +19,9 @@ Route::get('/', Home::class)->name('home');
 Route::view('/navbar', 'nav');
 
 // Posts
-Route::get('posts', AllPosts::class)->name('posts.index');
-Route::get('posts/{post}', ShowPost::class)->name('posts.show');
-Route::get('posts/create', CreatePost::class)->name('posts.create');
+Route::get('/posts', AllPosts::class)->name('posts.index');
+Route::get('/posts/create', CreatePost::class)->name('posts.create');
+Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
 // Route::resource('posts', PostController::class)->names('user_posts');
 
 // Explore

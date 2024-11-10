@@ -25,8 +25,7 @@
 
                             {{-- action button --}}
                             @auth
-                            @can('username', $post->author->username)
-                            @elseb
+                            @cannot('username', $post->author->username)
                             <livewire:posts.follow :author="$post->author" />
                             @endcan
                             @endauth
