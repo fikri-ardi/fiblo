@@ -11,15 +11,9 @@ class PostInputForm extends Component
 {
     use WithFileUploads;
 
-    public ?Post $post;
     public PostForm $form;
     public $categories;
     public $button;
-
-    public function mount(Post $post): void
-    {
-        $this->form->setPost($post);
-    }
 
     public function updated($property)
     {
@@ -32,12 +26,10 @@ class PostInputForm extends Component
             }
         }
 
-        // Jika judul telah diupdate
+        // Jika title diubah
         if ($property === 'form.title') {
-            dd($this->post);
-            if ($this->post->slug == null) {
-                $this->form->slug = strtolower(str_replace(' ', '-', $this->form->title));
-            }
+            // Maka ubah juga slug sesuai title
+            $this->form->slug = strtolower(str_replace(' ', '-', $this->form->title));
         }
     }
 

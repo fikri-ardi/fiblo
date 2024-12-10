@@ -39,6 +39,7 @@ class PostForm extends Form
             'title' => ['required', 'min:3', 'max:255'],
             'slug' => [
                 'required',
+                'alpha_dash',
                 Rule::unique('posts')->ignore($this->post),
             ],
             'image' => ['image', 'file', 'max:2048'],
