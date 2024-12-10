@@ -32,12 +32,9 @@
     {{-- Body --}}
     <div class="mb-3" style="min-height: 500px;">
         <input type="hidden" name="form.body" id="form.body" required>
-        <trix-editor wire:model.blur="form.body" input="form.body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800"></trix-editor>
+        <trix-editor wire:model.live="form.body" input="form.body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800 outline-none"></trix-editor>
         <x-_error name="form.body"></x-_error>
     </div>
-
-    {{-- Slug --}}
-    <input type="hidden" id="slug" name="slug" value="{{ old('slug', isset($post) ? $post->slug : null) }}">
 
     {{-- Category --}}
     <div class="mb-3">
@@ -54,6 +51,16 @@
             @endforelse
         </select>
         <x-_error name="form.category_id"></x-_error>
+    </div>
+
+    {{-- Slug --}}
+    <div class="form-floating">
+        <input wire:model.blur="form.slug" class="-mb-1 form-control" type="text" id="form.slug" name="form.slug" placeholder="Slug" autofocus>
+        <label for="form.slug" class="form-label">Slug</label>
+        @error('form.slug')
+        <div class="text-red-400 bg-red-100 text-sm font-semibold inline-block px-2 py-1 rounded-xl my-1">{{ $message }}
+        </div>
+        @enderror
     </div>
 
     {{-- Publish button --}}

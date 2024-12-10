@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 use App\Http\Controllers\Dashboard\RoleController as DashboardRoleController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
+use App\Livewire\DeletePost;
+use App\Livewire\EditPost;
 use App\Livewire\EditUser;
 use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\CreatePost;
@@ -20,14 +22,17 @@ Route::view('/navbar', 'nav');
 
 // Posts
 Route::get('/posts', AllPosts::class)->name('posts.index');
-Route::get('/posts/create', CreatePost::class)->name('posts.create');
+Route::middleware('auth')->group(function () {
+    Route::get('/posts/create', CreatePost::class)->name('posts.create');
+    Route::get('/posts/{post}/edit', EditPost::class)->name('posts.edit');
+    Route::delete('/posts/{post}', DeletePost::class)->name('posts.destroy');
+});
 Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
-// Route::resource('posts', PostController::class)->names('user_posts');
 
 // Explore
 Route::get('/explore', Explore::class)->name('explore');
 
-// profile
+// Users
 Route::get('/users/{user}', ShowUser::class)->name('users.show');
 Route::middleware('auth')->group(function () {
     Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');

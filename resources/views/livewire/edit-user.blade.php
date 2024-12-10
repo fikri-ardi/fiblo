@@ -86,6 +86,7 @@
                     </div>
                     @enderror
                 </div>
+                
                 {{-- Twitter --}}
                 <div class="form-floating">
                     <input wire:model.blur="form.twitter" class="-mb-1 form-control" type="text" id="form.twitter" name="form.twitter" placeholder="E-Mail" autofocus>
@@ -95,6 +96,7 @@
                     </div>
                     @enderror
                 </div>
+                
                 {{-- Facebook --}}
                 <div class="form-floating">
                     <input wire:model.blur="form.facebook" class="-mb-1 form-control" type="text" id="form.facebook" name="form.facebook" placeholder="E-Mail" autofocus>

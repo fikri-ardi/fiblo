@@ -50,30 +50,30 @@ class Post extends Model
         // kembalikan resource(data post) yang title dan bodynya sesuai request('search') jika ada request('search') / user sedang melakukan searching 
         $resource->when(
             $filters['search'] ?? false,
-            fn ($resource, $search) =>
+            fn($resource, $search) =>
             $resource->where('title', 'like', "%$search%")
                 ->orWhere('body', 'like', "%$search%")
         );
 
         $resource->when(
             $filters['category'] ?? false,
-            fn ($resource, $category) =>
+            fn($resource, $category) =>
             // kembalikan resource(data post) yang mempunyai category yang field slug di table categorynya = request('category')
             // kode dibawah mirip seperti $post->category->slug = request('category')
             $resource->whereHas(
                 'category',
-                fn ($resource) => ($resource->where('slug', $category))
+                fn($resource) => ($resource->where('slug', $category))
             )
         );
 
         $resource->when(
             $filters['author'] ?? false,
-            fn ($resource, $author) =>
+            fn($resource, $author) =>
             // kembalikan resource(data post) yang mempunyai author yang field username di table usernya = request('author')
             // kode dibawah mirip seperti $post->author->username = request('author')
             $resource->whereHas(
                 'author',
-                fn ($resource) =>
+                fn($resource) =>
                 $resource->where('username', $author)
             )
         );
@@ -96,24 +96,8 @@ class Post extends Model
     public function title(): Attribute
     {
         return new Attribute(
-            fn ($value) => ucwords($value),
-            fn ($value) => strtolower($value),
-        );
-    }
-
-    public function image(): Attribute
-    {
-        return new Attribute(
-            fn ($value) => $value ? asset("storage/$value") : null,
-            function ($value) {
-                /**
-                 * $this->arrtibutes['image'] berisi data yang ada di dalam field image di table posts
-                 */
-                if (isset($this->attributes['image'])) {
-                    Storage::delete($this->attributes['image']);
-                }
-                return $this->attributes['image'] = $value->store('images/posts');
-            }
+            get: fn($value) => ucwords($value),
+            set: fn($value) => strtolower($value),
         );
     }
 

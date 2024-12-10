@@ -3,6 +3,8 @@
 namespace App\Livewire\Forms;
 
 use App\Models\User;
+use App\Traits\ImageUpload;
+use App\Traits\ValidateExcept;
 use Livewire\Form;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
@@ -12,6 +14,9 @@ use Illuminate\Support\Facades\Storage;
 
 class UserForm extends Form
 {
+    use ImageUpload;
+    use ValidateExcept;
+
     public ?User $user;
 
     #[Validate]
@@ -66,47 +71,22 @@ class UserForm extends Form
     public function setUser(User $user)
     {
         $this->user = $user;
-        $this->name = $user->name;
-        $this->username = $user->username;
-        $this->email = $user->email;
-        $this->bio = $user->bio;
+
+        $this->fill(
+            $user->only('name', 'username', 'email', 'bio')
+        );
+
         $this->instagram = $user->links->instagram;
         $this->twitter = $user->links->twitter;
         $this->facebook = $user->links->facebook;
     }
 
-    public function validateExcept($property): array
-    {
-        // Remove 'photo' validation rule
-        $filteredRules = array_diff_key($this->rules(), [$property => '']);
-
-        // Validate the remaining fields
-        return $this->validate($filteredRules);
-    }
-
-    public function updatePhoto(): void
-    {
-        // Jika user sudah upload foto
-        if ($this->photo instanceof TemporaryUploadedFile) {
-            // Jika user sebelumnya sudah mempunyai photo
-            if ($this->user->photo) {
-                // maka hapus foto lama mereka
-                Storage::delete($this->user->photo);
-            }
-            // ganti dengan foto yang baru mereka upload
-            $this->photo =  $this->photo->store(path: 'images/users');
-        } else {
-            // Jika user tidak memilih foto, maka gunakan foto lama mereka
-            $this->photo = $this->user->photo;
-        }
-    }
-
     public function update()
     {
-        $this->validateExcept('photo');
+        $this->validateExcept('photo', $this->rules());
         Gate::authorize('update-user', auth()->user(), $this->user);
 
-        $this->updatePhoto();
+        $this->upload('photo', 'user', 'images/users');
         $this->user->update(
             $this->all()
         );

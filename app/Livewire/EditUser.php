@@ -11,11 +11,11 @@ class EditUser extends Component
 {
     use WithFileUploads;
 
-    public UserForm $form;
     public User $user;
+    public UserForm $form;
 
     /**
-     * Called after updated property
+     * Called after a property is updated
      * 
      */
     public function updated($property)
@@ -46,8 +46,6 @@ class EditUser extends Component
 
     public function render()
     {
-        $links = $this->user->links;
-
-        return view('livewire.edit-user', compact('links'));
+        return view('livewire.edit-user');
     }
 }
