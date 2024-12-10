@@ -11,10 +11,15 @@ class PostInputForm extends Component
 {
     use WithFileUploads;
 
-    public Post $post;
+    public ?Post $post;
     public PostForm $form;
     public $categories;
     public $button;
+
+    public function mount(Post $post): void
+    {
+        $this->form->setPost($post);
+    }
 
     public function updated($property)
     {
@@ -24,6 +29,14 @@ class PostInputForm extends Component
             if (!in_array(strtolower($this->form->image->getClientOriginalExtension()), config('livewire.temporary_file_upload.preview_mimes'))) {
                 // Maka ganti file yang dilipih user dengan filenya yang lama atau null
                 $this->form->image = $this->post->image ?? null;
+            }
+        }
+
+        // Jika judul telah diupdate
+        if ($property === 'form.title') {
+            dd($this->post);
+            if ($this->post->slug == null) {
+                $this->form->slug = strtolower(str_replace(' ', '-', $this->form->title));
             }
         }
     }

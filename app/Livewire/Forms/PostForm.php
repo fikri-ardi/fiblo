@@ -52,7 +52,7 @@ class PostForm extends Form
         $this->post = $post;
 
         $this->fill(
-            $post->only('title', 'image', 'body', 'excerpt', 'category_id')
+            $post->only('title', 'slug', 'image', 'body', 'excerpt', 'category_id')
         );
     }
 

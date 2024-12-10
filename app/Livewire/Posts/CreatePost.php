@@ -13,7 +13,7 @@ class CreatePost extends Component
     use WithFileUploads;
 
     public PostForm $form;
-    public Post $post;
+    public ?Post $post;
     public $categories;
 
     public function mount(Post $post)

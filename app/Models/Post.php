@@ -7,13 +7,12 @@ use Coderflex\Laravisit\Concerns\CanVisit;
 use Coderflex\Laravisit\Concerns\HasVisits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     protected $guarded = ['id'];
     protected $with = ['author', 'category', 'visitors'];
@@ -84,20 +83,18 @@ class Post extends Model
         return 'slug';
     }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
-
     public function title(): Attribute
     {
         return new Attribute(
             get: fn($value) => ucwords($value),
             set: fn($value) => strtolower($value),
+        );
+    }
+
+    public function slug(): Attribute
+    {
+        return new Attribute(
+            set: fn($value) => strtolower(str_replace(' ', '', $value)),
         );
     }
 

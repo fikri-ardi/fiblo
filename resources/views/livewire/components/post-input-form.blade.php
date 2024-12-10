@@ -30,9 +30,19 @@
     </div>
 
     {{-- Body --}}
-    <div class="mb-3" style="min-height: 500px;">
+    <div wire:ignore class="mb-3" style="min-height: 500px;">
         <input type="hidden" name="form.body" id="form.body" required>
-        <trix-editor wire:model.live="form.body" input="form.body" placeholder="Tulis cerita kamu..." class="text-xl border-0 text-slate-800 outline-none"></trix-editor>
+        <trix-editor 
+        class="text-xl border-0 text-slate-800 outline-none"
+        input="form.body"
+        x-data
+        x-on:trix-change="$dispatch('input', event.target.value)"
+        x-ref="trix"
+        wire:model.blur="form.body"
+        wire:key="uniqueKey"
+        placeholder="Tulis cerita kamu..." 
+        >
+        </trix-editor>
         <x-_error name="form.body"></x-_error>
     </div>
 
