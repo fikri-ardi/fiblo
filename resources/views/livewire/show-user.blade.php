@@ -45,8 +45,7 @@
     </div>
     
     @if ($posts->count())
-    <x-_posts :posts="$posts" :photos="$photos"></x-_posts>
-    
+    <x-posts :posts="$posts" :photos="$photos"></x-posts>
     @else
     <div class="text-center mt-3 text-lg">{{ "@$user->username" }} belum punya postingan.</div>
     @endif

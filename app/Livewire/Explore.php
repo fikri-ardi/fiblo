@@ -6,9 +6,12 @@ use App\Models\Post;
 use Livewire\Component;
 use App\Models\Category;
 use App\Enums\PostStatus;
+use Livewire\WithPagination;
 
 class Explore extends Component
 {
+    use WithPagination;
+
     public function render()
     {
         $categories = Category::all();

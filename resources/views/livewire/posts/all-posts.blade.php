@@ -1,5 +1,5 @@
 <div>
-    @if ($posts->count())
+    @if($posts->count())
     {{-- First Post --}}
     <div class="card mb-5 pb-4 text-center border-0">
         {{-- Banner --}}
@@ -35,9 +35,7 @@
     </div>
 
     {{-- All Post --}}
-    {{-- <x-_posts :posts="$posts->skip(1)" :photos="$photos"></x-_posts> --}}
-    <livewire:components.posts :posts="$posts->skip(1)" :photos="$photos" />
-
+    <x-posts :posts="$posts->skip(1)" :photos="$photos" />
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else
     <div class="text-center text-lg text-slate-800 mt-10">Maaf ya sekarang masih belum ada article ☹️</div>

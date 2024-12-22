@@ -54,7 +54,9 @@ class Home extends Component
             ->get();
 
         if (auth()->user() && auth()->user()->follows->count()) {
-            $posts = auth()->user()->followedPost()->exclude('body', 'status', 'updated_at')
+            $posts = auth()->user()
+                ->followedPost()
+                ->exclude('body', 'status', 'updated_at')
                 ->postState(PostStatus::Published)
                 ->latest()
                 ->limit(6)

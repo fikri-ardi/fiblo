@@ -20,8 +20,8 @@
     </div>
     
     {{-- Posts --}}
-    @if ($posts->count())
-    <x-_posts :posts="$posts" :photos="$photos"></x-_posts>
+    @if ($posts)
+    <x-posts :posts="$posts->items()" :photos="$photos" />
     <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     @else
     <div class="text-center text-lg text-slate-800 mt-10">Ups! maaf ya, sekarang masih belum ada article nih :(</div>

@@ -25,6 +25,6 @@
         Tulisan Terbaru
     </div>
     
-    <x-_posts :posts="$posts" :photos="$photos"></x-_posts>
+    <x-posts :posts="$posts" :photos="$photos" />
     @endif
 </div>
