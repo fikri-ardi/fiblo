@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="flex mb-44">
-                    <x-_link href="{{ route('posts.index') }}">
+                    <x-_link href="{{ url()->previous() }}">
                         <span class="bi bi-chevron-compact-left"></span> Kembali
                     </x-_link>
                 </div>

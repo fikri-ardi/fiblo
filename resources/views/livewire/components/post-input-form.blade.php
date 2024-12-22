@@ -52,7 +52,7 @@
         <select wire:model.blur="form.category_id" class="form-select @error('form.category_id') is-invalid @enderror" name="form.category_id">
             <option selected disabled>Pilih Topik</option>
             @forelse ($categories as $category)
-            <option value="{{ $category->id }}" {{ $category->id == old('category_id', isset($post) ? $post->category_id : null) ? 'selected' : ''
+            <option wire:key="{{ $category->id }}" value="{{ $category->id }}" {{ $category->id == old('category_id', isset($post) ? $post->category_id : null) ? 'selected' : ''
                 }}>{{
                 $category->name }}
             </option>
