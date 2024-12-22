@@ -90,5 +90,10 @@ class UserForm extends Form
         $this->user->update(
             $this->all()
         );
+        $this->user->links()->update([
+            'instagram' => $this->instagram,
+            'twitter' => $this->twitter,
+            'facebook' => $this->facebook
+        ]);
     }
 }
