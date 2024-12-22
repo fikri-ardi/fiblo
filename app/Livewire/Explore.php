@@ -19,7 +19,7 @@ class Explore extends Component
             ->filter(request(['search', 'category', 'author']))
             ->exclude(['body', 'updated_at'])
             ->latest()
-            ->paginate(7)
+            ->simplePaginate(7)
             ->withQueryString();
 
         // // Use unsplash API
