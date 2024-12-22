@@ -1,4 +1,5 @@
 <div>
+    {{-- User info --}}
     <div class="flex item-center mb-3">
         <a href="#post" class="w-20 text-center cursor-pointer hover:bg-gray-200 transition ease-out">
             <div class="font-semibold text-lg">{{ $postCount }}</div>

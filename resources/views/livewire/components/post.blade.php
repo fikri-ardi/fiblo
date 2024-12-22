@@ -31,15 +31,15 @@
                     <a wire:navigate href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                 </h4>
 
-                @can('username', $post->author->username)
                 {{-- action button --}}
+                @can('username', $post->author->username)
                 <button x-on:click="open = '{{ $post->slug }}'"
                     class="text-slate-400 text-base rounded-full flex items-center justify-center h-8 w-8 mt-1 active:bg-slate-400 cursor-pointer">
                     <i class="bi bi-three-dots-vertical text-lg"></i>
                 </button>
 
                 {{-- action menu --}}
-                <div x-show="open == '{{ $post->slug }}'" x-transition class="w-full h-full fixed left-0 top-0 flex justify-center items-center"
+                <div x-show="open == '{{ $post->slug }}'" x-transition class="bg-black bg-opacity-50 backdrop-blur-md w-full h-full fixed left-0 top-0 flex justify-center items-center"
                     style="z-index: 999;">
                     <div class="bg-white flex flex-col rounded-xl overflow-hidden" x-on:click.outside="open=false">
                         <a wire:navigate href="{{ route('posts.edit', $post) }}"
