@@ -1,15 +1,15 @@
-<form wire:submit="store" method="POST" enctype="multipart/form-data">
+<form wire:submit="{{ $action }}" method="POST" enctype="multipart/form-data">
+    {{-- Banner --}}
     <div class="mb-3">
-        {{-- Banner --}}
         <div
             class="relative w-full h-48 sm:h-96 bg-slate-200 active:bg-slate-300 transition rounded-xl flex items-center justify-center overflow-hidden">
-            @if (isset($post) && $post->image)
-            <img src="{{ $post->image }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
+            @if ($form->image)
+                <img src="{{ config('app.url').$form->image }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
             @endif
             @if ($form->image instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile )
-            @if ($form->image->getClientOriginalExtension() == "png" || "jpg")
-            <img src="{{ $form->image->temporaryUrl() }}" class="img-fluid rounded-lg w-full h-full object-cover object-center absolute">
-            @endif
+                @if ($form->image->getClientOriginalExtension() == "png" || "jpg")
+                    <img src="{{ $form->image->temporaryUrl() }}" class="img-fluid rounded-lg w-full h-full object-cover object-center absolute">
+                @endif
             @endif
             <i class="bi bi-camera-fill font-bold text-4xl text-slate-500"></i>
             <input wire:model.live="form.image" class="absolute h-full w-full opacity-0 form-control img-input @error('form.image') is-invalid @enderror" type="file" id="form.image"
@@ -74,7 +74,7 @@
     </div>
 
     {{-- Publish button --}}
-    <div class="flex justify-end">
+    <div class="flex justify-end mt-7">
         <x-_button>
             <span class="bi bi-upload mr-1"></span>
             {{ $button ?? 'Tambah' }}

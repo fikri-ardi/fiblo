@@ -8,6 +8,7 @@ use App\Traits\ImageUpload;
 use App\Traits\ValidateExcept;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Gate;
 
 class PostForm extends Form
 {
@@ -33,6 +34,8 @@ class PostForm extends Form
 
     public $excerpt;
 
+    public $user_id;
+
     public function rules()
     {
         return [
@@ -53,7 +56,7 @@ class PostForm extends Form
         $this->post = $post;
 
         $this->fill(
-            $post->only('title', 'slug', 'image', 'body', 'excerpt', 'category_id')
+            $post->only('title', 'slug', 'image', 'body', 'excerpt', 'category_id', 'user_id')
         );
     }
 
@@ -64,6 +67,18 @@ class PostForm extends Form
         $this->upload('image', 'post', 'images/posts');
         $this->excerpt = str()->limit(strip_tags($this->body), 160, '...');
         auth()->user()->posts()->create(
+            $this->all()
+        );
+    }
+
+    public function update()
+    {
+        Gate::authorize('update-post', $this->post);
+        $this->validateExcept('image', $this->rules());
+
+        $this->upload('image', 'post', 'images/posts');
+        $this->excerpt = str()->limit(strip_tags($this->body), 160, '...');
+        $this->post->update(
             $this->all()
         );
     }

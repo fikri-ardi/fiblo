@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use PharIo\Manifest\Author;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('update-user', function (User $authenticatedUser, User $user) {
             return $authenticatedUser->username === $user->username;
+        });
+
+        Gate::define('update-post', function (User $user, Post $post) {
+            return $user->username === $post->author->username;
         });
     }
 }

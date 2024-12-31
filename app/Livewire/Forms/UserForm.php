@@ -9,8 +9,6 @@ use Livewire\Form;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Gate;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Illuminate\Support\Facades\Storage;
 
 class UserForm extends Form
 {
@@ -83,8 +81,8 @@ class UserForm extends Form
 
     public function update()
     {
-        $this->validateExcept('photo', $this->rules());
         Gate::authorize('update-user', auth()->user(), $this->user);
+        $this->validateExcept('photo', $this->rules());
 
         $this->upload('photo', 'user', 'images/users');
         $this->user->update(
