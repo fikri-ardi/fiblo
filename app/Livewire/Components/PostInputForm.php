@@ -6,6 +6,7 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Livewire\Forms\PostForm;
+use Illuminate\Support\Facades\Route;
 
 class PostInputForm extends Component
 {
@@ -17,12 +18,20 @@ class PostInputForm extends Component
     public $action;
     public $button;
 
+    public function updating()
+    {
+        $this->dispatch('updating-post');
+    }
+
     public function updated($name, $value)
     {
         // Real-time form saving
-        $this->post->update([
-            str_replace('form.', '', $name) => $value
-        ]);
+        if (isset($this->post)) {
+            $this->post->update([
+                str_replace('form.', '', $name) => $value
+            ]);
+            $this->dispatch('post-updated');
+        }
 
         // Jika user sudah memilih file
         if ($name === 'form.image') {

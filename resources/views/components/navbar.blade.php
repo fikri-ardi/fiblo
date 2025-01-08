@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl">
         <div class="container flex justify-content-between">
             {{-- Application logo --}}
-            <div>
+            <div class="flex items-center space-x-3">
                 <a wire:navigate class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
                     <span class="text-2xl sm:text-4xl">{{ config('app.name') }}</span>
                 </a>
@@ -23,8 +23,9 @@
             {{-- Right Nav --}}
             <ul x-data="{ open: false }" class="navbar-nav space-x-2">
                 @auth
+                {{-- Create post --}}
                 <li class="hidden sm:inline-block nav-item relative">
-                    <a wire:navigate href="/posts/create"
+                    <a wire:navigate href="{{ route('posts.create') }}"
                         class="flex items-center justify-center bg-slate-200 rounded-full h-8 w-8 active:bg-slate-400">
                         <i class="bi bi-pencil-square text-xl font-bold"></i>
                     </a>
