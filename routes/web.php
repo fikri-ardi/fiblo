@@ -12,13 +12,14 @@ use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryContro
 use App\Livewire\DeletePost;
 use App\Livewire\EditPost;
 use App\Livewire\EditUser;
+use App\Livewire\Experiment;
 use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\CreatePost;
 use App\Livewire\Posts\ShowPost;
 use App\Livewire\ShowUser;
 
 Route::get('/', Home::class)->name('home');
-Route::view('/navbar', 'nav');
+Route::get('/experiment', Experiment::class);
 
 // Posts
 Route::get('/posts', AllPosts::class)->name('posts.index');

@@ -1,7 +1,7 @@
 <div>
     {{-- Desktop navigation --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-50 p-4 z-50 w-full top-0 backdrop-blur-xl">
-        <div class="container flex justify-content-between">
+    <nav class="navbar navbar-expand-lg bg-white bg-opacity-50 backdrop-blur-lg navbar-light p-4 z-50 w-full top-0">
+        <div class="container z-50 flex justify-content-between">
             {{-- Application logo --}}
             <div class="flex items-center space-x-3">
                 <a wire:navigate class="flex items-center text-red-500 font-bold hover:text-red-500" href="/">
@@ -42,7 +42,7 @@
     
                         {{-- Dropdown Content --}}
                         <ul x-show="open" x-on:mouseleave="open = false" x-transition
-                            class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white min-w-full w-44">
+                            class="absolute shadow-lg rounded-xl right-0 top-12 overflow-hidden z-50 bg-white bg-opacity-50 backdrop-blur-xl min-w-full w-44">
                             <li>
                                 <a wire:navigate class="flex items-center no-underline text-gray-800 px-3 py-2 hover:bg-slate-200 hover:text-slate-900{{ request()->is($active ?? '') ? ' active' : '' }}"
                                     href="{{ route('users.show', auth()->user()) }}">
@@ -85,6 +85,15 @@
                 @endauth
             </ul>
         </div>
+
+        {{-- Progressive Blur Effect --}}
+        {{-- <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div>
+        <div class="absolute z-40 left-0 bottom-0 right-0 top-0 blur-filter w-full"></div> --}}
     </nav>
     
     {{-- Mobile navigation --}}
@@ -101,5 +110,5 @@
         </ul>
     </div>
     
-    <script src="/js/navbar.js"></script>
+    {{-- <script src="/js/navbar.js"></script> --}}
 </div>

@@ -11,10 +11,16 @@
         <p class="text-base lh-base text-gray-500 font-normal max-w-xl mx-auto mt-10 sm:text-lg animate-show" style="animation-delay: 2.5s">
             "{{ $responseBody->content }}"
         </p>
+
+        {{-- Smooth bounce animation --}}
+        <div class="absolute w-20 h-20 top-1/2 right-1/2 -translate-y-20 -translate-x-52 -z-10">
+            <div class="relative h-20 w-20 bg-slate-400 bg-opacity-20 backdrop-blur-md rounded-2xl animate-smooth-bounce"></div>
+            <div class="relative -mt-12 -z-20 h-20 w-20 bg-slate-400 -rotate-45 skew-x-12 rounded-2xl animate-smooth-bounce !animation-delay-800"></div>
+        </div>
     
         @if ($posts->count())
         <a href="#posts"
-            class="bi bi-chevron-compact-down text-3xl mx-auto text-red-500 mt-10 animate-bounce shadow-lg bg-white border-1 h-12 w-12 rounded-full flex justify-center items-center">
+            class="bi bi-chevron-compact-down text-3xl mx-auto text-red-500 mt-10 animate-smooth-shift bg-white border-1 h-12 w-12 rounded-full flex justify-center items-center">
         </a>
         @endif
     </div>

@@ -18,19 +18,21 @@ class PostInputForm extends Component
     public $action;
     public $button;
 
+    // When post form is being updated
     public function updating()
     {
         $this->dispatch('updating-post');
     }
 
+    // When post form is updated
     public function updated($name, $value)
     {
         // Real-time form saving
         if (isset($this->post)) {
             $this->post->update([
-                str_replace('form.', '', $name) => $value
+                str_replace('form.', '', $name) => $value,
+                'form.excerpt' => str()->limit(strip_tags($this->form->body), 160, '...'),
             ]);
-            $this->dispatch('post-updated');
         }
 
         // Jika user sudah memilih file

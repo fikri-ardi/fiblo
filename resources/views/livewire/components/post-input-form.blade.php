@@ -47,27 +47,30 @@
 
     {{-- Title --}}
     <div class="mb-3">
-        <input wire:model.live.debounce.500ms="form.title" type="text" id="form.title" name="form.title" placeholder="Judul"
-            class="bg-inherit text-2xl sm:text-4xl border-0 w-full focus:ring-0 font-semibold" autofocus>
+        <input wire:model.blur="form.title" type="text" id="form.title" name="form.title" placeholder="Judul"
+            class="bg-inherit text-2xl sm:text-5xl border-0 w-full focus:ring-0 font-semibold" autofocus>
         <x-_error name="form.title"></x-_error>
     </div>
 
-    <h1 wire:loading wire:target="updatingBody" >hey</h1>
-
     {{-- Body --}}
-    <div wire:ignore class="mb-3" style="min-height: 500px;">
-        <input type="hidden" name="form.body" id="form.body" required>
+    <div wire:ignore class="mb-3" style="min-height: 500px;"
+        x-data="{ body: @entangle('form.body').live }"
+    >
+        <input x-model="body" id="form_body" type="hidden" name="form.body" x-ref="hiddenInput" />
+    
         <trix-editor 
-        class="text-xl border-0 text-slate-800 outline-none"
-        input="form.body"
-        x-data
-        x-on:trix-change="$dispatch('input', event.target.value)"
-        x-ref="trix"
-        wire:model.live.debounce.500ms="form.body"
-        wire:key="uniqueKey"
-        placeholder="Tulis cerita kamu..." 
-        >
+            class="text-xl border-0 text-slate-800 outline-none" 
+            input="form_body"
+            x-data 
+            x-on:trix-change="
+                @this.set('form.body', event.target.value);
+                $refs.hiddenInput.value = event.target.value;
+            "
+            x-ref="trix" 
+            wire:key="uniqueKey"
+            placeholder="Tulis cerita kamu...">
         </trix-editor>
+    
         <x-_error name="form.body"></x-_error>
     </div>
 
